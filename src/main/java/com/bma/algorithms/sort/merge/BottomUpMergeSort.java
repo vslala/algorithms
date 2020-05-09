@@ -35,8 +35,9 @@ public class BottomUpMergeSort implements Sort {
     }
 
     @Override
-    public void time() {
+    public long time() {
         Util.println("<BottomUpMergeSort>: Total Time: " + totalTime + "ms");
+        return totalTime;
     }
 
     @Override

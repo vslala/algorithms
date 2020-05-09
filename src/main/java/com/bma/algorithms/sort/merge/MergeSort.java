@@ -18,8 +18,9 @@ public class MergeSort implements Sort {
     }
 
     @Override
-    public void time() {
-        Util.print("Total Time Taken: " + totalTime + "ms");
+    public long time() {
+        Util.println("<MergeSort> Total Time Taken: " + totalTime + "ms");
+        return totalTime;
     }
 
     @Override

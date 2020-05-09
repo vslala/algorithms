@@ -12,8 +12,9 @@ public class InsertionSort implements Sort {
     }
 
 
-    public void time() {
-        System.out.println(String.format("InsertionSort>\t\t\tTotal Time Taken: %sms", totalTime));
+    public long time() {
+        Util.println("<InsertionSort> Total Time Taken: " + totalTime + "ms");
+        return totalTime;
     }
 
     public void sort() {

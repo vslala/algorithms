@@ -30,8 +30,9 @@ public class SelectionSort implements Sort {
         return min;
     }
 
-    public void time() {
-        System.out.println(String.format("SelectionSort>\t\t\tTotal Time Taken: %sms", totalTime));
+    public long time() {
+        Util.println("<SelectionSort> Total Time Taken: " + totalTime + "ms");
+        return totalTime;
     }
 
     public void print() {

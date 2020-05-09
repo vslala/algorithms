@@ -17,8 +17,9 @@ public class ShellSort implements Sort {
         this.input = input;
     }
 
-    public void time() {
-        System.out.println(String.format("ShellSort>\t\t\tTotal Time Taken: %dms", totalTime));
+    public long time() {
+        Util.println("<ShellSort> Total Time Taken: " + totalTime + "ms");
+        return totalTime;
     }
 
     public void print() {
