@@ -1,5 +1,10 @@
 package com.bma.algorithms.sort.elementary;
 
+import com.bma.algorithms.priorityqueues.BinaryHeaps;
+
+import java.util.Collection;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Random;
 
 public class Util {
@@ -35,8 +40,8 @@ public class Util {
         System.out.println(format);
     }
 
-    public static void print(String str) {
-        System.out.print(str);
+    public static void print(Object obj) {
+        System.out.print(obj);
     }
 
     public static void println(int[] input, int low, int high) {
@@ -48,5 +53,14 @@ public class Util {
 
     public static void println() {
         System.out.println();
+    }
+
+    public static void println(Collection collection) {
+        collection.forEach(item -> Util.print(item));
+        Util.println();
+    }
+
+    public static <T> boolean less(List<T> collection, int index1, int index2, Comparator comparator) {
+        return comparator.compare(collection.get(index1), collection.get(index2)) < 0;
     }
 }
