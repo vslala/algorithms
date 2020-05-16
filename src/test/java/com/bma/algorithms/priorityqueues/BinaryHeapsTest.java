@@ -3,10 +3,10 @@ package com.bma.algorithms.priorityqueues;
 import com.bma.algorithms.sort.elementary.Util;
 import org.junit.Test;
 
-import java.util.Collection;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 public class BinaryHeapsTest {
 
@@ -43,9 +43,9 @@ public class BinaryHeapsTest {
         Util.println(binaryHeaps.get());
 
         List<String> heap = binaryHeaps.get();
-        assertFalse(Util.less(heap, 1, 2, BinaryHeaps.StringComparator.newInstance()));
-        assertFalse(Util.less(heap, 2, 2*2, BinaryHeaps.StringComparator.newInstance()));
-        assertFalse(Util.less(heap, 3, 3*2, BinaryHeaps.StringComparator.newInstance()));
+        assertFalse(Util.less(heap, 1, 2));
+        assertFalse(Util.less(heap, 2, 2*2));
+        assertFalse(Util.less(heap, 3, 3*2));
     }
 
     @Test
@@ -71,9 +71,9 @@ public class BinaryHeapsTest {
 
         Util.println(binaryHeaps.get());
 
-        assertFalse(Util.less(heap, 1, 2, BinaryHeaps.StringComparator.newInstance()));
-        assertFalse(Util.less(heap, 2, 2*2, BinaryHeaps.StringComparator.newInstance()));
-        assertFalse(Util.less(heap, 3, 3*2, BinaryHeaps.StringComparator.newInstance()));
+        assertFalse(Util.less(heap, 1, 2));
+        assertFalse(Util.less(heap, 2, 2*2));
+        assertFalse(Util.less(heap, 3, 3*2));
     }
 
 }

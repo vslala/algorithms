@@ -2,9 +2,11 @@ package com.bma.algorithms.priorityqueues;
 
 import com.bma.algorithms.sort.elementary.Util;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
-public class BinaryHeaps<T> {
+public class BinaryHeaps<T extends Comparable> {
 
 
     private List<T> heap = new ArrayList<>();
@@ -21,7 +23,7 @@ public class BinaryHeaps<T> {
             int childIndex = currentIndex;
             int parentIndex = currentIndex/2;
 
-            if (Util.less(heap, childIndex, parentIndex, StringComparator.newInstance())) break;
+            if (Util.less(heap, childIndex, parentIndex)) break;
 
             Collections.swap(heap, childIndex, parentIndex);
             currentIndex = parentIndex;
@@ -41,13 +43,13 @@ public class BinaryHeaps<T> {
         Collections.swap(heap, 1, lastNode);
         heap.remove(lastNode);
 
-        StringComparator comparator = StringComparator.newInstance();
+//        StringComparator comparator = StringComparator.newInstance();
         int currentNode = 1;
         while (currentNode * 2 < size()) {
             int firstChild = currentNode * 2;
             int secondChild = firstChild + 1;
-            if (secondChild < lastNode && Util.less(heap, firstChild, secondChild, comparator)) {
-                if (Util.less(heap, currentNode, secondChild, comparator)) {
+            if (secondChild < lastNode && Util.less(heap, firstChild, secondChild)) {
+                if (Util.less(heap, currentNode, secondChild)) {
                     Collections.swap(heap, currentNode, secondChild);
                     currentNode = secondChild;
                 }
@@ -56,18 +58,6 @@ public class BinaryHeaps<T> {
                 Collections.swap(heap, currentNode, firstChild);
                 currentNode = firstChild;
             }
-        }
-    }
-
-    public static class StringComparator implements Comparator<String> {
-
-        public static StringComparator newInstance() {
-            return new StringComparator();
-        }
-
-        @Override
-        public int compare(String o1, String o2) {
-            return o1.compareTo(o2);
         }
     }
 }

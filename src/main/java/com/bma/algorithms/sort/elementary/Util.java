@@ -1,7 +1,5 @@
 package com.bma.algorithms.sort.elementary;
 
-import com.bma.algorithms.priorityqueues.BinaryHeaps;
-
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
@@ -62,5 +60,9 @@ public class Util {
 
     public static <T> boolean less(List<T> collection, int index1, int index2, Comparator comparator) {
         return comparator.compare(collection.get(index1), collection.get(index2)) < 0;
+    }
+
+    public static <T extends Comparable> boolean less(List<T> collection, int index1, int index2) {
+        return collection.get(index1).compareTo(collection.get(index2)) < 0;
     }
 }

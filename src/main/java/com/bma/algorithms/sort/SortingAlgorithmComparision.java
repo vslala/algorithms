@@ -6,14 +6,12 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
-import static java.util.Arrays.*;
+import static java.util.Arrays.copyOf;
 
 public class SortingAlgorithmComparision {
 

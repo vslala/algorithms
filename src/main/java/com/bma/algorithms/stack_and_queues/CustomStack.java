@@ -1,7 +1,6 @@
 package com.bma.algorithms.stack_and_queues;
 
 import java.util.Objects;
-import java.util.Stack;
 
 // 16 bytes object overhead
 public class CustomStack {
