@@ -9,6 +9,7 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
         Value val;
         Node left;
         Node right;
+        int count;
 
         public Node(Key key, Value val) {
             this.key = key;
@@ -32,7 +33,7 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
             x.right = put(x.right, key, val);
         else if (cmp == 0)
             x.val = val;
-
+        x.count = 1 + size(x.left) + size(x.right);
         return x;
     }
 
@@ -73,6 +74,15 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
         return x;
     }
 
+    public int size() {
+        return size(root) + 1;
+    }
+
+    private int size(Node x) {
+        if (x == null) return 0;
+        return x.count;
+    }
+
     public Iterable<Key> iterator() {
         return null;
     }
@@ -83,7 +93,9 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
         bst.put("1", "E");
         bst.put("2", "F");
         bst.put("3", "A");
+        bst.put("3", "A");
 
         Util.println(bst.get("3"));
+        Util.println("Size: " + bst.size());
     }
 }
