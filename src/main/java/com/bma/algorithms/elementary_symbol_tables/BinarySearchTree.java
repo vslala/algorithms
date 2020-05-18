@@ -2,6 +2,9 @@ package com.bma.algorithms.elementary_symbol_tables;
 
 import com.bma.algorithms.sort.elementary.Util;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class BinarySearchTree<Key extends Comparable<Key>, Value> {
 
     private class Node {
@@ -104,19 +107,41 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
     }
 
     public Iterable<Key> iterator() {
-        return null;
+        Queue<Key> q = new LinkedList<>();
+        inOrder(root, q);
+        return q;
+    }
+
+    private void inOrder(Node x, Queue<Key> q) {
+        if (x == null ) return;
+        inOrder(x.left, q);
+        q.add(x.key);
+        inOrder(x.right, q);
     }
 
     public static void main(String[] args) {
-        BinarySearchTree<String, String> bst = new BinarySearchTree<>();
-        bst.put("0", "D");
-        bst.put("1", "E");
-        bst.put("2", "F");
-        bst.put("3", "A");
-        bst.put("3", "A");
+        BinarySearchTree<Integer, String> bst = new BinarySearchTree<>();
+        bst.put("B".hashCode(), "B");
+        bst.put("I".hashCode(), "I");
+        bst.put("N".hashCode(), "N");
+        bst.put("A".hashCode(), "A");
+        bst.put("R".hashCode(), "R");
+        bst.put("Y".hashCode(), "Y");
+        bst.put("S".hashCode(), "S");
+        bst.put("E".hashCode(), "E");
+        bst.put("A".hashCode(), "A");
+        bst.put("R".hashCode(), "R");
+        bst.put("C".hashCode(), "C");
+        bst.put("H".hashCode(), "H");
+        bst.put("T".hashCode(), "T");
+        bst.put("R".hashCode(), "R");
+        bst.put("E".hashCode(), "E");
+        bst.put("E".hashCode(), "E");
 
-        Util.println(bst.get("3"));
+        Util.println(bst.get("S".hashCode()));
         Util.println("Size: " + bst.size());
-        Util.println("Rank: " + bst.rank("3"));
+        Util.println("Rank: " + bst.rank("E".hashCode()));
+
+        bst.iterator().forEach(key -> Util.print(key + ","));
     }
 }
