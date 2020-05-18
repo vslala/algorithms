@@ -108,7 +108,7 @@ public class QuickSort implements Sort {
 
     public static void main(String[] args) {
         int input[] = {10,9,8,7,6,5,4,3,2,1}; //Util.generateUnsortedArray(1000000);
-        QuickSort quickSort = new QuickSort(Util.generateUnsortedArray(1000000));
+        QuickSort quickSort = new QuickSort(Util.generateUnsortedArray(10000000));
         quickSort.sort();
 //        quickSort.print();
         quickSort.time();

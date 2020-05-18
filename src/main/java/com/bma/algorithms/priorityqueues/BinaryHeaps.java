@@ -43,8 +43,12 @@ public class BinaryHeaps<T extends Comparable> {
         Collections.swap(heap, 1, lastNode);
         heap.remove(lastNode);
 
-//        StringComparator comparator = StringComparator.newInstance();
         int currentNode = 1;
+        sink(currentNode);
+    }
+
+    private void sink(int currentNode) {
+        int lastNode = size() - 1;
         while (currentNode * 2 < size()) {
             int firstChild = currentNode * 2;
             int secondChild = firstChild + 1;

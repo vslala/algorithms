@@ -34,7 +34,7 @@ public class Util {
         return num1 < num2;
     }
 
-    public static void println(String format) {
+    public static void println(Object format) {
         System.out.println(format);
     }
 
