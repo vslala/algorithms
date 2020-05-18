@@ -83,6 +83,26 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
         return x.count;
     }
 
+    /**
+     * Returns the number of key less than the provided key
+     * Return the rank of the provided key
+     * @param key
+     * @return
+     */
+    public int rank(Key key) {
+        return rank(key, root);
+    }
+
+    private int rank(Key key, Node x) {
+        if (x == null) return 0; // There are no keys in the BST
+
+        int cmp = key.compareTo(x.key);
+        if (cmp < 0) return rank(key, x.left);
+        else if (cmp > 0) return 1 + size(x.left) + rank(key, x.right);
+        // cmp == 0
+        else return size(x.left);
+    }
+
     public Iterable<Key> iterator() {
         return null;
     }
@@ -97,5 +117,6 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
 
         Util.println(bst.get("3"));
         Util.println("Size: " + bst.size());
+        Util.println("Rank: " + bst.rank("3"));
     }
 }
