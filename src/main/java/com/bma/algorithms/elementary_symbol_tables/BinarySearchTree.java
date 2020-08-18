@@ -151,8 +151,11 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
 
         Util.println(bst.get("S".hashCode()));
         Util.println("Size: " + bst.size());
-        Util.println("Rank: " + bst.rank("E".hashCode()));
+        Util.println("Key=" + "R".hashCode() + ", Rank=" + bst.rank("R".hashCode()));
 
         bst.iterator().forEach(key -> Util.print(key + ","));
+        Util.println();
+
+        Util.println("Floor: " + bst.floor("E".hashCode()));
     }
 }
