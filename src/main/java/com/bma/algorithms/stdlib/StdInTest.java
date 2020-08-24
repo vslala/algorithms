@@ -2,10 +2,10 @@ package com.bma.algorithms.stdlib; /**
  * Test client for StdIn and In. 
  **/
 
-import java.util.Scanner;
+import java.io.ByteArrayInputStream;
 import java.lang.reflect.Array;
 import java.lang.reflect.Method;
-import java.io.ByteArrayInputStream;
+import java.util.Scanner;
 
 public class StdInTest {
     private static boolean testStdIn;
