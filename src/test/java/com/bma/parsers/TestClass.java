@@ -1,14 +1,10 @@
 package com.bma.parsers;
 
 import com.bma.algorithms.leetcode.GroupAnagrams;
-import com.sun.tools.javac.Main;
 import lombok.SneakyThrows;
 import org.junit.Test;
 
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.concurrent.TimeUnit;
 
 public class TestClass {
 
@@ -106,6 +102,26 @@ public class TestClass {
         GroupAnagrams groupAnagrams = new GroupAnagrams();
         List<List<String>> output = groupAnagrams.groupAnagrams(strs);
         println(output);
+    }
+
+    @Test
+    public void it_should_find_largest_and_second_largest_number() {
+        int arr[] = new int[] {1,2,5,6,6,4};
+        int largest = arr[0];
+        int secondLargest = arr[0];
+
+        for (int num : arr) {
+            if (num > largest) {
+                secondLargest = largest;
+                largest = num;
+            } else {
+                if (num != largest && num > secondLargest) {
+                    secondLargest = num;
+                }
+            }
+        }
+
+        System.out.println("Second Largest  = " + secondLargest);
     }
 
 }
