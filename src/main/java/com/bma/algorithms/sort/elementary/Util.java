@@ -65,4 +65,10 @@ public class Util {
     public static <T extends Comparable> boolean less(List<T> collection, int index1, int index2) {
         return collection.get(index1).compareTo(collection.get(index2)) < 0;
     }
+
+    public static void measureRunTime(Runnable job) {
+        long startMillis = System.currentTimeMillis();
+        job.run();
+        System.out.println("Total Time Taken: " + (System.currentTimeMillis() - startMillis) + "ms");
+    }
 }
