@@ -24,8 +24,6 @@ public class LinearProbingHashST<Key, Value> {
         size++;
     }
 
-
-
     private int hash(Key key) {
         return (key.hashCode() & 0x7fffffff) % length;
     }
