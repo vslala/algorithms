@@ -14,21 +14,11 @@ public class FindNthTermFromEndInTheLinkedList<T extends Comparable<T>> {
             head = new Node(val, null);
             last = head;
         } else {
-            Node itr = getLastNode();
+            Node itr = last;
             itr.nextNode = new Node(val, null);
             last = itr.nextNode;
         }
         length++;
-    }
-
-    private Node getLastNode() {
-        if (null != last && last != head)
-            return last;
-
-        Node itr = head;
-        while (itr.nextNode != null)
-            last = itr = itr.nextNode;
-        return last;
     }
 
     public int size() {
