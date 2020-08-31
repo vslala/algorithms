@@ -38,7 +38,7 @@ public class HistogramPuzzler {
     }
 
     public static void main(String[] args) throws IOException {
-        String[] words = Files.readAllLines(Paths.get("src/main/resources/words.txt")).toArray(new String[]{});
+        String[] words = Files.readAllLines(Paths.get("/usr/share/dict/words")).toArray(new String[]{});
         Util.measureRunTime(() -> new HistogramPuzzler().shortlistPolygeneLubricants(words));
     }
 }
