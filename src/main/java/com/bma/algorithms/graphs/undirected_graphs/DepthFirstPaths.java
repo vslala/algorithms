@@ -1,18 +1,17 @@
-package com.bma.algorithms.undirected_graphs;
+package com.bma.algorithms.graphs.undirected_graphs;
 
 import java.util.Collections;
 import java.util.Stack;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class DepthFirstPaths implements Paths {
-    private GraphApi graph;
+    private Graph graph;
     private int sourceVertex;
     private boolean[] marked; // to check if the vertex has been visited before
     private int[] edgeTo;
     private StringBuilder lastSearch = new StringBuilder();
 
-    public DepthFirstPaths(GraphApi graph, int sourceVertex) {
+    public DepthFirstPaths(Graph graph, int sourceVertex) {
         this.graph = graph;
         this.sourceVertex = sourceVertex;
         marked = new boolean[graph.vertices()];
@@ -20,7 +19,7 @@ public class DepthFirstPaths implements Paths {
         dfs(graph, sourceVertex);
     }
 
-    private void dfs(GraphApi graph, int vertex) {
+    private void dfs(Graph graph, int vertex) {
         marked[vertex] = true;  // mark the vertex as visited
         graph.adj(vertex).forEach(adjVertex -> {    // visit each adj vertex
             if (! marked[adjVertex]) {              // check if vertex is not visited

@@ -1,4 +1,4 @@
-package com.bma.algorithms.undirected_graphs;
+package com.bma.algorithms.graphs.undirected_graphs;
 
 import java.util.Collections;
 import java.util.LinkedList;
@@ -9,13 +9,13 @@ import java.util.stream.Collectors;
 public class BreadthFirstPaths implements Paths {
 
     private final int sourceVertext;
-    private final GraphApi graph;
+    private final Graph graph;
     private boolean[] marked;
     private int[] edgeTo;
     private int[] distance;
     private StringBuilder lastSearch = new StringBuilder();
 
-    public BreadthFirstPaths(GraphApi graph, int sourceVertex) {
+    public BreadthFirstPaths(Graph graph, int sourceVertex) {
         this.graph = graph;
         this.sourceVertext = sourceVertex;
         marked = new boolean[graph.vertices()];
@@ -23,7 +23,7 @@ public class BreadthFirstPaths implements Paths {
         bfs(graph, sourceVertex);
     }
 
-    private void bfs(GraphApi graph, int vertex) {
+    private void bfs(Graph graph, int vertex) {
         Queue<Integer> queue = new LinkedList<>();
         queue.add(vertex);
         marked[vertex] = true;

@@ -1,4 +1,4 @@
-package com.bma.algorithms.undirected_graphs;
+package com.bma.algorithms.graphs.undirected_graphs;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -7,7 +7,7 @@ import static org.junit.Assert.*;
 
 public class CCTest {
 
-    GraphApi graph;
+    Graph graph;
 
     @Before
     public void setup() {

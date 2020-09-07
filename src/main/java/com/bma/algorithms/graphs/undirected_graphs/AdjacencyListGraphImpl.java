@@ -1,4 +1,4 @@
-package com.bma.algorithms.undirected_graphs;
+package com.bma.algorithms.graphs.undirected_graphs;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -23,13 +23,13 @@ class Bag<T> {
 class GraphProcessor {
     private GraphProcessor() {}
 
-    public static int degree(GraphApi graph, int vertex) {
+    public static int degree(Graph graph, int vertex) {
         AtomicInteger degree = new AtomicInteger(0);
         graph.adj(vertex).forEach(adjVertex -> degree.getAndIncrement());
         return degree.intValue();
     }
 
-    public static int maxDegree(GraphApi graph) {
+    public static int maxDegree(Graph graph) {
         AtomicInteger maxDegree = new AtomicInteger(0);
         IntStream.range(0, graph.vertices()).map(vertex -> degree(graph, vertex)).forEach(degree -> {
             if (degree > maxDegree.intValue())
@@ -38,11 +38,11 @@ class GraphProcessor {
         return maxDegree.intValue();
     }
 
-    public static double averageDegree(GraphApi graph) {
+    public static double averageDegree(Graph graph) {
         return 2.0 * graph.vertices() / graph.edges();
     }
 
-    public static int numberOfSelfLoops(GraphApi graph) {
+    public static int numberOfSelfLoops(Graph graph) {
         AtomicInteger selfLoops = new AtomicInteger(0);
         IntStream.range(0, graph.vertices()).forEach(vertex -> {
             graph.adj(vertex).forEach(adjVertex -> {
@@ -53,7 +53,7 @@ class GraphProcessor {
     }
 }
 
-public class AdjacencyListGraphImpl implements GraphApi {
+public class AdjacencyListGraphImpl implements Graph {
 
     private Bag<Integer>[] adj;
 

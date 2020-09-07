@@ -1,8 +1,8 @@
-package com.bma.algorithms.undirected_graphs;
+package com.bma.algorithms.graphs.undirected_graphs;
 
 import org.junit.Test;
 
-import static com.bma.algorithms.undirected_graphs.GraphProcessor.*;
+import static com.bma.algorithms.graphs.undirected_graphs.GraphProcessor.*;
 import static org.junit.Assert.*;
 
 public class AdjacencyListGraphImplTest {

@@ -1,6 +1,6 @@
-package com.bma.algorithms.undirected_graphs;
+package com.bma.algorithms.graphs.undirected_graphs;
 
-public interface GraphApi {
+public interface Graph {
 
     /**
      * draws an edge connecting two vertex v-w
