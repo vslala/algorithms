@@ -1,5 +1,6 @@
 package com.bma.algorithms.graphs.undirected_graphs;
 
+import com.bma.algorithms.graphs.Graph;
 import org.junit.Before;
 import org.junit.Test;
 

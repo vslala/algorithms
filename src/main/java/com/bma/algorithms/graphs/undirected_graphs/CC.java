@@ -1,5 +1,8 @@
 package com.bma.algorithms.graphs.undirected_graphs;
 
+import com.bma.algorithms.graphs.ConnectedComponents;
+import com.bma.algorithms.graphs.Graph;
+
 import java.util.stream.IntStream;
 
 public class CC implements ConnectedComponents {

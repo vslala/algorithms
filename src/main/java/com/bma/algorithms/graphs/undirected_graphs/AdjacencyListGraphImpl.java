@@ -1,24 +1,10 @@
 package com.bma.algorithms.graphs.undirected_graphs;
 
-import java.util.*;
+import com.bma.algorithms.graphs.Bag;
+import com.bma.algorithms.graphs.Graph;
+
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.IntStream;
-
-class Bag<T> {
-    Set<T> list;
-
-    public Bag() {
-        list = new HashSet<>();
-    }
-
-    public void add(T vertex) {
-        list.add(vertex);
-    }
-
-    public Iterable<T> iterator() {
-        return list;
-    }
-}
 
 class GraphProcessor {
     private GraphProcessor() {}

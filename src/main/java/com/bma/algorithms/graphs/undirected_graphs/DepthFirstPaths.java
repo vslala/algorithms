@@ -1,5 +1,8 @@
 package com.bma.algorithms.graphs.undirected_graphs;
 
+import com.bma.algorithms.graphs.Graph;
+import com.bma.algorithms.graphs.Paths;
+
 import java.util.Collections;
 import java.util.Stack;
 import java.util.stream.Collectors;
