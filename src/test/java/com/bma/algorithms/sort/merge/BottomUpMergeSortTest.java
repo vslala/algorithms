@@ -1,12 +1,12 @@
 package com.bma.algorithms.sort.merge;
 
 import com.bma.algorithms.sort.elementary.Util;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.Random;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class BottomUpMergeSortTest {
 

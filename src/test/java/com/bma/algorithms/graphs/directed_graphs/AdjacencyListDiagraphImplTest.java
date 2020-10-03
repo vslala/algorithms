@@ -1,15 +1,15 @@
 package com.bma.algorithms.graphs.directed_graphs;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class AdjacencyListDiagraphImplTest {
 
     private Diagraph diagraph;
 
-    @Before
+    @BeforeEach
     public void setup() {
         diagraph = new AdjacencyListDiagraphImpl(13);
     }

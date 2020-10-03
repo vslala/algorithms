@@ -1,20 +1,20 @@
 package com.bma.algorithms.leetcode;
 
 import com.bma.fixtures.Fixtures;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.LinkedList;
 import java.util.stream.IntStream;
 import java.util.stream.LongStream;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class FindNthTermFromEndInTheLinkedListTest {
 
     FindNthTermFromEndInTheLinkedList<Integer> testClass = new FindNthTermFromEndInTheLinkedList<>();
 
-    @Before
+    @BeforeEach
     public void setup() {
         System.out.println("Adding Numbers...");
         Fixtures.measureRunTime(() -> IntStream.iterate(1, x -> x + 1).limit(10000000).forEach(i -> testClass.add(i)));

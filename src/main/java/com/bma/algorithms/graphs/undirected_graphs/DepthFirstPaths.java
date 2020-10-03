@@ -23,7 +23,7 @@ public class DepthFirstPaths implements Paths {
     }
 
     private void dfs(Graph graph, int vertex) {
-        marked[vertex] = true;  // mark the vertex as visited
+        marked[vertex] = true;                      // mark the vertex as visited
         graph.adj(vertex).forEach(adjVertex -> {    // visit each adj vertex
             if (! marked[adjVertex]) {              // check if vertex is not visited
                 dfs(graph, adjVertex);              // recursively perform dfs
@@ -38,6 +38,11 @@ public class DepthFirstPaths implements Paths {
         return marked[vertex];
     }
 
+    /**
+     * returns the path from source vertex to the given vertex
+     * @param destination
+     * @return
+     */
     @Override
     public Iterable<Integer> pathTo(int destination) {
         if (! hasPathTo(destination)) return Collections.emptyList();

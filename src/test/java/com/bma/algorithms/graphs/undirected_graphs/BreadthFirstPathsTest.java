@@ -1,16 +1,16 @@
 package com.bma.algorithms.graphs.undirected_graphs;
 
 import com.bma.algorithms.graphs.Graph;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class BreadthFirstPathsTest {
 
     Graph graph;
 
-    @Before
+    @BeforeEach
     public void setup() {
         graph = new AdjacencyListGraphImpl(10);
         graph.addEdge(0, 1);

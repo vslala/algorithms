@@ -2,7 +2,7 @@ package com.bma.parsers;
 
 import com.bma.algorithms.leetcode.GroupAnagrams;
 import lombok.SneakyThrows;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 

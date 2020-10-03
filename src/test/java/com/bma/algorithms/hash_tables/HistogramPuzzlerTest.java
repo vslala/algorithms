@@ -1,11 +1,11 @@
 package com.bma.algorithms.hash_tables;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class HistogramPuzzlerTest {
 

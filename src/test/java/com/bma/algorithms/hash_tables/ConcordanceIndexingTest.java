@@ -1,9 +1,8 @@
 package com.bma.algorithms.hash_tables;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ConcordanceIndexingTest {
 

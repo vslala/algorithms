@@ -1,9 +1,9 @@
 package com.bma.algorithms.graphs.undirected_graphs;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static com.bma.algorithms.graphs.undirected_graphs.GraphProcessor.*;
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class AdjacencyListGraphImplTest {
 

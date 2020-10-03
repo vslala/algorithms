@@ -31,9 +31,11 @@ public class BubbleSort implements Sort {
         long startMillis = System.currentTimeMillis();
         IntStream.range(0, input.length).forEach(outerIndex -> {
             IntStream.range(0, outerIndex).forEach(innerIndex -> {
+                Util.print("I = " +  outerIndex + ", J = " + innerIndex + "\n\n");
                 if (input[innerIndex + 1] < input[innerIndex]) {
                     Util.swap(input, innerIndex,  innerIndex + 1);
                 }
+                print();
             });
         });
         totalTime = System.currentTimeMillis() - startMillis;
