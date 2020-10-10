@@ -23,4 +23,20 @@ public class ZigZagConversionTest {
         assertEquals(expectedOutput, output);
     }
 
+    @ParameterizedTest
+    @CsvSource({
+            "PAYPALISHIRING,PAHNAPLSIIGYIR,3",
+            "PAYPALISHIRING,PINALSIGYAHRPI,4",
+            "AB,AB,1",
+            "ABC,ABC,1",
+            "ABC,ABC,3",
+            "ABC,ACB,2",
+            "ABC,ABC,0",
+    })
+    void itShouldPrintZigZagStringInBigOOfN(String testStr, String expectedOutput, int numRows) {
+        var zigZagConversion = new ZigZagConversion();
+        String output = zigZagConversion.convertOptimize(testStr, numRows);
+        assertEquals(expectedOutput, output);
+    }
+
 }
