@@ -2,6 +2,7 @@ package com.bma.algorithms.graphs.directed_graphs;
 
 import com.bma.algorithms.graphs.Bag;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.stream.IntStream;
 
@@ -30,7 +31,7 @@ public class AdjacencyListDiagraphImpl implements Diagraph {
 
     @Override
     public Iterable<Integer> adj(int vertex) {
-        return bags[vertex].iterator();
+        return bags[vertex];
     }
 
     @Override
@@ -40,14 +41,14 @@ public class AdjacencyListDiagraphImpl implements Diagraph {
 
     @Override
     public int edges() {
-        return (int) Arrays.stream(bags).mapToLong(bag -> bag.iterator().spliterator().estimateSize()).sum();
+        return (int) Arrays.stream(bags).mapToLong(ArrayList::size).sum();
     }
 
     public String toString() {
         StringBuilder sb = new StringBuilder();
         IntStream.range(0, vertices).forEach(vertex -> {
             sb.append(vertex).append(System.lineSeparator());
-            bags[vertex].iterator().forEach(directedTo -> sb.append("\t->").append(directedTo).append(System.lineSeparator()));
+            bags[vertex].forEach(directedTo -> sb.append("\t->").append(directedTo).append(System.lineSeparator()));
         });
         return sb.toString();
     }

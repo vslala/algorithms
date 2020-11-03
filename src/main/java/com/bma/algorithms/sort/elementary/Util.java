@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 public class Util {
     private Util() {}
@@ -70,5 +71,9 @@ public class Util {
         long startMillis = System.currentTimeMillis();
         job.run();
         System.out.println("Total Time Taken: " + (System.currentTimeMillis() - startMillis) + "ms");
+    }
+
+    public static <I extends Comparable> void println(List<I> list, String delimiter) {
+        System.out.println(list.stream().map(String::valueOf).collect(Collectors.joining(delimiter)));
     }
 }

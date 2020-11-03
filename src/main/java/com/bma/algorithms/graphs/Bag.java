@@ -1,20 +1,10 @@
 package com.bma.algorithms.graphs;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
 
-public class Bag<T> {
-    Set<T> list;
+public class Bag<T> extends ArrayList<T> {
 
-    public Bag() {
-        list = new HashSet<>();
-    }
-
-    public void add(T vertex) {
-        list.add(vertex);
-    }
-
-    public Iterable<T> iterator() {
-        return list;
+    public Iterable<T> itr() {
+        return this;
     }
 }

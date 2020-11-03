@@ -58,7 +58,7 @@ public class AdjacencyListGraphImpl implements Graph {
 
     @Override
     public Iterable<Integer> adj(int vertex) {
-        return adj[vertex].iterator();
+        return adj[vertex];
     }
 
     @Override
