@@ -4,7 +4,8 @@
 using namespace std;
 
 bool judge_square(int c) {
-
+    // a^2 + b^2 = c
+    
     return false;
 }
 
