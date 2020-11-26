@@ -34,8 +34,7 @@ public class QuickSort implements Sort {
         long startMillis = System.currentTimeMillis();
         int start = 0;
         int end = input.length;
-        sortWithConsoleLogs(input, start, end);
-//        sort(input, start, end);
+        sort(input, start, end);
         totalTime = System.currentTimeMillis() - startMillis;
     }
 
