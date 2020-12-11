@@ -6,7 +6,7 @@
 using namespace std;
 
 int  main() {
-    ifstream day_3_input("inputs/day3input2.txt");
+    ifstream day_3_input("inputs/day3.txt");
     string line;
 
     vector<vector<char>> frame;
@@ -25,11 +25,11 @@ int  main() {
     
     for (auto slope: slopes) {
         int count = 0;
-        int i = slope[1], j = slope[0];
-        while (i < frame.size()) {
-            if (frame[i][j % frame[i].size()] == '#') count++;
-            j += slope[0];
-            i += slope[1];
+        int x = slope[1], y = slope[0];
+        while (x < frame.size()) {
+            if (frame[x][y % frame[x].size()] == '#') count++;
+            y += slope[0];
+            x += slope[1];
         }
 
         cout << count << "," << endl;
