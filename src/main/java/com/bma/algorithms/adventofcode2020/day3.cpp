@@ -18,18 +18,18 @@ int  main() {
         frame.push_back(col);
     }
 
-    // vector<vector<int>> slopes =  { {3,1} };
-    vector<vector<int>> slopes =  { {1,1}, {3,1}, {5,1}, {7,1}, {1,2} };
+    vector<vector<int>> slopes =  { {3,1} };
+    // vector<vector<int>> slopes =  { {1,1}, {3,1}, {5,1}, {7,1}, {1,2} };
 
     int mul = 1;
     
     for (auto slope: slopes) {
         int count = 0;
-        int x = slope[1], y = slope[0];
-        while (x < frame.size()) {
-            if (frame[x][y % frame[x].size()] == '#') count++;
-            y += slope[0];
-            x += slope[1];
+        int r = slope[1], c = slope[0];
+        while (r < frame.size()) {
+            if (frame[r][c % frame[r].size()] == '#') count++;
+            c += slope[0];
+            r += slope[1];
         }
 
         cout << count << "," << endl;
