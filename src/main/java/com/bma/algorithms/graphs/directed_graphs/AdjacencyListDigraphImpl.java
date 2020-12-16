@@ -6,12 +6,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.stream.IntStream;
 
-public class AdjacencyListDiagraphImpl implements Diagraph {
+public class AdjacencyListDigraphImpl implements Digraph {
 
     private final int vertices;
     private final Bag<Integer>[] bags;
 
-    public AdjacencyListDiagraphImpl(int vertices) {
+    public AdjacencyListDigraphImpl(int vertices) {
         this.vertices = vertices;
         this.bags = new Bag[vertices];
         IntStream.range(0, vertices).forEach(vertex -> {
@@ -20,7 +20,7 @@ public class AdjacencyListDiagraphImpl implements Diagraph {
     }
 
     @Override
-    public Diagraph reverse() {
+    public Digraph reverse() {
         return null;
     }
 

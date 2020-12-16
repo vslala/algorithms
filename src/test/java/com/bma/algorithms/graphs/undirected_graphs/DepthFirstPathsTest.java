@@ -1,7 +1,7 @@
 package com.bma.algorithms.graphs.undirected_graphs;
 
 import com.bma.algorithms.graphs.Graph;
-import com.bma.algorithms.graphs.directed_graphs.AdjacencyListDiagraphImpl;
+import com.bma.algorithms.graphs.directed_graphs.AdjacencyListDigraphImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class DepthFirstPathsTest {
 
-    Graph graph = new AdjacencyListDiagraphImpl(10);
+    Graph graph = new AdjacencyListDigraphImpl(10);
 
     @BeforeEach
     public void setup() {
