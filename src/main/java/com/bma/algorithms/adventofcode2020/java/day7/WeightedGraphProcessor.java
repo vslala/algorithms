@@ -11,6 +11,7 @@ public class WeightedGraphProcessor {
     private final WeightedGraph graph;
     private boolean isBagFound = false;
     private Set<String> part1 =  new HashSet<>();
+    private int count = 0;
 
 
     public int findAllBagsContainingBag(String bagColor) {
@@ -34,7 +35,7 @@ public class WeightedGraphProcessor {
 
         if (vertex.isEmpty())
             return;
-        
+
 
         visited.put(vertex, true);
         for (WeightedEdge edge: graph.adj(vertex))  {
@@ -45,5 +46,19 @@ public class WeightedGraphProcessor {
 
     }
 
+    public int countAllBagsInsideABag(String bagColor) {
+        return countTotalBags(bagColor);
+    }
+
+    private int countTotalBags(String bagColor) {
+        int count = 0;
+        if (graph.adj(bagColor).isEmpty())
+            return 0;
+        else
+            for (WeightedEdge edge: graph.adj(bagColor))
+                count += edge.getW() * (1 + countTotalBags(edge.either(bagColor)));
+
+        return count;
+    }
 
 }

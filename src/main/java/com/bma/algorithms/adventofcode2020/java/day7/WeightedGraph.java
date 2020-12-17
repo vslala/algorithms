@@ -32,7 +32,7 @@ public class WeightedGraph {
     }
 
     public List<WeightedEdge> adj(String v) {
-        return edges.get(v);
+        return edges.getOrDefault(v, Collections.emptyList());
     }
 
     public int totalVertices() {
