@@ -2,7 +2,10 @@ package com.bma.algorithms.adventofcode2020.java.day7;
 
 import lombok.RequiredArgsConstructor;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 @RequiredArgsConstructor
 public class WeightedGraphProcessor {
@@ -11,7 +14,6 @@ public class WeightedGraphProcessor {
     private final WeightedGraph graph;
     private boolean isBagFound = false;
     private Set<String> part1 =  new HashSet<>();
-    private int count = 0;
 
 
     public int findAllBagsContainingBag(String bagColor) {

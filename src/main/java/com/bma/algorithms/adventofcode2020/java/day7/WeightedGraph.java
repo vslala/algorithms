@@ -1,7 +1,5 @@
 package com.bma.algorithms.adventofcode2020.java.day7;
 
-import com.bma.algorithms.minimum_spanning_trees.Edge;
-
 import java.util.*;
 import java.util.stream.Collectors;
 
