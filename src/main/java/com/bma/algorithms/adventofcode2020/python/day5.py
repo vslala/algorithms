@@ -1,4 +1,4 @@
-find_row(seat = "BFFFBBFRRR"):
+def find_row(seat = "BFFFBBFRRR"):
     a = 64
     row = 0
     for i in range(0, len(seat) - 3):
@@ -6,7 +6,7 @@ find_row(seat = "BFFFBBFRRR"):
             row += a
 
         a = a//2
-    
+
     return row
         
 def find_col(seat = "BFFFBBFRRR"):
@@ -23,19 +23,23 @@ def find_col(seat = "BFFFBBFRRR"):
 def get_seat_id(row, col):
     return (row * 8) + col
 
-test_input = ["BFFFBBFRRR", "FFFBBBFRRR", "BBFFBBFRLL"]
+test_input = ["FBFBBFFRLR", "BFFFBBFRRR", "FFFBBBFRRR", "BBFFBBFRLL"]
 for test in test_input:
-    print(get_seat_id(find_row(test), find_col(test)))
+    pass
+    #    print(get_seat_id(find_row(test), find_col(test)))
 
 seats = []
 f = open("../inputs/day5.txt")
 for line in f:
+    line = line.strip()
     seat_id = get_seat_id(find_row(line), find_col(line))
     seats.append(seat_id)
 
-print(max(seats))
+#print(max(seats))
 
-seats.sort()
-for seat_index in range(0, len(seats) - 2):
-    if seats[seat_index + 1] - seats[seat_index] == 2:
-        pass
+p2 = None
+for id_ in sorted(seats):
+    if  id_+1 not in seats and id_ + 2 in seats:
+        p2 = id_ + 1
+
+print(p2)
