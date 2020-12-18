@@ -48,7 +48,8 @@ public class TopologicalSort {
     private void dfs(Digraph dag, int vertex) {
         marked[vertex] = true;
         for (int w: dag.adj(vertex))
-            if (!marked[w])  dfs(dag, w);
+            if (!marked[w])
+                dfs(dag, w);
 
         reversePost.push(vertex);
     }

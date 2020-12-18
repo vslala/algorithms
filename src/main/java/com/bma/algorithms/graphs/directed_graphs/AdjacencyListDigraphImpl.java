@@ -2,6 +2,9 @@ package com.bma.algorithms.graphs.directed_graphs;
 
 import com.bma.algorithms.graphs.Bag;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.stream.IntStream;
@@ -19,9 +22,28 @@ public class AdjacencyListDigraphImpl implements Digraph {
         });
     }
 
+    public AdjacencyListDigraphImpl(int vertices, Path dataFile) throws IOException {
+        this.vertices = vertices;
+        this.bags = new Bag[vertices];
+        IntStream.range(0, vertices).forEach(vertex -> {
+            bags[vertex] = new Bag<>();
+        });
+
+        Files.readAllLines(dataFile).forEach(line -> {
+            String[] edge = line.split("->");
+            addEdge(Integer.parseInt(edge[0]), Integer.parseInt(edge[1]));
+        });
+    }
+
     @Override
     public Digraph reverse() {
-        return null;
+        var reverse = new AdjacencyListDigraphImpl(this.vertices);
+        for (int vertex = 0; vertex < this.vertices; vertex++) {
+            for (int w: adj(vertex)) {
+                reverse.addEdge(w, vertex);
+            }
+        }
+        return reverse;
     }
 
     @Override
