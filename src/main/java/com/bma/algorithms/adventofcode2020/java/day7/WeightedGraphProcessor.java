@@ -2,50 +2,40 @@ package com.bma.algorithms.adventofcode2020.java.day7;
 
 import lombok.RequiredArgsConstructor;
 
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 @RequiredArgsConstructor
 public class WeightedGraphProcessor {
 
-    private Map<String, Boolean> visited;
     private final WeightedGraph graph;
-    private boolean isBagFound = false;
-    private Set<String> part1 =  new HashSet<>();
-
+    private final AtomicBoolean isBagFound = new AtomicBoolean(false);
+    private final Set<String> part1 =  new HashSet<>();
 
     public int findAllBagsContainingBag(String bagColor) {
-        visited = new HashMap<>();
         Set<String> vertices = graph.get().keySet();
-        for  (String vertex : vertices) {
-            isBagFound = false;
+        vertices.forEach(vertex -> {
+            isBagFound.set(false);
             dfs(vertex, graph, bagColor);
-        }
+        });
 
-//        part1.forEach(v -> System.out.print(v + ", "));
-//        System.out.println();
         return part1.size();
     }
 
     private void dfs(String vertex, WeightedGraph graph, String bagColor) {
-        if  (isBagFound || vertex.equals(bagColor)) {
-            isBagFound = true;
+        if  (isBagFound.get() || vertex.equals(bagColor)) {
+            isBagFound.set(true);
             return;
         }
 
-        if (vertex.isEmpty())
-            return;
+        if (vertex.isEmpty()) return;
 
-
-        visited.put(vertex, true);
-        for (WeightedEdge edge: graph.adj(vertex))  {
-            dfs(edge.either(vertex), graph, bagColor);
-            if (isBagFound)
+        graph.adj(vertex).forEach(edge -> {
+            dfs(edge.other(vertex), graph, bagColor);
+            if (isBagFound.get())
                 part1.add(vertex);
-        }
-
+        });
     }
 
     public int countAllBagsInsideABag(String bagColor) {
@@ -53,14 +43,13 @@ public class WeightedGraphProcessor {
     }
 
     private int countTotalBags(String bagColor) {
-        int count = 0;
         if (graph.adj(bagColor).isEmpty())
             return 0;
         else
-            for (WeightedEdge edge: graph.adj(bagColor))
-                count += edge.getW() * (1 + countTotalBags(edge.either(bagColor)));
-
-        return count;
+            return graph.adj(bagColor)
+                    .stream()
+                    .mapToInt(edge -> (int) (edge.getW() * (1 + countTotalBags(edge.other(bagColor)))))
+                    .sum();
     }
 
 }

@@ -22,7 +22,7 @@ public class WeightedEdge {
         }
     }
 
-    public String either(String vertex) {
+    public String other(String vertex) {
         return vertex.equals(v1) ? v2 : v1;
     }
 }

@@ -24,16 +24,19 @@ public class WeightedGraphBuilder {
      * @param filePath
      * @return
      */
-    public static final String CONTAIN_REGEX = " contain ";
+    private static final String CONTAIN_REGEX = " contain ";
+    private static final int ZERO = 0;
+    private static final String BAG_REGEX = "bag";
+    private static final String COMMA_REGEX = ",";
 
     public WeightedGraph buildFromFileInput(Path filePath) {
         WeightedGraph wg = new WeightedGraph();
         try {
-            Files.readAllLines(filePath).forEach(line -> {
-                buildEdge(parseV1(line), line.split(CONTAIN_REGEX)[1].split(","))
-                        .forEach(wg::addEdge);
-            });
+            Files.readAllLines(filePath).forEach(line ->
+                    buildEdge(parseV1(line), line.split(CONTAIN_REGEX)[1].split(COMMA_REGEX))
+                    .forEach(wg::addEdge));
         } catch (IOException e) {
+            // never do this in production code
             e.printStackTrace();
         }
 
@@ -41,16 +44,18 @@ public class WeightedGraphBuilder {
     }
 
     private String parseV1(String line) {
-
-        return line.split(CONTAIN_REGEX)[0]
-                .substring(0, line.split(CONTAIN_REGEX)[0]
-                        .indexOf("bag"))
-                .trim(); // light red bags
+        // Line: light red bags contain 1 bright white bag, 2 muted yellow bags.
+        // After Split:     light red bags
+        // After Substring: light red
+        return line.split(CONTAIN_REGEX)[ZERO]
+                .substring(ZERO, line.split(CONTAIN_REGEX)[ZERO]
+                        .indexOf(BAG_REGEX))
+                .trim();
     }
 
     private List<WeightedEdge> buildEdge(String from, String[] edgesParts) {
         return Arrays.stream(edgesParts)
-                .map(vw -> new WeightedEdge(from ,vw.trim()))
+                .map(vw -> new WeightedEdge(from, vw.trim()))
                 .collect(Collectors.toList());
     }
 

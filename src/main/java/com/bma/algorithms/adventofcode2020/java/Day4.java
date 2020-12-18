@@ -1,4 +1,4 @@
-package com.bma.algorithms.adventofcode2020;
+package com.bma.algorithms.adventofcode2020.java;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
