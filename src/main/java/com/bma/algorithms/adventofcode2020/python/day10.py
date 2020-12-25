@@ -1,4 +1,4 @@
-f = open("../inputs/day10test.txt")
+f = open("../inputs/day10.txt")
 
 arr = [0]
 for item in f:
