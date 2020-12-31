@@ -1,4 +1,4 @@
-package com.bma.algorithms.codeforces;
+package com.bma.problemsolving.codeforces;
 
 import java.util.List;
 

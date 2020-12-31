@@ -1,10 +1,9 @@
-package com.bma.algorithms.codeforces;
+package com.bma.problemsolving.codeforces;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class NumberOfApartments {
 

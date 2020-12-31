@@ -1,8 +1,6 @@
-package com.bma.algorithms.leetcode;
+package com.bma.problemsolving.leetcode;
 
 import java.util.Map;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.IntStream;
 
 public class RomanToInteger {
 

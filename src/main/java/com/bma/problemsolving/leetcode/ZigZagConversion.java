@@ -1,4 +1,4 @@
-package com.bma.algorithms.leetcode;
+package com.bma.problemsolving.leetcode;
 
 import java.util.ArrayList;
 import java.util.List;

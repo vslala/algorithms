@@ -1,9 +1,7 @@
-package com.bma.algorithms.leetcode;
+package com.bma.problemsolving.leetcode;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class PalindromeNumber {
 

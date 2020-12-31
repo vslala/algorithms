@@ -1,4 +1,4 @@
-package com.bma.algorithms.leetcode;
+package com.bma.problemsolving.leetcode;
 
 /**
  * Given n non-negative integers a1, a2, ..., an ,
