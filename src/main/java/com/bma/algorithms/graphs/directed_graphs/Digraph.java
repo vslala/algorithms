@@ -1,8 +1,6 @@
 package com.bma.algorithms.graphs.directed_graphs;
 
-import com.bma.algorithms.graphs.Graph;
-
-public interface Digraph extends Graph {
+public interface Digraph extends com.bma.algorithms.graphs.Digraph {
 
     /**
      * Reverse of this diagraph

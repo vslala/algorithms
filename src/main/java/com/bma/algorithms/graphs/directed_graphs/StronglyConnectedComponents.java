@@ -1,7 +1,13 @@
 package com.bma.algorithms.graphs.directed_graphs;
 
+import com.bma.algorithms.stdlib.StdOut;
+
+import java.util.List;
+import java.util.Queue;
 import java.util.Stack;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.StreamSupport;
 
 /**
  * Definition
@@ -45,37 +51,6 @@ public class StronglyConnectedComponents {
         id = new int[dag.vertices()];
     }
 
-    /**
-     * Phase 1
-     *  - Reverse the Graph (G-reverse)
-     *  - DFS Traverse the G-reverse graph to obtain the ReversePostOrder
-     *
-     * Traverse the graph using DFS and push the visted vertices into a stack.
-     * Iterate the stack to get the reverse order
-     *
-     * @return
-     */
-    private Stack<Integer> reversePostOrder() {
-        Digraph reverse = dag.reverse();
-        Stack<Integer> postOrder = new Stack<>();
-        for (int vertex = 0; vertex < reverse.vertices(); vertex++) {
-            if (!marked[vertex])
-                dfs(reverse, vertex, postOrder);
-        }
-
-        IntStream.range(0, dag.vertices()).forEach(vertex -> marked[vertex]  = false);
-        return postOrder;
-    }
-
-    private void dfs(Digraph reverse, int vertex, Stack<Integer> postOrder) {
-        marked[vertex] = true;
-        for (int w: reverse.adj(vertex)) {
-            if (!marked[w])
-                dfs(reverse, w, postOrder);
-        }
-        postOrder.push(vertex);
-    }
-
     private void dfs(Digraph dag, int vertex) {
         marked[vertex] = true;
         id[vertex] = count;
@@ -84,19 +59,67 @@ public class StronglyConnectedComponents {
                 dfs(dag, w);
     }
 
+    private Iterable<Integer> reversePostOrder(Digraph dag) {
+        var reverseDag = dag.reverse();
+        Stack<Integer> reversePostOrder = new Stack<>();
+        marked = new boolean[reverseDag.vertices()];
+        IntStream.range(0, reverseDag.vertices())
+                .forEach(vertex ->  {
+                    if (!marked[vertex]) {
+                        dfsR(reverseDag, vertex, reversePostOrder);
+                    }
+                });
+        return reversePostOrder;
+    }
+
+    private void dfsR(Digraph reverseDag, int vertex, Stack<Integer> reversePostOrder) {
+        marked[vertex] = true;
+        reverseDag.adj(vertex).forEach(w -> {
+            if (!marked[w]) {
+                dfsR(reverseDag, w, reversePostOrder);
+            }
+        });
+        reversePostOrder.push(vertex);
+    }
+
     /**
+     * Phase 1
+     * - Reverse the Graph (G-reverse)
+     * - DFS Traverse the G-reverse graph to obtain the ReversePostOrder
+     *
+     * Traverse the graph using DFS and push the visited vertices into a stack after the call.
+     * Iterate the stack to get the reverse order
+     *
      * Phase 2
      * ----------
      *  - Run DFS on the original graph in the ReversePostOrder
      */
-    public int[] connectedComponents() {
-        for (int v: reversePostOrder()) {
+    public int count() {
+        var depthFirstOrder = new DepthFirstOrder(this.dag.reverse());
+        System.out.println("PRE:\t" + StreamSupport.stream(depthFirstOrder.pre().spliterator(), false)
+            .map(String::valueOf).collect(Collectors.joining(" ")));
+
+        System.out.println("POST:\t" + StreamSupport.stream(depthFirstOrder.post().spliterator(),  false)
+                .map(String::valueOf)
+                .collect(Collectors.joining(" ")));
+
+        System.out.println("R-POST:\t" + StreamSupport.stream(reversePostOrder(dag).spliterator(),false)
+                .map(String::valueOf)
+                .collect(Collectors.joining(" ")));
+
+        var reversePostOrder = List.of(
+                1,0,2,4,5,3,11,9,12,10,6,7,8
+        );
+
+        for (int v: depthFirstOrder.reversePost()) {
+            System.out.print(v + " ");
             if (!marked[v]) {
                 dfs(dag, v);
-                count++;
+                count += 1;
             }
         }
 
-        return id;
+        return count;
+
     }
 }

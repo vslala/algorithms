@@ -1,6 +1,6 @@
 package com.bma.algorithms.graphs.undirected_graphs;
 
-import com.bma.algorithms.graphs.Graph;
+import com.bma.algorithms.graphs.Digraph;
 import com.bma.algorithms.graphs.Paths;
 
 import java.util.Collections;
@@ -8,13 +8,13 @@ import java.util.Stack;
 import java.util.stream.Collectors;
 
 public class DepthFirstPaths implements Paths {
-    private Graph graph;
+    private Digraph graph;
     private int sourceVertex;
     private boolean[] marked; // to check if the vertex has been visited before
     private int[] edgeTo;
     private StringBuilder lastSearch = new StringBuilder();
 
-    public DepthFirstPaths(Graph graph, int sourceVertex) {
+    public DepthFirstPaths(Digraph graph, int sourceVertex) {
         this.graph = graph;
         this.sourceVertex = sourceVertex;
         marked = new boolean[graph.vertices()];
@@ -22,7 +22,7 @@ public class DepthFirstPaths implements Paths {
         dfs(graph, sourceVertex);
     }
 
-    private void dfs(Graph graph, int vertex) {
+    private void dfs(Digraph graph, int vertex) {
         marked[vertex] = true;                      // mark the vertex as visited
         graph.adj(vertex).forEach(adjVertex -> {    // visit each adj vertex
             if (! marked[adjVertex]) {              // check if vertex is not visited

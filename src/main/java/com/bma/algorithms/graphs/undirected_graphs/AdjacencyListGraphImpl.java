@@ -1,7 +1,7 @@
 package com.bma.algorithms.graphs.undirected_graphs;
 
 import com.bma.algorithms.graphs.Bag;
-import com.bma.algorithms.graphs.Graph;
+import com.bma.algorithms.graphs.Digraph;
 
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.IntStream;
@@ -9,13 +9,13 @@ import java.util.stream.IntStream;
 class GraphProcessor {
     private GraphProcessor() {}
 
-    public static int degree(Graph graph, int vertex) {
+    public static int degree(Digraph graph, int vertex) {
         AtomicInteger degree = new AtomicInteger(0);
         graph.adj(vertex).forEach(adjVertex -> degree.getAndIncrement());
         return degree.intValue();
     }
 
-    public static int maxDegree(Graph graph) {
+    public static int maxDegree(Digraph graph) {
         AtomicInteger maxDegree = new AtomicInteger(0);
         IntStream.range(0, graph.vertices()).map(vertex -> degree(graph, vertex)).forEach(degree -> {
             if (degree > maxDegree.intValue())
@@ -24,11 +24,11 @@ class GraphProcessor {
         return maxDegree.intValue();
     }
 
-    public static double averageDegree(Graph graph) {
+    public static double averageDegree(Digraph graph) {
         return 2.0 * graph.vertices() / graph.edges();
     }
 
-    public static int numberOfSelfLoops(Graph graph) {
+    public static int numberOfSelfLoops(Digraph graph) {
         AtomicInteger selfLoops = new AtomicInteger(0);
         IntStream.range(0, graph.vertices()).forEach(vertex -> {
             graph.adj(vertex).forEach(adjVertex -> {
@@ -39,7 +39,7 @@ class GraphProcessor {
     }
 }
 
-public class AdjacencyListGraphImpl implements Graph {
+public class AdjacencyListGraphImpl implements Digraph {
 
     private Bag<Integer>[] adj;
 

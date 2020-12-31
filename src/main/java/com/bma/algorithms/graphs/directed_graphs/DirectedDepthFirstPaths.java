@@ -1,6 +1,6 @@
 package com.bma.algorithms.graphs.directed_graphs;
 
-import com.bma.algorithms.graphs.Graph;
+import com.bma.algorithms.graphs.Digraph;
 import com.bma.algorithms.graphs.Paths;
 
 import java.util.ArrayDeque;
@@ -23,12 +23,12 @@ public class DirectedDepthFirstPaths implements Paths {
 
     private PathMeta pathMeta;
 
-    public DirectedDepthFirstPaths(Graph graph, int sourceVertex) {
+    public DirectedDepthFirstPaths(Digraph graph, int sourceVertex) {
         this.pathMeta = pathMeta = new PathMeta(sourceVertex, graph.vertices());
         dfs(graph, sourceVertex);
     }
 
-    private void dfs(Graph graph, int sourceVertex) {
+    private void dfs(Digraph graph, int sourceVertex) {
         pathMeta.marked[sourceVertex] = true;
         graph.adj(sourceVertex).forEach(vertex -> {
             if (!pathMeta.marked[vertex]) {

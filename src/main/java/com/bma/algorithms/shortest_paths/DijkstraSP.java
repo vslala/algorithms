@@ -35,6 +35,13 @@ public class DijkstraSP {
      * Computes a shortest-paths tree from the source vertex {@code s} to every other
      * vertex in the edge-weighted digraph {@code G}.
      *
+     * Steps to compute
+     * ----------------
+     * 1. Verify if all the edges have positive weights
+     * 2. Set all vertex distance to infinity
+     * 3. Set source vertex dist to 0
+     * 4. Relax Vertices in order of distance from S
+     *
      * @param  G the edge-weighted digraph
      * @param  s the source vertex
      * @throws IllegalArgumentException if an edge weight is negative

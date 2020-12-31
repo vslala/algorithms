@@ -67,7 +67,7 @@ import java.util.Stack;
  *  @author Kevin Wayne
  */
 
-public class DigraphImplRS {
+public class DigraphImplRS implements Digraph {
     private static final String NEWLINE = System.getProperty("line.separator");
 
     private final int V;           // number of vertices in this digraph
@@ -213,6 +213,16 @@ public class DigraphImplRS {
     public Iterable<Integer> adj(int v) {
         validateVertex(v);
         return adj[v];
+    }
+
+    @Override
+    public int vertices() {
+        return V();
+    }
+
+    @Override
+    public int edges() {
+        return E();
     }
 
     /**

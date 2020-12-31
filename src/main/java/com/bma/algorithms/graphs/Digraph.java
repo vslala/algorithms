@@ -2,7 +2,7 @@ package com.bma.algorithms.graphs;
 
 import com.bma.algorithms.graphs.directed_graphs.DigraphImplRS;
 
-public interface Graph {
+public interface Digraph {
 
     /**
      * draws an edge connecting two vertex v-w
@@ -35,5 +35,5 @@ public interface Graph {
      * @return
      */
     String toString();
-    
+
 }

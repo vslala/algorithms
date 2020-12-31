@@ -7,6 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.stream.IntStream;
 
 public class AdjacencyListDigraphImpl implements Digraph {
@@ -23,26 +24,26 @@ public class AdjacencyListDigraphImpl implements Digraph {
     }
 
     public AdjacencyListDigraphImpl(int vertices, Path dataFile) throws IOException {
-        this.vertices = vertices;
+        final List<String> allLines = Files.readAllLines(dataFile);
+        this.vertices = Integer.parseInt(allLines.get(0));
         this.bags = new Bag[vertices];
-        IntStream.range(0, vertices).forEach(vertex -> {
-            bags[vertex] = new Bag<>();
-        });
+        IntStream.range(0, vertices).forEach(vertex -> bags[vertex] = new Bag<>());
 
-        Files.readAllLines(dataFile).forEach(line -> {
-            String[] edge = line.split("->");
-            addEdge(Integer.parseInt(edge[0]), Integer.parseInt(edge[1]));
-        });
+        allLines
+                .stream()
+                .skip(2)
+                .map(String::trim)
+                .map(line ->  line.split("\\s+"))
+//                .peek(edge -> System.out.println(edge[0] + "->" + edge[1]))
+                .forEach(edge -> addEdge(Integer.parseInt(edge[0]), Integer.parseInt(edge[1])));
     }
 
     @Override
     public Digraph reverse() {
         var reverse = new AdjacencyListDigraphImpl(this.vertices);
-        for (int vertex = 0; vertex < this.vertices; vertex++) {
-            for (int w: adj(vertex)) {
-                reverse.addEdge(w, vertex);
-            }
-        }
+        IntStream.range(0, this.vertices)
+                .forEach(vertex -> adj(vertex)
+                        .forEach(w -> reverse.addEdge(w, vertex)));
         return reverse;
     }
 

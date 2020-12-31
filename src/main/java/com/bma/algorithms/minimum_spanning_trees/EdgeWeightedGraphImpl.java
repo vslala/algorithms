@@ -2,12 +2,9 @@ package com.bma.algorithms.minimum_spanning_trees;
 
 import com.bma.algorithms.graphs.Bag;
 import com.bma.algorithms.graphs.EdgeWeightedGraph;
-import com.bma.algorithms.graphs.Graph;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 

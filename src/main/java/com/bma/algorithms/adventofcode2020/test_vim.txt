@@ -1,8 +1,0 @@
-This is a text
-
-Inner quites example
-To change the text inside quite press: c+i+<quote>
-This is an  'Single Quotes' and here is the "Double Quotes".
-
-This is going to be inside a tag:
-<h1>Hello  World</h1>

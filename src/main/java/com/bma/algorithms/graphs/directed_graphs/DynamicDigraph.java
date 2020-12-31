@@ -1,7 +1,6 @@
 package com.bma.algorithms.graphs.directed_graphs;
 
-import com.bma.algorithms.graphs.Graph;
-import lombok.Data;
+import com.bma.algorithms.graphs.Digraph;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -11,7 +10,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import static java.lang.Integer.parseInt;
 
-public class DynamicDigraph implements Graph {
+public class DynamicDigraph implements Digraph {
     private Map<Integer, Set<Integer>> vertices = new HashMap<>();
     private final Path graphPath;
 

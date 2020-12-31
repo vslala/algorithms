@@ -1,6 +1,6 @@
 package com.bma.algorithms.graphs.undirected_graphs;
 
-import com.bma.algorithms.graphs.Graph;
+import com.bma.algorithms.graphs.Digraph;
 import com.bma.algorithms.graphs.Paths;
 
 import java.util.Collections;
@@ -12,13 +12,13 @@ import java.util.stream.Collectors;
 public class BreadthFirstPaths implements Paths {
 
     private final int sourceVertext;
-    private final Graph graph;
+    private final Digraph graph;
     private boolean[] marked;
     private int[] edgeTo;
     private int[] distance;
     private StringBuilder lastSearch = new StringBuilder();
 
-    public BreadthFirstPaths(Graph graph, int sourceVertex) {
+    public BreadthFirstPaths(Digraph graph, int sourceVertex) {
         this.graph = graph;
         this.sourceVertext = sourceVertex;
         marked = new boolean[graph.vertices()];
@@ -26,7 +26,7 @@ public class BreadthFirstPaths implements Paths {
         bfs(graph, sourceVertex);
     }
 
-    private void bfs(Graph graph, int vertex) {
+    private void bfs(Digraph graph, int vertex) {
         Queue<Integer> queue = new LinkedList<>();
         queue.add(vertex);
         marked[vertex] = true;
