@@ -1,4 +1,4 @@
-package com.bma.algorithms.leetcode;
+package com.bma.problemsolving.leetcode;
 
 import com.bma.fixtures.Fixtures;
 import org.junit.jupiter.api.BeforeEach;

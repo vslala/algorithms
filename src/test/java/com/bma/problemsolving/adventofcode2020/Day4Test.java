@@ -1,6 +1,6 @@
-package com.bma.algorithms.adventofcode2020;
+package com.bma.problemsolving.adventofcode2020;
 
-import com.bma.algorithms.adventofcode2020.java.Day4;
+import com.bma.problemsolving.adventofcode2020.java.Day4;
 import org.junit.jupiter.api.Test;
 
 import java.util.Map;

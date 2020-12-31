@@ -1,8 +1,6 @@
-package com.bma.algorithms.leetcode;
+package com.bma.problemsolving.leetcode;
 
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class TreeKataTest {
 

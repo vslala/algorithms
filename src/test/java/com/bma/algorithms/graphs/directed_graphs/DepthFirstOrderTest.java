@@ -1,6 +1,5 @@
 package com.bma.algorithms.graphs.directed_graphs;
 
-import com.bma.algorithms.graphs.Graph;
 import com.bma.algorithms.stdlib.StdOut;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -8,10 +7,8 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Deque;
-import java.util.Queue;
 
 import static java.util.stream.Collectors.joining;
-import static org.junit.jupiter.api.Assertions.*;
 
 class DepthFirstOrderTest {
 
@@ -27,8 +24,8 @@ class DepthFirstOrderTest {
 
     @Test
     void itShouldReturnTheDepthFirstOrderOfTheGivenGraph() {
-        Deque<Integer> queue = depthFirstOrder.postOrder();
-        StdOut.println(queue.stream().map(String::valueOf).collect(joining(",")));
+        Iterable<Integer> postOrder = depthFirstOrder.post();
+
     }
 
 }

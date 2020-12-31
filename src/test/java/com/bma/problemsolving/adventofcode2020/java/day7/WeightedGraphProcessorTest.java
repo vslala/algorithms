@@ -1,4 +1,4 @@
-package com.bma.algorithms.adventofcode2020.java.day7;
+package com.bma.problemsolving.adventofcode2020.java.day7;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

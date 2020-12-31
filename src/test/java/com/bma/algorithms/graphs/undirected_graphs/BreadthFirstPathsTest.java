@@ -1,6 +1,6 @@
 package com.bma.algorithms.graphs.undirected_graphs;
 
-import com.bma.algorithms.graphs.Graph;
+import com.bma.algorithms.graphs.Digraph;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class BreadthFirstPathsTest {
 
-    Graph graph;
+    Digraph graph;
 
     @BeforeEach
     public void setup() {
