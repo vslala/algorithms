@@ -2,6 +2,9 @@ package com.bma.problemsolving.leetcode.java.lrucache;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class DoublyLinkedListTest {
@@ -42,4 +45,31 @@ class DoublyLinkedListTest {
         assertEquals(5, list.end().getData());
     }
 
+
+    @Test
+    void sandbox() {
+//        var hm = new HashMap<Integer, String>();
+//        hm.put(1, "Varun Shrivastava");
+//        hm.put(2, "Vaibhav Shrivastava");
+//        hm.put(3, "Kavita Shrivastava");
+//        hm.put(4, "Rajesh Shrivastava");
+//        hm.forEach((key, val) -> System.out.println(key + ":" + val));
+//        System.out.println();
+//        System.out.println();
+
+
+        var lhm = new LinkedHashMap<Integer, String>(2, 2, true);
+        lhm.put(1, "Varun Shrivastava");
+        lhm.put(2, "Vaibhav Shrivastava");
+        lhm.put(3, "Kavita Shrivastava");
+        lhm.put(4, "Rajesh Shrivastava");
+
+        var first = lhm.entrySet().iterator().next();
+        lhm.get(1);
+
+        // get O(1)
+        // put O(1)
+
+        lhm.forEach((key,value) -> System.out.println(key + ":" + value));
+    }
 }
