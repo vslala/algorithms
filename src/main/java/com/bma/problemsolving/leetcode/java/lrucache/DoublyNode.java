@@ -4,6 +4,12 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
+/**
+ * Key,Val is required in order to keep a back reference to the key
+ * of the hashmap which is used in the LRUCache.
+ * @param <K>
+ * @param <V>
+ */
 @Getter
 @Setter
 @RequiredArgsConstructor

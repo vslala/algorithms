@@ -3,6 +3,15 @@ package com.bma.problemsolving.leetcode.java.lrucache;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Basically combines the two implementation of
+ * HashSet and DoublyLinkedList to achieve O(1) read and write to cache.
+ *
+ * There is a LinkedHashMap data structure in java that could be used to
+ * implement this cache as well.
+ * @param <K>
+ * @param <V>
+ */
 class LRUCache<K, V> {
 
     private int size;
