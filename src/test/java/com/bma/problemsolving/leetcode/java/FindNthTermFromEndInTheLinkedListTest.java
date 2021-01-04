@@ -1,6 +1,7 @@
-package com.bma.problemsolving.leetcode;
+package com.bma.problemsolving.leetcode.java;
 
 import com.bma.fixtures.Fixtures;
+import com.bma.problemsolving.leetcode.java.FindNthTermFromEndInTheLinkedList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

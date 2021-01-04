@@ -1,5 +1,6 @@
-package com.bma.problemsolving.leetcode;
+package com.bma.problemsolving.leetcode.java;
 
+import com.bma.problemsolving.leetcode.java.ContainerWithMostWater;
 import org.junit.jupiter.api.Test;
 
 import java.util.Map;

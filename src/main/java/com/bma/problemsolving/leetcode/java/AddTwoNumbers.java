@@ -1,4 +1,4 @@
-package com.bma.problemsolving.leetcode;
+package com.bma.problemsolving.leetcode.java;
 
 import lombok.Getter;
 import lombok.Setter;

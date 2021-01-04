@@ -1,7 +1,9 @@
 package com.bma.problemsolving.codewars;
 
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class SimpleEncryption {
     private SimpleEncryption() {
@@ -90,4 +92,33 @@ class Kata {
         return decrypt(text.toString(), --n);
     }
 
+}
+
+class KataUsingStream {
+
+    public static String encrypt(final String text, final int n) {
+
+        if(text == null || n < 1) return text;
+        String first = IntStream.range(0, text.length())
+                .filter(i -> i%2 == 1)
+                .mapToObj(i -> text.charAt(i))
+                .map(Object::toString)
+                .collect(Collectors.joining(""));
+        String second = IntStream.range(0, text.length())
+                .filter(i -> i%2 == 0)
+                .mapToObj(i -> text.charAt(i))
+                .map(Object::toString)
+                .collect(Collectors.joining(""));
+        return encrypt(first + second, n - 1);
+    }
+
+
+    public static String decrypt(final String text, final int n) {
+        if(text == null || n < 1) return text;
+        String decrypted = IntStream.range(0, text.length())
+                .mapToObj(i -> (i%2 == 1) ? text.charAt(i/2) : text.charAt(text.length()/2 + i/2))
+                .map(Object::toString)
+                .collect(Collectors.joining(""));
+        return decrypt(decrypted, n - 1);
+    }
 }

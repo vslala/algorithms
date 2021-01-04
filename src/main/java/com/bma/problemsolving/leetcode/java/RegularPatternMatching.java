@@ -1,4 +1,4 @@
-package com.bma.problemsolving.leetcode;
+package com.bma.problemsolving.leetcode.java;
 
 /**
  * Given an input string (s) and a pattern (p), implement regular expression matching with support for '.' and '*'.

@@ -1,5 +1,6 @@
-package com.bma.problemsolving.leetcode;
+package com.bma.problemsolving.leetcode.java;
 
+import com.bma.problemsolving.leetcode.java.PalindromeNumber;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -18,7 +19,7 @@ class PalindromeNumberTest {
             "100001,true",
     })
     void itShouldReturnTrueForPalindromeNumberAndFalseOtherwise(int input, String expectedOutput)  {
-        var palindrome = new  PalindromeNumber();
+        var palindrome = new PalindromeNumber();
         boolean output = palindrome.check(input);
         assertEquals(Boolean.parseBoolean(expectedOutput), output);
     }

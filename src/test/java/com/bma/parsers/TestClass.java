@@ -1,6 +1,6 @@
 package com.bma.parsers;
 
-import com.bma.problemsolving.leetcode.GroupAnagrams;
+import com.bma.problemsolving.leetcode.java.GroupAnagrams;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
 
