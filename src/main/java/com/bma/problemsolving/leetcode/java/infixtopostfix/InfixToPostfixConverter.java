@@ -12,6 +12,11 @@ public class InfixToPostfixConverter {
             "+", new Addition(),
             "-", new Subtraction()
     );
+
+    private static final Map<String, GroupingOperator> groupingOperators = Map.of(
+            "(", new OpenParenthesis(),
+            ")", new CloseParenthesis()
+    );
     public static final String SPACE = " ";
 
     private final ExpressionParser expressionParser;
@@ -24,17 +29,16 @@ public class InfixToPostfixConverter {
      * Steps to convert infix expression to postfix
      * 1. Read the operands and append to the string
      * 2. If operator is encountered then:
-     *  - if the stack is empty
-     *      - push the operator to the stack
-     *  - if stack is not empty
-     *      -  check the precedence of the top of the stack operator and the current operator
-     *          - if the precedence of the current operator is higher then push the operator to the stack
-     *      -  if the precedence of the current operator is lower then top of the stack operator, then
-     *          - pop the operator from the stack and append to the output
-     *          - push the current operator to the stack
-     *
+     * - if the stack is empty
+     * - push the operator to the stack
+     * - if stack is not empty
+     * -  check the precedence of the top of the stack operator and the current operator
+     * - if the precedence of the current operator is higher then push the operator to the stack
+     * -  if the precedence of the current operator is lower then top of the stack operator, then
+     * - pop the operator from the stack and append to the output
+     * - push the current operator to the stack
+     * <p>
      * 3. How to handle parenthesis?
-     *
      *
      * @param infixExpression
      * @return
@@ -43,25 +47,48 @@ public class InfixToPostfixConverter {
         List<String> tokens = expressionParser.parseInfix(infixExpression);
         var output = new StringBuilder();
         var stack = new LinkedList<Operator>();
-        for (String token: tokens) {
-            if (operations.containsKey(token))  {
+        for (String token : tokens) {
+            // if current token is an arithmetic operator
+            if (operations.containsKey(token)) {
                 Operator curr = operations.get(token);
-                if (stack.isEmpty()) stack.push(curr);
-                else if (less(stack, curr)) {
+                // if the precedence of the current token is less than the top of the stack
+                // then pop from the stack and append it to the output
+                // then push the current token back into the stack
+                while (!stack.isEmpty() && less(curr, stack.peekFirst()))
                     output.append(stack.pop()).append(SPACE);
-                    stack.push(curr);
+
+                stack.push(curr);
+            }
+
+            // if the current token is a grouping operator
+            else if  (groupingOperators.containsKey(token)) {
+                GroupingOperator currOp = groupingOperators.get(token);
+                if (currOp instanceof OpenParenthesis)
+                    stack.push(currOp);
+
+                // if the current token is a closing parenthesis ')'
+                // then pop all the operators from the stack till you reach the opening parenthesis '('
+                // and add them to the output expression
+                else if (currOp instanceof CloseParenthesis) {
+                    Operator curr;
+                    while (! ((curr = stack.pop()) instanceof OpenParenthesis))
+                        output.append(curr).append(SPACE);
                 }
-                else while (!stack.isEmpty() && !less(stack, curr)) output.append(stack.pop()).append(SPACE);
-            } else output.append(token).append(SPACE);
+            }
+
+            // if current token is an operand
+            else output.append(token).append(SPACE);
         }
 
+        // add remaining operators from stack to the output postfix expression
         while (!stack.isEmpty())
             output.append(stack.pop()).append(SPACE);
 
         return output.toString().trim();
     }
 
-    private boolean less(LinkedList<Operator> stack, Operator curr) {
-        return stack.peekFirst().getPrecedence().compareTo(curr.getPrecedence()) <= 0;
+    private boolean less(Operator op1, Operator op2) {
+        return op1.getPrecedence().compareTo(op2.getPrecedence()) <= 0;
     }
+
 }

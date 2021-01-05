@@ -1,6 +1,6 @@
 package com.bma.problemsolving.leetcode.java.infixtopostfix;
 
-class Addition implements Operator {
+class Addition implements ArithmeticOperator {
 
     @Override
     public String association() {
@@ -9,7 +9,7 @@ class Addition implements Operator {
 
     @Override
     public Integer getPrecedence() {
-        return 0;
+        return 1;
     }
 
     @Override

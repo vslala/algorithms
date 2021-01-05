@@ -1,6 +1,6 @@
 package com.bma.problemsolving.leetcode.java.infixtopostfix;
 
-class Division implements Operator {
+class Division implements ArithmeticOperator {
 
     @Override
     public String association() {
@@ -9,7 +9,7 @@ class Division implements Operator {
 
     @Override
     public Integer getPrecedence() {
-        return 0;
+        return 2;
     }
 
     @Override

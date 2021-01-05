@@ -1,24 +1,18 @@
 package com.bma.problemsolving.leetcode.java.infixtopostfix;
 
-class Multiplication implements ArithmeticOperator {
-
+public class CloseParenthesis implements GroupingOperator {
     @Override
     public String association() {
-        return null;
+        return "l2r";
     }
 
     @Override
     public Integer getPrecedence() {
-        return 2;
-    }
-
-    @Override
-    public Integer eval(Operand a, Operand b) {
-        return 1;
+        return 3;
     }
 
     @Override
     public String toString() {
-        return "*";
+        return ")";
     }
 }

@@ -20,7 +20,8 @@ class InfixToPostfixConverterTest {
     void itShouldConvertInfixExpressionToPostFixExpression() {
         var expressions = Map.of(
                 " 2-1 + 2 ", "2 1 - 2 +",
-                "1 + 1", "1 1 +"
+                "1 + 1", "1 1 +",
+                "(1+(4+5+2)-3)+(6+8)", "1 4 5 + 2 + + 3 - 6 8 + +"
         );
 
         var infixToPostfix = new InfixToPostfixConverter(expressionParser);
