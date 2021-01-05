@@ -8,6 +8,10 @@ final class IntegerOperand implements Operand<Integer> {
         this.value = value;
     }
 
+    public IntegerOperand(String value) {
+        this.value = Integer.parseInt(value);
+    }
+
     @Override
     public Integer get() {
         return value;

@@ -1,6 +1,6 @@
-package com.bma.problemsolving.misc;
+package com.bma.problemsolving.leetcode.java.infixtopostfix;
 
-import com.bma.problemsolving.leetcode.java.ReversePolishNotation;
+import com.bma.problemsolving.leetcode.java.infixtopostfix.ReversePolishNotation;
 import org.junit.jupiter.api.Test;
 
 import java.util.Map;

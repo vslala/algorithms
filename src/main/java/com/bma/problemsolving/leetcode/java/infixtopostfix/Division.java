@@ -13,8 +13,8 @@ class Division implements ArithmeticOperator {
     }
 
     @Override
-    public Integer eval(Operand a, Operand b) {
-        return 1;
+    public Integer eval(Operand<Integer> a, Operand<Integer> b) {
+        return a.get() / b.get();
     }
 
     @Override

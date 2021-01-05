@@ -1,9 +1,6 @@
-package com.bma.problemsolving.leetcode.java;
+package com.bma.problemsolving.leetcode.java.infixtopostfix;
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class ReversePolishNotation {
 
@@ -52,23 +49,31 @@ public class ReversePolishNotation {
     }
 
     public Integer eval(final String[] notation) {
+        var arithmeticOperations = Map.of(
+                "/", new Division(),
+                "*", new Multiplication(),
+                "+", new Addition(),
+                "-", new Subtraction()
+        );
         var operations = List.of(
                 new Add(), new Subtract(), new Multiply(), new Divide()
         );
 
-        var operands = new LinkedList<Integer>();
+//        var operands = new LinkedList<Integer>();
+        var operands = new LinkedList<Operand<Integer>>();
 
         Arrays.stream(notation).forEach(token -> {
-            if (isANumber(token)) operands.push(Integer.parseInt(token));
+            if (isANumber(token)) operands.push(new IntegerOperand(token));
             else {
-                Integer b = operands.pop();
-                Integer a = operands.pop();
-                operations.forEach(operation -> operation.evaluate(a, b, token)
-                        .ifPresent(operands::push));
+                var b = operands.pop();
+                var a = operands.pop();
+                operands.push(new IntegerOperand(arithmeticOperations.get(token).eval(a, b)));
+//                operations.forEach(operation -> operation.evaluate(a, b, token)
+//                        .ifPresent(operands::push));
             }
         });
 
-        return operands.pop();
+        return operands.pop().get();
     }
 
     private boolean isANumber(String token) {
