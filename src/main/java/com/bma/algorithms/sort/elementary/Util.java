@@ -76,4 +76,14 @@ public class Util {
     public static <I extends Comparable> void println(List<I> list, String delimiter) {
         System.out.println(list.stream().map(String::valueOf).collect(Collectors.joining(delimiter)));
     }
+
+    public static void printMatrix(int[][] matrix) {
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                Util.print(matrix[i][j] + ",");
+            }
+            Util.println();
+        }
+        Util.println();
+    }
 }
