@@ -8,7 +8,7 @@ class Addition implements ArithmeticOperator {
     }
 
     @Override
-    public Integer getPrecedence() {
+    public Integer precedence() {
         return 1;
     }
 

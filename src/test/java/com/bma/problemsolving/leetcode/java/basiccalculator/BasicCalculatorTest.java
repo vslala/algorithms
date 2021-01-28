@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class BasicCalculatorTest {
 
     @Test
-    void itShouldConvertTheGivenExpressionIntoAPostFixFormat() {
+    void itShouldEvaluateTheGivenExpressionAndReturnTheResult() {
         String infixExpression = "(1+(4+5+2)-3)+(6+8)";
         var expressionParser  = new ExpressionParser();
         var infixToPostfixConverter = new InfixToPostfixConverter(expressionParser);

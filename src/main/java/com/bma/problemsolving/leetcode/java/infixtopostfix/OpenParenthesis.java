@@ -7,7 +7,7 @@ public class OpenParenthesis implements GroupingOperator {
     }
 
     @Override
-    public Integer getPrecedence() {
+    public Integer precedence() {
         return -1;
     }
 

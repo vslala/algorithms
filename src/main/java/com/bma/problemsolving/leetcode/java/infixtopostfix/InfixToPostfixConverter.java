@@ -6,14 +6,14 @@ import java.util.Map;
 
 public class InfixToPostfixConverter {
 
-    private static final Map<String, Operator> operations = Map.of(
+    private static final Map<String, Operator> OPERATORS = Map.of(
             "/", new Division(),
             "*", new Multiplication(),
             "+", new Addition(),
             "-", new Subtraction()
     );
 
-    private static final Map<String, GroupingOperator> groupingOperators = Map.of(
+    private static final Map<String, GroupingOperator> GROUPING_OPERATORS = Map.of(
             "(", new OpenParenthesis(),
             ")", new CloseParenthesis()
     );
@@ -49,8 +49,8 @@ public class InfixToPostfixConverter {
         var stack = new LinkedList<Operator>();
         for (String token : tokens) {
             // if current token is an arithmetic operator
-            if (operations.containsKey(token)) {
-                Operator curr = operations.get(token);
+            if (OPERATORS.containsKey(token)) {
+                Operator curr = OPERATORS.get(token);
                 // if the precedence of the current token is less than the top of the stack
                 // then pop from the stack and append it to the output
                 // then push the current token back into the stack
@@ -61,8 +61,8 @@ public class InfixToPostfixConverter {
             }
 
             // if the current token is a grouping operator
-            else if  (groupingOperators.containsKey(token)) {
-                GroupingOperator currOp = groupingOperators.get(token);
+            else if  (GROUPING_OPERATORS.containsKey(token)) {
+                GroupingOperator currOp = GROUPING_OPERATORS.get(token);
                 if (currOp instanceof OpenParenthesis)
                     stack.push(currOp);
 
@@ -88,7 +88,7 @@ public class InfixToPostfixConverter {
     }
 
     private boolean less(Operator op1, Operator op2) {
-        return op1.getPrecedence().compareTo(op2.getPrecedence()) <= 0;
+        return op1.precedence().compareTo(op2.precedence()) <= 0;
     }
 
 }

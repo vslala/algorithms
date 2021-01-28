@@ -7,7 +7,7 @@ public class CloseParenthesis implements GroupingOperator {
     }
 
     @Override
-    public Integer getPrecedence() {
+    public Integer precedence() {
         return 3;
     }
 

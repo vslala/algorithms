@@ -8,7 +8,7 @@ class Multiplication implements ArithmeticOperator {
     }
 
     @Override
-    public Integer getPrecedence() {
+    public Integer precedence() {
         return 2;
     }
 
