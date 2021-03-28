@@ -47,4 +47,28 @@ public class TrieST<Value> {
 
         return get(x.next[c], key, d + 1);
     }
+
+    public void delete(String key) {
+        delete(root, key, 0);
+    }
+
+    private void delete(TrieNode x, String key, int d) {
+        if (x == null) return;
+        if (d == key.length()) {
+            x.value = null;
+            deleteLink(x);
+            return;
+        }
+        char c = key.charAt(d);
+        delete(x.next[c], key, d+1);
+    }
+
+    private void deleteLink(TrieNode x) {
+        int nullCount = 0;
+        for (TrieNode i : x.next)
+            if (i == null) nullCount++;
+
+        if (nullCount == x.next.length)
+            x.next = null;
+    }
 }

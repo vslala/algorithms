@@ -20,4 +20,12 @@ class TrieSTTest {
         assertEquals("value", trie.get("key"));
     }
 
+    @Test
+    void itShouldDeleteTheNodeByKey() {
+        var trie = new TrieST<String>();
+        trie.put("key", "value");
+        trie.delete("key");
+        assertFalse(trie.contains("key"));
+    }
+
 }
