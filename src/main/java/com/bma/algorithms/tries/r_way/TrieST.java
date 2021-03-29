@@ -7,12 +7,15 @@ package com.bma.algorithms.tries.r_way;
 
  */
 
+import com.bma.algorithms.tries.StringST;
+
 import java.util.Objects;
 
-public class TrieST<Value> {
+public class TrieST<Value> implements StringST<Value> {
     private static final int R = 256;   // extended ASCII
     private TrieNode root = new TrieNode();
 
+    @Override
     public void put(String key, Value value) {
         root = put(root, key, value, 0);
     }
@@ -30,10 +33,12 @@ public class TrieST<Value> {
         return x;
     }
 
+    @Override
     public boolean contains(String key) {
         return get(key) != null;
     }
 
+    @Override
     public Value get(String key) {
         TrieNode x = get(root, key, 0);
         if (Objects.isNull(x)) return null;
@@ -48,6 +53,7 @@ public class TrieST<Value> {
         return get(x.next[c], key, d + 1);
     }
 
+    @Override
     public void delete(String key) {
         delete(root, key, 0);
     }

@@ -1,14 +1,17 @@
 package com.bma.algorithms.tries.ternary;
 
+import com.bma.algorithms.tries.StringST;
+
 import java.util.Objects;
 
-public class TrieTST<Value> {
+public class TrieTST<Value> implements StringST<Value> {
     private Node<Value> root;
 
     public TrieTST() {
     }
 
 
+    @Override
     public void put(String key, Value val) {
         root = put(root, key, val, 0);
     }
@@ -35,6 +38,7 @@ public class TrieTST<Value> {
         return x;
     }
 
+    @Override
     public boolean contains(String key) {
         Node<Value> x = get(root, key, 0);
         return !Objects.isNull(x);
@@ -51,9 +55,15 @@ public class TrieTST<Value> {
         else return x;
     }
 
+    @Override
     public Value get(String key) {
         Node<Value> x = get(root, key, 0);
         if (x == null) return null;
         return x.val;
+    }
+
+    @Override
+    public void delete(String key) {
+
     }
 }
