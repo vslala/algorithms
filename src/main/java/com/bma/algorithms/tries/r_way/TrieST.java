@@ -1,4 +1,4 @@
-package com.bma.algorithms.tries;
+package com.bma.algorithms.tries.r_way;
 
 /*
     - Neither keys nor characters are explicitly stored

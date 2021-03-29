@@ -1,4 +1,4 @@
-package com.bma.algorithms.tries;
+package com.bma.algorithms.tries.r_way;
 
 public class TrieNode {
     private static final int R = 256;   // extended ascii
