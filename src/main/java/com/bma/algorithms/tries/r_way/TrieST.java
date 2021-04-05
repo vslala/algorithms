@@ -77,4 +77,24 @@ public class TrieST<Value> implements StringST<Value> {
         if (nullCount == x.next.length)
             x.next = null;
     }
+
+    @Override
+    public Iterable<String> keys() {
+        return null;
+    }
+
+    @Override
+    public Iterable<String> keysWithPrefix(String s) {
+        return null;
+    }
+
+    @Override
+    public Iterable<String> keysThatMatch(String s) {
+        return null;
+    }
+
+    @Override
+    public String longestPrefixOf(String s) {
+        return null;
+    }
 }

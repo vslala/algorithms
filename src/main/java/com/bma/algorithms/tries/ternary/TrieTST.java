@@ -66,4 +66,24 @@ public class TrieTST<Value> implements StringST<Value> {
     public void delete(String key) {
 
     }
+
+    @Override
+    public Iterable<String> keys() {
+        return null;
+    }
+
+    @Override
+    public Iterable<String> keysWithPrefix(String s) {
+        return null;
+    }
+
+    @Override
+    public Iterable<String> keysThatMatch(String s) {
+        return null;
+    }
+
+    @Override
+    public String longestPrefixOf(String s) {
+        return null;
+    }
 }
