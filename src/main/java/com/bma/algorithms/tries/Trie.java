@@ -1,4 +1,4 @@
-package com.bma.algorithms.misc_datastructures;
+package com.bma.algorithms.tries;
 
 class TrieNode {
     char c;
