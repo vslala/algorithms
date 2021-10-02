@@ -12,6 +12,8 @@ repositories {
 }
 
 dependencies {
+    implementation 'org.javatuples:javatuples:1.2'
+    implementation 'ch.qos.logback:logback-classic:1.2.3'
     implementation 'org.junit.jupiter:junit-jupiter:5.4.2'
     implementation 'org.junit.jupiter:junit-jupiter:5.4.2'
     compileOnly 'org.projectlombok:lombok:1.18.12'
