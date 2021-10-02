@@ -2,9 +2,11 @@ package com.bma.problemsolving.leetcode.java.linkedlist;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class ListNode<T> {
     T val;
     ListNode<T> next;
