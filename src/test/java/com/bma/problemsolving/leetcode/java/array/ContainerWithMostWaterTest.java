@@ -1,18 +1,17 @@
-package com.bma.problemsolving.leetcode.java;
+package com.bma.problemsolving.leetcode.java.array;
 
-import com.bma.problemsolving.leetcode.java.ContainerWithMostWater;
 import org.junit.jupiter.api.Test;
 
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ContainerWithMostWaterTest {
+class ContainerWithMostWaterTest {
 
     ContainerWithMostWater containerWithMostWater = new ContainerWithMostWater();
 
     @Test
-    public void it_should_give_the_max_area_of_the_container() {
+    void it_should_give_the_max_area_of_the_container() {
         var byInputsByAssertions = Map.of(
                 49, new int[]{1, 8, 6, 2, 5, 4, 8, 3, 7},
                 64, new int[]{1, 8, 6, 2, 5, 4, 7, 3, 7, 8}

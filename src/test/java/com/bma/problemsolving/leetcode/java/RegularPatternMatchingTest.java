@@ -1,28 +1,23 @@
 package com.bma.problemsolving.leetcode.java;
 
-import com.bma.problemsolving.leetcode.java.RegularPatternMatching;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
-import java.util.List;
-import java.util.Map;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RegularPatternMatchingTest {
 
     RegularPatternMatching regex = new RegularPatternMatching();
 
-    @Test
-    public void it_should_match_the_regular_expression_as_per_the_rules() {
-        var byInputByAssertion = Map.of(
-                List.of("aa", "a"), false,
-                List.of("aa", "a*"), true,
-                List.of("ab", ".*"), true,
-                List.of("abcde", ".*"), true
-        );
-
-        byInputByAssertion.forEach((input, assertion) ->
-                assertEquals(assertion, regex.isMatch(input.get(0), input.get(1))));
+    @ParameterizedTest
+    @CsvSource({
+            "ss, s, false",
+            "ss, .s, true",
+            "ss, s., true"
+    })
+    void itShouldMatchAnySingleCharacter(String input, String pattern, boolean expected) {
+        var patternMatcher = new RegularPatternMatching();
+        assertEquals(expected, patternMatcher.isMatch(input, pattern));
     }
 
 }

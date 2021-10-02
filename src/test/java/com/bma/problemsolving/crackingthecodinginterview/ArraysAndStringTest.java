@@ -1,5 +1,6 @@
 package com.bma.problemsolving.crackingthecodinginterview;
 
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -85,5 +86,22 @@ class ArraysAndStringTest {
     })
     void itShouldCompressTheGivenStringByAppendingTheCharacterCountAfterEachCharacter(String text, String expectedOutput) {
         assertEquals(expectedOutput, test.compressText(text));
+    }
+
+    @Test
+    void itShouldRotateTheMatrixBy90DegreesRight() {
+        var matrix = new int[4][4];
+        matrix[0] = new int[]{5, 1, 9, 11};
+        matrix[1] = new int[]{2, 4, 8, 10};
+        matrix[2] = new int[]{13, 3, 6, 7};
+        matrix[3] = new int[]{15, 14, 12, 16};
+
+        var output = new int[4][4];
+        output[0] = new int[]{15, 13, 2, 5};
+        output[1] = new int[]{14, 3, 4, 1};
+        output[2] = new int[]{12, 6, 8, 9};
+        output[3] = new int[]{16, 7, 10, 11};
+
+        assertEquals(output, test.rotateMatrix90DegreeRight(matrix));
     }
 }

@@ -1,4 +1,4 @@
-package com.bma.problemsolving.leetcode.java;
+package com.bma.problemsolving.leetcode.java.array;
 
 /**
  * Given n non-negative integers a1, a2, ..., an ,
@@ -14,6 +14,8 @@ package com.bma.problemsolving.leetcode.java;
  *
  * Input: [1,8,6,2,5,4,8,3,7]
  * Output: 49
+ *
+ * @author varun.shrivastava
  */
 public class ContainerWithMostWater {
 
