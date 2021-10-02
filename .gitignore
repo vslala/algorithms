@@ -26,3 +26,4 @@ build
 .gradle
 *.vscode
 *a.out
+/venv/
