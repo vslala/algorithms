@@ -1,6 +1,5 @@
 package com.bma.algorithms.graphs.directed_graphs;
 
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 import java.util.ArrayList;

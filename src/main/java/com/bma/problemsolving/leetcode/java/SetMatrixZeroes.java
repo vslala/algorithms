@@ -1,7 +1,5 @@
 package com.bma.problemsolving.leetcode.java;
 
-import com.bma.algorithms.sort.elementary.Util;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 

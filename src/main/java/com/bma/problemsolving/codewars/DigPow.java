@@ -2,7 +2,6 @@ package com.bma.problemsolving.codewars;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.stream.Collectors;
 
 /*
 URL: https://www.codewars.com/kata/5552101f47fc5178b1000050/train/java

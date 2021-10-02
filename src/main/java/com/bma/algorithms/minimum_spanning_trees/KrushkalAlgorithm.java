@@ -2,7 +2,6 @@ package com.bma.algorithms.minimum_spanning_trees;
 
 import com.bma.algorithms.graphs.EdgeWeightedGraph;
 import com.bma.algorithms.priorityqueues.MinHeap;
-import com.bma.algorithms.sort.elementary.Util;
 
 public class KrushkalAlgorithm {
     private final EdgeWeightedGraph graph;

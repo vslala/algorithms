@@ -1,6 +1,5 @@
 package com.bma.problemsolving.interviewbit.java;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 

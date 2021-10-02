@@ -1,6 +1,3 @@
-import fileinput
-import re
-
 S = [0,5,4,1,10,14,7]
 last_index = {}
 

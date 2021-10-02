@@ -1,7 +1,6 @@
 package com.bma.algorithms.graphs;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Bag<T> extends ArrayList<T> implements List<T> {

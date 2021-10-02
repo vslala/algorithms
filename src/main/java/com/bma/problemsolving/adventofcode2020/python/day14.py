@@ -1,5 +1,5 @@
 import fileinput
-import re
+
 
 def indices(newidx, floating):
     if len(floating) == 0:

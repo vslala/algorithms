@@ -164,4 +164,27 @@ public class ArraysAndString {
         compressedText.append(text.charAt(i)).append(j - i);
         return originalLength <= compressedText.length() ? text : compressedText.toString();
     }
+
+    public int[][] rotateMatrix90DegreeRight(int[][] matrix) {
+        int i = 0; // 0
+        int j = 0; // 0
+        int n = matrix.length - 1; // 3
+        while (i < (matrix.length + 1) / 2) {
+            while (j < matrix.length / 2) {
+                int temp = matrix[n - j][i]; // top-right
+                // bottom-left = bottom-right
+                matrix[n - j][i] = matrix[n - i][n - j];
+                // top-left = bottom-left
+                matrix[j][n - i] = matrix[n - j][i];
+                // top-right = top-left
+                matrix[n - j][i] = matrix[j][n - i];
+
+                matrix[i][j] = temp;
+                j++;
+            }
+            i++;
+        }
+
+        return matrix;
+    }
 }

@@ -1,7 +1,5 @@
 package com.bma.algorithms.graphs;
 
-import com.bma.algorithms.graphs.directed_graphs.DigraphImplRS;
-
 public interface Digraph {
 
     /**

@@ -1,6 +1,6 @@
 package com.bma.problemsolving.leetcode.java.knightprobability;
 
-import java.util.*;
+import java.util.Set;
 
 import static java.lang.System.out;
 

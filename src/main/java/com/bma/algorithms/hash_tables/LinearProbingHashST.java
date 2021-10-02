@@ -1,7 +1,5 @@
 package com.bma.algorithms.hash_tables;
 
-import java.util.stream.IntStream;
-
 public class LinearProbingHashST<Key, Value> {
 
     private int length      = 3001;

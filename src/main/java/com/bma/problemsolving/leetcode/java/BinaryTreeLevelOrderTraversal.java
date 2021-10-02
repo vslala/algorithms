@@ -1,13 +1,11 @@
 package com.bma.problemsolving.leetcode.java;
 
 import com.bma.algorithms.misc_datastructures.BinaryTree;
-import com.bma.algorithms.sort.elementary.Util;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class BinaryTreeLevelOrderTraversal {
 

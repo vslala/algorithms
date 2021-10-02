@@ -1,10 +1,6 @@
 package com.bma.problemsolving.codewars;
 
-import java.security.SecurityPermission;
-import java.util.ArrayList;
 import java.util.LinkedList;
-
-import static java.lang.Math.*;
 
 public class RangeExtractor {
 

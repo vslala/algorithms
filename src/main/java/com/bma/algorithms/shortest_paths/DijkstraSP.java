@@ -63,7 +63,7 @@ public class DijkstraSP {
         distTo[s] = 0.0;
 
         // relax vertices in order of distance from s
-        pq = new IndexMinPQ<Double>(G.V());
+        pq = new IndexMinPQ<>(G.V());
         pq.insert(s, distTo[s]);
         while (!pq.isEmpty()) {
             int v = pq.delMin();

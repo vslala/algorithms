@@ -31,7 +31,6 @@ package com.bma.algorithms.graphs.directed_graphs;
 
 import com.bma.algorithms.graphs.Bag;
 import com.bma.algorithms.stdlib.In;
-import com.bma.algorithms.stdlib.StdOut;
 
 import java.util.NoSuchElementException;
 import java.util.Stack;

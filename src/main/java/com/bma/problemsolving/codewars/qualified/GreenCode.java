@@ -1,6 +1,8 @@
 package com.bma.problemsolving.codewars.qualified;
 
-import java.util.*;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 /**
  * Rule #1: CPU Usage should be less than 90%.

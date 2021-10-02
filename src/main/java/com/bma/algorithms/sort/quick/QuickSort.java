@@ -5,8 +5,9 @@ import com.bma.algorithms.sort.elementary.Util;
 
 import java.util.Random;
 
-import static com.bma.algorithms.sort.elementary.Util.*;
-import static java.lang.String.*;
+import static com.bma.algorithms.sort.elementary.Util.println;
+import static com.bma.algorithms.sort.elementary.Util.swap;
+import static java.lang.String.format;
 
 public class QuickSort implements Sort {
 
