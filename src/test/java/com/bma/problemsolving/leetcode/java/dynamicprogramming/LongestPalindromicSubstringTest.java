@@ -20,4 +20,16 @@ class LongestPalindromicSubstringTest {
         assertEquals(expectedOutput, sol.longestPalindrome(input));
     }
 
+    @ParameterizedTest
+    @CsvSource({
+            "dbabccbazz,abccba",
+            "babad, bab",
+            "cbbd, bb",
+            "a, a",
+            "ac, a"
+    })
+    void shouldReturnTheLongestPalindromicSubstringUsingDynamicProgramming(String input, String expectedOutput) {
+        assertEquals(expectedOutput, sol.longestPalindromeDP(input));
+    }
+
 }

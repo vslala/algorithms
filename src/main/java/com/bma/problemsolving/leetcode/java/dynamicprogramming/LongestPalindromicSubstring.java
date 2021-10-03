@@ -33,4 +33,30 @@ public class LongestPalindromicSubstring {
             resultStart = start + 1;
         }
     }
+
+    public String longestPalindromeDP(String s) {
+        boolean[][] dp = new boolean[s.length()][s.length()];
+        for (int gap = 0; gap < s.length(); gap++) {
+            for (int i = 0, j = gap; j < dp.length; i++, j++) {
+                if (gap == 0) {
+                    dp[i][j] = true;    // string of 1 char is a palindrome
+                } else {
+                    var isCharAtBothEndEqual = s.charAt(i) == s.charAt(j);
+                    if (gap == 1) {
+                        dp[i][j] = isCharAtBothEndEqual;  // if both char are same then the string is palindrome
+                    } else {
+                        dp[i][j] = isCharAtBothEndEqual && dp[i + 1][j - 1];
+                    }
+                }
+
+                var palindromeLength = j - i + 1;
+                if (dp[i][j] && palindromeLength > resultLength) {
+                    resultStart = i;
+                    resultLength = palindromeLength;
+                }
+            }
+        }
+
+        return s.substring(resultStart, resultStart + resultLength);
+    }
 }
