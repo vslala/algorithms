@@ -1,9 +1,6 @@
 package com.bma.algorithms.sort.elementary;
 
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Util {
@@ -81,6 +78,20 @@ public class Util {
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[i].length; j++) {
                 Util.print(matrix[i][j] + ",");
+            }
+            Util.println();
+        }
+        Util.println();
+    }
+
+    public static void printMatrix(char[][] matrix, String separator) {
+        if (Objects.isNull(separator) || separator.isEmpty()) {
+            separator = ",";
+        }
+
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                Util.print(matrix[i][j] + separator);
             }
             Util.println();
         }
