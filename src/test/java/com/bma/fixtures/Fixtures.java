@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 /**
  * @author varun.shrivastava
  */
@@ -65,5 +67,11 @@ public class Fixtures {
             newArr.add(Integer.parseInt(String.valueOf(c)));
             parseExpression(expression, index + 1, newArr, result);
         }
+    }
+
+    public static void assertBothListsContainsSameItems(List<List<Integer>> expected, List<List<Integer>> result) {
+        expected.forEach(ls -> ls.forEach(num -> {
+            assertTrue(result.stream().anyMatch(ls2 -> ls2.stream().anyMatch(num2 -> num2.equals(num))));
+        }));
     }
 }

@@ -7,8 +7,6 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 class CombinationSumTest {
 
     private CombinationSum combinationSum = new CombinationSum();
@@ -27,9 +25,7 @@ class CombinationSumTest {
 
         List<List<Integer>> result = combinationSum.combinationSum(candidates, target);
         Util.println(result);
-        expected.forEach(ls -> ls.forEach(num -> {
-            assertTrue(result.stream().anyMatch(ls2 -> ls2.stream().anyMatch(num2 -> num2.equals(num))));
-        }));
+        Fixtures.assertBothListsContainsSameItems(expected, result);
     }
 
 }
