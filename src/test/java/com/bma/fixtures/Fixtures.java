@@ -2,8 +2,13 @@ package com.bma.fixtures;
 
 import lombok.experimental.UtilityClass;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
+/**
+ * @author varun.shrivastava
+ */
 @UtilityClass
 public class Fixtures {
 
@@ -27,5 +32,38 @@ public class Fixtures {
         }
 
         return matrix;
+    }
+
+    /**
+     * Parses a nested list expression like [[2_2_2_2]:[2_3_3]:[3_5]]
+     *
+     * @param expression
+     * @param <T>
+     * @return
+     */
+    public static <T> List<T> parseExpression(String expression) {
+        var result = new ArrayList<>();
+        parseExpression(expression, 0, new ArrayList<>(), result);
+        return (List<T>) result;
+    }
+
+    static void parseExpression(String expression, int index, List<Object> newArr, List<Object> result) {
+        if (index == expression.length()) {
+            return;
+        }
+
+        char c = expression.charAt(index);
+        if (c == '[') {
+            newArr = new ArrayList<>();
+            parseExpression(expression, index + 1, newArr, result);
+        } else if (c == '_' || c == ':') {
+            parseExpression(expression, index + 1, newArr, result);
+        } else if (c == ']') {
+            result.add(newArr);
+            parseExpression(expression, index + 1, newArr, result);
+        } else {
+            newArr.add(Integer.parseInt(String.valueOf(c)));
+            parseExpression(expression, index + 1, newArr, result);
+        }
     }
 }
