@@ -46,6 +46,8 @@ public class Fixtures {
     public static <T> List<T> parseExpression(String expression) {
         var result = new ArrayList<>();
         parseExpression(expression, 0, new ArrayList<>(), result);
+        result.remove(result.size() - 1);
+
         return (List<T>) result;
     }
 

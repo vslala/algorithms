@@ -11,7 +11,8 @@ class CombinationSumTwoTest {
 
     @ParameterizedTest
     @CsvSource({
-            "10_1_2_7_6_1_5, 8, [[1_1_6]:[1_2_5]:[1_7]:[2_6]]"
+            "10_1_2_7_6_1_5, 8, [[1_1_6]:[1_2_5]:[1_7]:[2_6]]",
+            "2_5_2_1_2, 5, [[1_2_2]:[5]]",
     })
     void shouldReturnUniqueCombinationOfSetThatSumsUpToATargetValue(String inputStr, int target, String expected) {
         var candidates = Fixtures.splitAndParseArr(inputStr, "_");
