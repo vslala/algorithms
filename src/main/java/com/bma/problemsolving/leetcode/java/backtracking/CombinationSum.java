@@ -14,7 +14,7 @@ import java.util.List;
  *
  * @author varun.shrivastava
  */
-public class CombinationSum {
+class CombinationSum {
 
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
         var result = new ArrayList<List<Integer>>();

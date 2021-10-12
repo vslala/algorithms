@@ -10,7 +10,7 @@ import java.util.List;
  *
  * @author varun.shrivastava
  */
-public class PermutationTwo {
+class PermutationTwo {
     private List<List<Integer>> result = new ArrayList<>();
     private HashSet<List<Integer>> set = new HashSet<>();
 

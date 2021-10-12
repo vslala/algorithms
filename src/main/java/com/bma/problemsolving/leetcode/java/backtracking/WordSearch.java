@@ -3,7 +3,7 @@ package com.bma.problemsolving.leetcode.java.backtracking;
 import java.util.HashMap;
 import java.util.Map;
 
-public class WordSearch {
+class WordSearch {
 
     public boolean exist(char[][] board, String word) {
         var root = new TrieNode();
