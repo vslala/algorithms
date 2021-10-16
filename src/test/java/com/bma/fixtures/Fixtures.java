@@ -76,4 +76,16 @@ public class Fixtures {
             assertTrue(result.stream().anyMatch(ls2 -> ls2.stream().anyMatch(num2 -> num2.equals(num))));
         }));
     }
+
+    public static int[][] convertToPrimitiveArrMatrix(List<List<Integer>> ls) {
+        var result = new int[ls.size()][];
+        for (var i = 0; i < ls.size(); i++) {
+            result[i] = new int[ls.get(i).size()];
+            for (var j = 0; j < ls.get(i).size(); j++) {
+                result[i][j] = ls.get(i).get(j);
+            }
+        }
+
+        return result;
+    }
 }
