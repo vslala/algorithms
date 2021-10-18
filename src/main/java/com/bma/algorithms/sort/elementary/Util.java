@@ -97,4 +97,18 @@ public class Util {
         }
         Util.println();
     }
+
+    public static void printMatrix(int[][] matrix, String separator) {
+        if (Objects.isNull(separator) || separator.isEmpty()) {
+            separator = ",";
+        }
+
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                Util.print(matrix[i][j] + separator);
+            }
+            Util.println();
+        }
+        Util.println();
+    }
 }
