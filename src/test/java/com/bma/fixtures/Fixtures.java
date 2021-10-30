@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
@@ -39,9 +40,9 @@ public class Fixtures {
     /**
      * Parses a nested list expression like [[2_2_2_2]:[2_3_3]:[3_5]]
      *
-     * @param expression
-     * @param <T>
-     * @return
+     * @param expression format [[2_2_2_2]:[2_3_3]:[3_5]]
+     * @param <T> returns depends on the caller List<List<T>>
+     * @return defaults List<List<Object>>
      */
     public static <T> List<T> parseExpression(String expression) {
         var result = new ArrayList<>();
@@ -72,9 +73,7 @@ public class Fixtures {
     }
 
     public static void assertBothListsContainsSameItems(List<List<Integer>> expected, List<List<Integer>> result) {
-        expected.forEach(ls -> ls.forEach(num -> {
-            assertTrue(result.stream().anyMatch(ls2 -> ls2.stream().anyMatch(num2 -> num2.equals(num))));
-        }));
+        expected.forEach(ls -> ls.forEach(num -> assertTrue(result.stream().anyMatch(ls2 -> ls2.stream().anyMatch(num2 -> num2.equals(num))))));
     }
 
     public static int[][] convertToPrimitiveArrMatrix(List<List<Integer>> ls) {
@@ -87,5 +86,13 @@ public class Fixtures {
         }
 
         return result;
+    }
+
+    public static void assertArrayEquals(int[] expectedResult, int[] sortedSquares) {
+        var i = 0;
+        var j = 0;
+        while (i < expectedResult.length) {
+            assertEquals(expectedResult[i++], sortedSquares[j++]);
+        }
     }
 }
