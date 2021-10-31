@@ -89,6 +89,8 @@ public class Fixtures {
     }
 
     public static void assertArrayEquals(int[] expectedResult, int[] sortedSquares) {
+        assertEquals(expectedResult.length, sortedSquares.length);
+
         var i = 0;
         var j = 0;
         while (i < expectedResult.length) {
