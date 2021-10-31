@@ -17,7 +17,7 @@ class SquareOfASortedArrayTest {
         var nums = Fixtures.splitAndParseArr(sortedInput, "_");
         var expectedResult = Fixtures.splitAndParseArr(expected, "_");
 
-        Fixtures.assertArrayEquals(expectedResult, sol.sortedSquares(nums));
+        Fixtures.assertArrayEquals(nums, expectedResult, sol.sortedSquares(nums));
     }
 
 }

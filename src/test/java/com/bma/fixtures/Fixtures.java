@@ -5,6 +5,7 @@ import lombok.experimental.UtilityClass;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -88,13 +89,18 @@ public class Fixtures {
         return result;
     }
 
-    public static void assertArrayEquals(int[] expectedResult, int[] sortedSquares) {
-        assertEquals(expectedResult.length, sortedSquares.length);
+    public static void assertArrayEquals(int[] original, int[] expectedResult, int[] result) {
+        assertEquals(expectedResult.length, result.length);
+
+        System.out.println("Result:");
+        System.out.println(Arrays.stream(original).mapToObj(String::valueOf).collect(Collectors.joining(",")));
+        System.out.println(Arrays.stream(expectedResult).mapToObj(String::valueOf).collect(Collectors.joining(",")));
+        System.out.println(Arrays.stream(result).mapToObj(String::valueOf).collect(Collectors.joining(",")));
 
         var i = 0;
         var j = 0;
         while (i < expectedResult.length) {
-            assertEquals(expectedResult[i++], sortedSquares[j++]);
+            assertEquals(expectedResult[i++], result[j++]);
         }
     }
 }
