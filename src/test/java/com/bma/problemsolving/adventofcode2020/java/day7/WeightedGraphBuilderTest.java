@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class WeightedGraphBuilderTest {
 
-    private static final String PATH =  "/Users/in-varun.shrivastava/Code/src/github.com/java/Algorithms/src/main/java/com/bma/algorithms/adventofcode2020/inputs/day7test.txt";
+    private static final String PATH =  "src/test/resources/adventofcode2020/inputs/day7test.txt";
 
     private WeightedGraphBuilder wgb;
 
