@@ -108,4 +108,18 @@ public class Util {
 
         return true;
     }
+
+    public static void printMatrix(int[][] matrix, String separator) {
+        if (Objects.isNull(separator) || separator.isEmpty()) {
+            separator = ",";
+        }
+
+        for (int[] chars : matrix) {
+            for (int aChar : chars) {
+                Util.print(aChar + separator);
+            }
+            Util.println();
+        }
+        Util.println();
+    }
 }

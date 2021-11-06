@@ -1,5 +1,6 @@
 package com.bma.fixtures;
 
+import com.bma.algorithms.sort.elementary.Util;
 import lombok.experimental.UtilityClass;
 
 import java.util.ArrayList;
@@ -101,6 +102,16 @@ public class Fixtures {
         var j = 0;
         while (i < expectedResult.length) {
             assertEquals(expectedResult[i++], result[j++]);
+        }
+    }
+
+    public static void assertBothMatrixContainsSameItems(int[][] original, int[][] expected, int[][] actual) {
+        Util.printMatrix(original, "|");
+        assertEquals(expected.length, actual.length);
+        for (int i = 0; i < expected.length; i++) {
+            for (int j = 0; j < expected[i].length; j++) {
+                assertEquals(expected[i][j], actual[i][j]);
+            }
         }
     }
 }
