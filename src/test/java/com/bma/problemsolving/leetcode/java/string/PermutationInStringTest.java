@@ -14,10 +14,12 @@ class PermutationInStringTest {
             "ab, eidbaooo, true",
             "ab, eidboaoo, false",
             "adc, dcda, true",
-            "abcdxabcde, abcdeabcdx, true"
+            "abcdxabcde, abcdeabcdx, true",
+            "sea, ate, false"
     })
     void shouldReturnTrueIfStringTwoContainsThePermutationOfStringOne(String s1, String s2, boolean expected) {
         assertEquals(expected, sol.checkInclusion(s1, s2));
+        assertEquals(expected, sol.checkInclusionWithArrayAsHashMap(s1, s2));
     }
 
 

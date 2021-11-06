@@ -34,4 +34,50 @@ public class PermutationInString {
 
         return false;
     }
+
+    public boolean checkInclusionWithArrayAsHashMap(String s1, String s2) {
+        var mem1 = new int[26];
+        var mem2 = new int[26];
+
+        for (char c : s1.toCharArray()) {
+            mem1[c - 'a']++;
+        }
+
+        var windowSize = s1.length();
+        for (int i = 0, j = i + windowSize; i <= s2.length() - windowSize; i++, j = i + windowSize) {
+            countCharFrequencyForTheGivenWindow(s2, mem2, i, j);
+            if (windowMatchesS1(s2, mem1, mem2, i, j)) {
+                return true;
+            }
+            resetFrequencyForTheGivenWindow(s2, mem2, i, j);
+        }
+
+        return false;
+    }
+
+    private boolean windowMatchesS1(String s2, int[] mem1, int[] mem2, int i, int j) {
+        boolean match = true;
+        for (int k = i; k < j; k++) {
+            char c = s2.charAt(k);
+            if (mem1[c - 'a'] != mem2[c - 'a']) {
+                match = false;
+                break;
+            }
+        }
+        return match;
+    }
+
+    private void resetFrequencyForTheGivenWindow(String s2, int[] mem2, int i, int j) {
+        for (int k = i; k < j; k++) {
+            char c = s2.charAt(k);
+            mem2[c - 'a'] = 0;
+        }
+    }
+
+    private void countCharFrequencyForTheGivenWindow(String s2, int[] mem2, int i, int j) {
+        for (int k = i; k < j; k++) {
+            char c = s2.charAt(k);
+            mem2[c - 'a']++;
+        }
+    }
 }

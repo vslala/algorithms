@@ -111,4 +111,19 @@ public class Util {
         }
         Util.println();
     }
+
+    public static boolean arrayEquals(int[] arr1, int s1, int e1, int[] arr2, int s2, int e2) {
+        // check segment length
+        if (e1 - s1 != e2 - s2) {
+            return false;
+        }
+
+        for (int i = s1, j = s2; i < e1; i++, j++) {
+            if (arr1[i] != arr2[j]) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 }
