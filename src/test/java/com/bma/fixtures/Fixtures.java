@@ -46,6 +46,7 @@ public class Fixtures {
      * @param <T> returns depends on the caller List<List<T>>
      * @return defaults List<List<Object>>
      */
+    @SuppressWarnings("unchecked")
     public static <T> List<T> parseExpression(String expression) {
         var result = new ArrayList<>();
         parseExpression(expression, 0, new ArrayList<>(), result);
