@@ -1,13 +1,19 @@
 package com.bma.algorithms.sort.elementary;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
+@SuppressWarnings({"unused"})
+@Slf4j
 public class Util {
+    private static final Random rand = new Random();
+
     private Util() {}
 
     public static int[] generateUnsortedArray(int length) {
-        Random rand = new Random();
+
         int[] output = new int[length];
         for (int i=0; i<length; i++) {
             output[i] = rand.nextInt(length);
@@ -17,9 +23,9 @@ public class Util {
 
     public static void println(int[] input) {
         for (int i : input) {
-            System.out.print(i + ", ");
+            log.info(i + ", ");
         }
-        System.out.println();
+        log.info(System.lineSeparator());
     }
 
     public static void swap(int[] input, int index1, int index2) {
@@ -33,11 +39,11 @@ public class Util {
     }
 
     public static void println(Object format) {
-        System.out.println(format);
+        log.info("{}", format);
     }
 
     public static void print(Object obj) {
-        System.out.print(obj);
+        log.info("{}", obj);
     }
 
     public static void println(int[] input, int low, int high) {
@@ -48,40 +54,30 @@ public class Util {
     }
 
     public static void println() {
-        System.out.println();
+        log.info(System.lineSeparator());
     }
 
-    public static void println(Collection collection) {
-        collection.forEach(item -> Util.print(item));
+    public static <T> void println(Collection<T> collection) {
+        collection.forEach(Util::print);
         Util.println();
     }
 
-    public static <T> boolean less(List<T> collection, int index1, int index2, Comparator comparator) {
+    public static <T> boolean less(List<T> collection, int index1, int index2, Comparator<T> comparator) {
         return comparator.compare(collection.get(index1), collection.get(index2)) < 0;
     }
 
-    public static <T extends Comparable> boolean less(List<T> collection, int index1, int index2) {
+    public static <T extends Comparable<T>> boolean less(List<T> collection, int index1, int index2) {
         return collection.get(index1).compareTo(collection.get(index2)) < 0;
     }
 
     public static void measureRunTime(Runnable job) {
         long startMillis = System.currentTimeMillis();
         job.run();
-        System.out.println("Total Time Taken: " + (System.currentTimeMillis() - startMillis) + "ms");
+        log.info("Total Time Taken: " + (System.currentTimeMillis() - startMillis) + "ms");
     }
 
-    public static <I extends Comparable> void println(List<I> list, String delimiter) {
-        System.out.println(list.stream().map(String::valueOf).collect(Collectors.joining(delimiter)));
-    }
-
-    public static void printMatrix(int[][] matrix) {
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix[i].length; j++) {
-                Util.print(matrix[i][j] + ",");
-            }
-            Util.println();
-        }
-        Util.println();
+    public static <I extends Comparable<I>> void println(List<I> list, String delimiter) {
+        log.info(list.stream().map(String::valueOf).collect(Collectors.joining(delimiter)));
     }
 
     public static void printMatrix(char[][] matrix, String separator) {
@@ -89,23 +85,9 @@ public class Util {
             separator = ",";
         }
 
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix[i].length; j++) {
-                Util.print(matrix[i][j] + separator);
-            }
-            Util.println();
-        }
-        Util.println();
-    }
-
-    public static void printMatrix(int[][] matrix, String separator) {
-        if (Objects.isNull(separator) || separator.isEmpty()) {
-            separator = ",";
-        }
-
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix[i].length; j++) {
-                Util.print(matrix[i][j] + separator);
+        for (char[] chars : matrix) {
+            for (char aChar : chars) {
+                Util.print(aChar + separator);
             }
             Util.println();
         }
