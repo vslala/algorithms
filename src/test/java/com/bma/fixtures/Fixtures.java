@@ -115,4 +115,16 @@ public class Fixtures {
             }
         }
     }
+
+    public static int[] convertListToArray(List<Integer> result) {
+        return result.stream()
+                .mapToInt(item -> item)
+                .toArray();
+    }
+
+    public static List<Integer> convertArrayToList(int[] original) {
+        return Arrays.stream(original)
+                .boxed()
+                .collect(Collectors.toList());
+    }
 }
