@@ -56,26 +56,30 @@ public class MaxAreaOfIsland {
                 if (grid[r][c] == 1) {
                     q.add(new Model.Coordinate(r, c));
 
-                    var count = 0;
-                    while (!q.isEmpty()) {
-                        var curr = q.pollFirst();
-                        if (curr.isInBounds(grid)
-                                && grid[curr.getRow()][curr.getCol()] == 1) {
-                            count++;
-                            grid[curr.getRow()][curr.getCol()] = 0;
-                            q.add(curr.minusRow(1));
-                            q.add(curr.plusRow(1));
-                            q.add(curr.minusCol(1));
-                            q.add(curr.plusCol(1));
-                        }
-                    }
-
-                    result = Math.max(result, count);
+                    result = Math.max(result, findNumberOfAdjacentCoordinates(grid, q));
                 }
             }
         }
 
         return result;
+    }
+
+    private int findNumberOfAdjacentCoordinates(int[][] grid, LinkedList<Model.Coordinate> q) {
+        var count = 0;
+        while (!q.isEmpty()) {
+            var curr = q.pollFirst();
+            if (curr.isInBounds(grid)
+                    && grid[curr.getRow()][curr.getCol()] == 1) {
+                count++;
+                grid[curr.getRow()][curr.getCol()] = 0;
+                q.add(curr.minusRow(1));
+                q.add(curr.plusRow(1));
+                q.add(curr.minusCol(1));
+                q.add(curr.plusCol(1));
+            }
+        }
+
+        return count;
     }
 
 }
