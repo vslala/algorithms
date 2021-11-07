@@ -1,6 +1,6 @@
 package com.bma.problemsolving.leetcode.java.dfsbfs;
 
-import lombok.AllArgsConstructor;
+import com.bma.problemsolving.leetcode.Model;
 
 import java.util.LinkedList;
 
@@ -21,29 +21,28 @@ import java.util.LinkedList;
  */
 public class FloodFill {
     public int[][] floodFillDfs(int[][] image, int sr, int sc, int newColor) {
-        int color = image[sr][sc];
-        dfs(image, sr, sc, color, newColor);
+        dfs(image, sr, sc, newColor);
 
         return image;
     }
 
-    private void dfs(int[][] image, int sr, int sc, int color, int newColor) {
+    private void dfs(int[][] image, int sr, int sc, int newColor) {
         if (image[sr][sc] != newColor) {
             image[sr][sc] = newColor;
             if (sr >= 1) {
-                dfs(image, sr - 1, sc, color, newColor);
+                dfs(image, sr - 1, sc, newColor);
             }
 
             if (sc >= 1) {
-                dfs(image, sr, sc - 1, color, newColor);
+                dfs(image, sr, sc - 1, newColor);
             }
 
             if (sr < image.length - 1) {
-                dfs(image, sr + 1, sc, color, newColor);
+                dfs(image, sr + 1, sc, newColor);
             }
 
             if (sc < image[0].length - 1) {
-                dfs(image, sr, sc + 1, color, newColor);
+                dfs(image, sr, sc + 1, newColor);
             }
         }
     }
@@ -54,17 +53,17 @@ public class FloodFill {
             return image;
         }
 
-        var q = new LinkedList<Coordinate>();
-        q.add(new Coordinate(sr, sc));
+        var q = new LinkedList<Model.Coordinate>();
+        q.add(new Model.Coordinate(sr, sc));
 
         while (!q.isEmpty()) {
             var curr = q.pollFirst();
-            image[curr.r][curr.c] = newColor;
+            image[curr.getRow()][curr.getCol()] = newColor;
 
-            var top = new Coordinate(curr.r - 1, curr.c);
-            var bottom = new Coordinate(curr.r + 1, curr.c);
-            var right = new Coordinate(curr.r, curr.c + 1);
-            var left = new Coordinate(curr.r, curr.c - 1);
+            var top = new Model.Coordinate(curr.getRow() - 1, curr.getCol());
+            var bottom = new Model.Coordinate(curr.getRow() + 1, curr.getCol());
+            var right = new Model.Coordinate(curr.getRow(), curr.getCol() + 1);
+            var left = new Model.Coordinate(curr.getRow(), curr.getCol() - 1);
 
             if (isInBounds(image, top) && matchingColor(image, top, color)) {
                 q.add(top);
@@ -86,19 +85,14 @@ public class FloodFill {
         return image;
     }
 
-    private boolean matchingColor(int[][] image, Coordinate coord, int color) {
-        return image[coord.r][coord.c] == color;
+    private boolean matchingColor(int[][] image, Model.Coordinate coord, int color) {
+        return image[coord.getRow()][coord.getCol()] == color;
     }
 
-    private boolean isInBounds(int[][] image, Coordinate coord) {
-        int r = coord.r;
-        int c = coord.c;
+    private boolean isInBounds(int[][] image, Model.Coordinate coord) {
+        int r = coord.getRow();
+        int c = coord.getCol();
         return r >= 0 && r < image.length && c >= 0 && c < image[r].length;
     }
 
-    @AllArgsConstructor
-    static class Coordinate {
-        int r;
-        int c;
-    }
 }

@@ -1,8 +1,7 @@
 package com.bma.problemsolving.interviewbit.java;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.ToString;
+import com.bma.algorithms.sort.elementary.Util;
+import com.bma.problemsolving.leetcode.Model.Coordinate;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -11,14 +10,6 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import static java.lang.Math.pow;
-
-@ToString
-@Getter
-@RequiredArgsConstructor
-class Coordinate {
-    private final int x;
-    private final int y;
-}
 
 class Grid {
     private List<Coordinate> coordinates = new ArrayList<>();
@@ -36,11 +27,11 @@ class Grid {
     }
 
     public void print() {
-        System.out.println(coordinates.stream().map(Object::toString).collect(Collectors.joining("\n")));
+        Util.println(coordinates.stream().map(Object::toString).collect(Collectors.joining("\n")));
     }
 
     private double a2b2(Coordinate a) {
-        return pow(a.getX(), 2) + pow(a.getY(), 2);
+        return pow(a.getRow(), 2) + pow(a.getCol(), 2);
     }
 
     /**
@@ -51,8 +42,8 @@ class Grid {
         int steps = 0;
         for (int i=0; i < coordinates.size() - 1; i++) {
             steps += Math.sqrt(
-                    pow(coordinates.get(i + 1).getX() - coordinates.get(i).getX(), 2) +
-                            pow(coordinates.get(i + 1).getY() - coordinates.get(i).getY(), 2)
+                    pow(coordinates.get(i + 1).getRow() - coordinates.get(i).getRow(), 2) +
+                            pow(coordinates.get(i + 1).getCol() - coordinates.get(i).getCol(), 2)
             );
         }
         return steps;
