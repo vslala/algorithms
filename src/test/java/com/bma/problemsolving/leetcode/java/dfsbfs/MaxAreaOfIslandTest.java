@@ -18,7 +18,8 @@ class MaxAreaOfIslandTest {
     void shouldCalcTheLargestIslandByArea(String inputValue, int expected) {
         var matrix = Fixtures.convertToPrimitiveArrMatrix(Fixtures.parseExpression(inputValue));
 
-        var output = sol.maxAreaOfIslandDfs(matrix);
+//        var output = sol.maxAreaOfIslandDfs(matrix);
+        var output = sol.maxAreaOfIslandBfs(matrix);
 
         assertEquals(expected, output);
     }
