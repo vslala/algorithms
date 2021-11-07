@@ -31,5 +31,9 @@ public class Model {
             return row >= 0 && row < grid.length &&
                     col >= 0 && col < grid[row].length;
         }
+
+        public Coordinate plus(Coordinate coordinate) {
+            return new Coordinate(row + coordinate.getRow(), col + coordinate.getCol());
+        }
     }
 }
