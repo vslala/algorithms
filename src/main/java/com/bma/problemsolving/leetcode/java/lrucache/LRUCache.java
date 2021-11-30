@@ -6,9 +6,10 @@ import java.util.Map;
 /**
  * Basically combines the two implementation of
  * HashSet and DoublyLinkedList to achieve O(1) read and write to cache.
- *
+ * <p>
  * There is a LinkedHashMap data structure in java that could be used to
  * implement this cache as well.
+ *
  * @param <K>
  * @param <V>
  */
@@ -41,14 +42,14 @@ class LRUCache<K, V> {
         return node.getData();
     }
 
+    /**
+     * Set the result for the given query key in the cache.
+     * <p>
+     * When updating an entry, updates its position to the front of the LRU list.
+     * If the entry is new and the cache is at capacity, removes the oldest entry
+     * before the new entry is added.
+     */
     public void put(K key, V value) {
-        /*
-        Set the result for the given query key in the cache.
-
-        When updating an entry, updates its position to the front of the LRU list.
-        If the entry is new and the cache is at capacity, removes the oldest entry
-        before the new entry is added.
-         */
         if (lookup.containsKey(key)) {
             // Key exists in cache, update the value
             var node = lookup.get(key);

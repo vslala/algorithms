@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class LRUCacheTest {
+class LRUCacheSandboxTest {
 
     @Test
     void itShouldMaintainALeastRecentlyUsedCachedAndPerformGetAndPutOperationInO1Time() {
@@ -23,5 +23,6 @@ class LRUCacheTest {
         assertEquals(3, lRUCache.get(3));    // return 3
         assertEquals(4, lRUCache.get(4));    // return 4
     }
+
 
 }

@@ -1,4 +1,4 @@
-class Solution:
+class MostVisitedPatternLeetcode:
     # @param A : list of integers
     # @return an integer
     def solve(self, A):
@@ -28,5 +28,5 @@ class Solution:
         return count
 
 A = [5, 5, 2, 5, 8]
-ans = Solution().solve(A)
+ans = MostVisitedPatternLeetcode().solve(A)
 print(ans)

@@ -1,4 +1,4 @@
-class Solution:
+class MostVisitedPatternLeetcode:
     def solve (self, A,B):
         last = -1
         N = len(A)
@@ -25,6 +25,6 @@ class Solution:
 
 A = [0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 0, 1, 0, 0]
 B = 12
-ans = Solution().solve(A,B)
+ans = MostVisitedPatternLeetcode().solve(A,B)
 print("Ans:", ans)
 

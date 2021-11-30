@@ -5,17 +5,15 @@ import java.util.Set;
 
 public class LongestSubstringWithoutRepeatingCharacters {
 
-
-
     public int lengthOfLongestSubstring(String s) {
         int longestLen = 0;
         int currLen = 0;
-        Set<Character> charSet = new HashSet<Character>();
+        Set<Character> charSet = new HashSet<>();
 
         for (char c: s.toCharArray()) {
             if (charSet.contains(c)) {
                 charSet.clear();
-                if (longestLen < currLen) longestLen = currLen;
+                longestLen = Math.max(longestLen, currLen);
                 currLen = 0;
             }
 
@@ -24,14 +22,7 @@ public class LongestSubstringWithoutRepeatingCharacters {
 
         }
 
-        return longestLength(longestLen, currLen);
+        return Math.max(longestLen, currLen);
     }
 
-    private int longestLength(int longestLen, int currLen) {
-        return longestLen > currLen ? longestLen : currLen;
-    }
-
-    private boolean isLongestSubstringSoFar(int longestLen, int currLen) {
-        return longestLen < currLen;
-    }
 }

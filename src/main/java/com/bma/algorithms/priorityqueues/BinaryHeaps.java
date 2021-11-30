@@ -41,10 +41,10 @@ public class BinaryHeaps<T extends Comparable> {
     public void deleteMax() {
         int lastNode = size() - 1;
         Collections.swap(heap, 1, lastNode);
+
         heap.remove(lastNode);
 
-        int currentNode = 1;
-        sink(currentNode);
+        sink(1);
     }
 
     private void sink(int currentNode) {
