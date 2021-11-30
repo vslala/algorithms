@@ -39,11 +39,11 @@ public class Util {
     }
 
     public static void println(Object format) {
-        log.info("{}", format);
+        System.out.println(format);
     }
 
     public static void print(Object obj) {
-        log.info("{}", obj);
+        System.out.print(obj);
     }
 
     public static void println(int[] input, int low, int high) {
@@ -54,7 +54,7 @@ public class Util {
     }
 
     public static void println() {
-        log.info(System.lineSeparator());
+        System.out.println();
     }
 
     public static <T> void println(Collection<T> collection) {

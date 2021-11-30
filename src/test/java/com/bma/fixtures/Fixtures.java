@@ -70,7 +70,11 @@ public class Fixtures {
             result.add(newArr);
             parseExpression(expression, index + 1, newArr, result);
         } else {
-            newArr.add(Integer.parseInt(String.valueOf(c)));
+            try {
+                newArr.add(Integer.parseInt(String.valueOf(c)));
+            } catch (NumberFormatException e) {
+                newArr.add(String.valueOf(c));
+            }
             parseExpression(expression, index + 1, newArr, result);
         }
     }
@@ -91,6 +95,18 @@ public class Fixtures {
         return result;
     }
 
+    public static char[][] convertToPrimitiveCharMatrix(List<List<String>> input) {
+        char[][] output = new char[input.size()][input.get(0).size()];
+        for (var i = 0; i < input.size(); i++) {
+            output[i] = new char[input.get(i).size()];
+            for (var j = 0; j < input.get(i).size(); j++) {
+                output[i][j] = input.get(i).get(j).charAt(0);
+            }
+        }
+
+        return output;
+    }
+
     public static void assertArrayEquals(int[] original, int[] expectedResult, int[] result) {
         assertEquals(expectedResult.length, result.length);
 
@@ -108,6 +124,24 @@ public class Fixtures {
 
     public static void assertBothMatrixContainsSameItems(int[][] original, int[][] expected, int[][] actual) {
         Util.printMatrix(original, "|");
+        assertEquals(expected.length, actual.length);
+        for (int i = 0; i < expected.length; i++) {
+            for (int j = 0; j < expected[i].length; j++) {
+                assertEquals(expected[i][j], actual[i][j]);
+            }
+        }
+    }
+
+    public static void assertBothCharMatrixContainsSameItems(char[][] original, char[][] expected, char[][] actual) {
+        Util.println("Original:");
+        Util.printMatrix(original, "|");
+
+        Util.println("\nExpected:");
+        Util.printMatrix(expected, "|");
+
+        Util.println("\nResult:");
+        Util.printMatrix(actual, "|");
+
         assertEquals(expected.length, actual.length);
         for (int i = 0; i < expected.length; i++) {
             for (int j = 0; j < expected[i].length; j++) {
