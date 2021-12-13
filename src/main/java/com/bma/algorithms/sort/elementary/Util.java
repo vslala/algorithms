@@ -23,9 +23,9 @@ public class Util {
 
     public static void println(int[] input) {
         for (int i : input) {
-            log.info(i + ", ");
+            System.out.print(i + ", ");
         }
-        log.info(System.lineSeparator());
+        System.out.println(System.lineSeparator());
     }
 
     public static void swap(int[] input, int index1, int index2) {
@@ -121,5 +121,15 @@ public class Util {
             Util.println();
         }
         Util.println();
+    }
+
+    public static int max(int[] array, int startIndex, int end) {
+        int max = Integer.MIN_VALUE;
+        for (int i = startIndex; i < end; i++) {
+            if (max < array[i])
+                max = array[i];
+        }
+
+        return max;
     }
 }

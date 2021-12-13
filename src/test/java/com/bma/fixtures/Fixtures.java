@@ -108,12 +108,12 @@ public class Fixtures {
     }
 
     public static void assertArrayEquals(int[] original, int[] expectedResult, int[] result) {
-        assertEquals(expectedResult.length, result.length);
-
         System.out.println("Result:");
         System.out.println(Arrays.stream(original).mapToObj(String::valueOf).collect(Collectors.joining(",")));
         System.out.println(Arrays.stream(expectedResult).mapToObj(String::valueOf).collect(Collectors.joining(",")));
         System.out.println(Arrays.stream(result).mapToObj(String::valueOf).collect(Collectors.joining(",")));
+
+        assertEquals(expectedResult.length, result.length);
 
         var i = 0;
         var j = 0;
