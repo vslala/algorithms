@@ -5,7 +5,10 @@ import lombok.extern.slf4j.Slf4j;
 import java.util.*;
 import java.util.stream.Collectors;
 
-@SuppressWarnings({"unused"})
+@SuppressWarnings({
+        "unused",
+        "squid:S106" // system out warnings
+})
 @Slf4j
 public class Util {
     private static final Random rand = new Random();
