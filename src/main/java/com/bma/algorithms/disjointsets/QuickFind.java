@@ -1,6 +1,8 @@
 package com.bma.algorithms.disjointsets;
 
 /**
+ * This is an eager datastructure of finding connected components
+ *
  * Initialize   | Union     | Find
  * O(N)         | O(N)      | O(1)
  *
@@ -8,8 +10,8 @@ package com.bma.algorithms.disjointsets;
  */
 public class QuickFind implements DisjointSet {
 
-    private int totalVertices;
-    int[] id;
+    private final int totalVertices;
+    private final int[] id;
 
     public QuickFind(int numOfVertices) {
         totalVertices = numOfVertices + 1;
