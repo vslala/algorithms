@@ -1,12 +1,10 @@
-package com.bma.algorithms.quick.union;
+package com.bma.algorithms.disjointsets;
 
-import com.bma.algorithms.quick.IQuickFind;
-
-public class QuickUnionUF implements IQuickFind {
+public class QuickUnion implements DisjointSet {
 
     int[] id;
 
-    public QuickUnionUF(int size) {
+    public QuickUnion(int size) {
         id = new int[size];
     }
 
@@ -32,7 +30,7 @@ public class QuickUnionUF implements IQuickFind {
     }
 
     public static void main(String[] args) {
-        IQuickFind quickFind = new QuickUnionUF(10);
+        DisjointSet quickFind = new QuickUnion(10);
         quickFind.union(3,5);
         quickFind.union(6,5);
         quickFind.union(9,4);
