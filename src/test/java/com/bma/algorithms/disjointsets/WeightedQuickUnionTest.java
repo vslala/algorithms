@@ -5,9 +5,9 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class QuickUnionByRankTest {
+class WeightedQuickUnionTest {
 
-    private QuickUnionByRank qubr = new QuickUnionByRank(10);
+    private WeightedQuickUnion qubr = new WeightedQuickUnion(10);
 
     @Test
     void shouldConnectComponentsTogether() {

@@ -10,20 +10,20 @@ package com.bma.algorithms.disjointsets;
  * Initialize   | Union         | Find
  * O(n)         | log(n)        | log(n)
  */
-class QuickUnionByRank implements DisjointSet {
+class WeightedQuickUnion implements DisjointSet {
 
-    private int[] rank;
+    private int[] height;
     private int[] id;
     private int totalVertices;
 
-    public QuickUnionByRank(int size) {
+    public WeightedQuickUnion(int size) {
         this.totalVertices = size + 1;
-        this.rank = new int[totalVertices];
+        this.height = new int[totalVertices];
         this.id = new int[totalVertices];
 
         for (int i = 0; i < totalVertices; i++) {
             id[i] = i;
-            rank[i] = 1;
+            height[i] = 1;
         }
     }
 
@@ -39,19 +39,27 @@ class QuickUnionByRank implements DisjointSet {
         return v;
     }
 
+    /**
+     * Check which component has more depth,
+     * append the smaller tree/component to the longer tree.
+     * By doing so it won't increase the tree size.
+     * If both components have same height then add any component to the other one,
+     * but don't forget to increase the depth of the component.
+     *
+     * @param p
+     * @param q
+     */
     @Override
     public void union(int p, int q) {
-        int pid = root(p);
-        int qid = root(q);
-        for (int i = 0; i < totalVertices; i++) {
-            if (rank[pid] > rank[qid]) {
-                id[qid] = pid;
-            } else if (rank[pid] < rank[qid]) {
-                id[pid] = qid;
-            } else {
-                id[qid] = pid;
-                rank[pid] += 1;
-            }
+        int pRoot = root(p);
+        int qRoot = root(q);
+        if (height[pRoot] > height[qRoot]) {
+            id[qRoot] = id[pRoot];
+        } else if (height[qRoot] > height[pRoot]) {
+            id[pRoot] = id[qRoot];
+        } else {
+            id[qRoot] = id[pRoot];
+            height[pRoot] += 1;
         }
     }
 }
