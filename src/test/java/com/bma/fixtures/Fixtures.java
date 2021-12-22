@@ -1,8 +1,10 @@
 package com.bma.fixtures;
 
 import com.bma.algorithms.sort.elementary.Util;
+import com.bma.problemsolving.leetcode.java.LeetCodeInputExpressionParser;
 import lombok.experimental.UtilityClass;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -160,5 +162,9 @@ public class Fixtures {
         return Arrays.stream(original)
                 .boxed()
                 .collect(Collectors.toList());
+    }
+
+    public static List<List<Integer>> parseNestedArrExpression(String expression, Type type) {
+        return LeetCodeInputExpressionParser.parseNestedArrExpression(expression, ',', type);
     }
 }
