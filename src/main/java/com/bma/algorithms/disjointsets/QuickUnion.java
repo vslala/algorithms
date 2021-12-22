@@ -9,7 +9,7 @@ package com.bma.algorithms.disjointsets;
  *
  * @author varun.shrivastava
  */
-public class QuickUnion implements DisjointSet {
+class QuickUnion implements DisjointSet {
 
     private final int[] id;
 
