@@ -43,15 +43,20 @@ public class LeetCodeInputExpressionParser {
     }
 
     private static void addItemToArrWithProvideType(Type classType, Deque<List<Object>> stack, StringBuilder item) {
+        if (item.toString().isEmpty())
+            return;
+
+        List<Object> top = stack.peek();
+        assert top != null;
         switch (classType.getTypeName()) {
             case "java.lang.Integer":
-                stack.peek().add(Integer.parseInt(item.toString().trim()));
+                top.add(Integer.parseInt(item.toString().trim()));
                 break;
             case "java.lang.Double":
-                stack.peek().add(Double.parseDouble(item.toString().trim()));
+                top.add(Double.parseDouble(item.toString().trim()));
                 break;
             default:
-                stack.peek().add(item.toString().trim());
+                top.add(item.toString().trim());
                 break;
         }
     }

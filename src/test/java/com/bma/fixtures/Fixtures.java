@@ -125,7 +125,15 @@ public class Fixtures {
     }
 
     public static void assertBothMatrixContainsSameItems(int[][] original, int[][] expected, int[][] actual) {
+        Util.println("Original:");
         Util.printMatrix(original, "|");
+
+        Util.println("\nExpected:");
+        Util.printMatrix(expected, "|");
+
+        Util.println("\nResult:");
+        Util.printMatrix(actual, "|");
+
         assertEquals(expected.length, actual.length);
         for (int i = 0; i < expected.length; i++) {
             for (int j = 0; j < expected[i].length; j++) {
