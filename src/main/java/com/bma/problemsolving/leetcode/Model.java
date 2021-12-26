@@ -36,4 +36,13 @@ public class Model {
             return new Coordinate(row + coordinate.getRow(), col + coordinate.getCol());
         }
     }
+
+    @Data
+    @AllArgsConstructor
+    public static class Node {
+        private int val;
+        private Node left;
+        private Node right;
+        private Node next;
+    }
 }
