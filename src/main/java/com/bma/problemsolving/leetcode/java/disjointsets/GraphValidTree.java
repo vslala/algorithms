@@ -8,7 +8,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * 261. Graph Valid Tree
- * You have a graph of n nodes labeled from 0 to n - 1. You are given an integer n and a list of edges where edges[i] = [ai, bi] indicates that there is an undirected edge between nodes ai and bi in the graph.
+ * You have a graph of n nodes labeled from 0 to n - 1. You are given an integer n and a list of edges where edges[i] = [ai, bi] indicates that there is an undirected IEdge between nodes ai and bi in the graph.
  * Return true if the edges of the given graph make up a valid tree, and false otherwise.
  *
  * Definition of a valid tree
@@ -34,9 +34,9 @@ class GraphValidTree {
                 g.put(i, new ArrayList<>());
             }
 
-            for (int[] edge : edges) {
-                g.get(edge[0]).add(edge[1]);
-                g.get(edge[1]).add(edge[0]);
+            for (int[] IEdge : edges) {
+                g.get(IEdge[0]).add(IEdge[1]);
+                g.get(IEdge[1]).add(IEdge[0]);
             }
         }
 
@@ -62,8 +62,8 @@ class GraphValidTree {
                 height[i] = 1;
             }
 
-            for (int[] edge : edges) {
-                this.union(edge[0], edge[1]);
+            for (int[] IEdge : edges) {
+                this.union(IEdge[0], IEdge[1]);
             }
         }
 

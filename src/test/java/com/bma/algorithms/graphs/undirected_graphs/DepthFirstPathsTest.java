@@ -1,15 +1,14 @@
 package com.bma.algorithms.graphs.undirected_graphs;
 
 import com.bma.algorithms.graphs.Digraph;
-import com.bma.algorithms.graphs.directed_graphs.AdjacencyListDigraphImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class DepthFirstPathsTest {
+class DepthFirstPathsTest {
 
-    Digraph graph = new AdjacencyListDigraphImpl(10);
+    Digraph graph = new AdjacencyListGraphImpl(10);
 
     @BeforeEach
     public void setup() {
@@ -22,7 +21,7 @@ public class DepthFirstPathsTest {
 
 
     @Test
-    public void itShouldPerformADepthFirstSearchToFindThePathFromSourceVertexToDestination() {
+    void itShouldPerformADepthFirstSearchToFindThePathFromSourceVertexToDestination() {
         var dfs = new DepthFirstPaths(graph, 0);
         dfs.pathTo(5);
         assertTrue(dfs.hasPathTo(5));

@@ -2,7 +2,7 @@ package com.bma.algorithms.graphs.directed_graphs;
 
 import java.util.*;
 
-public class PathFinder {
+class PathFinder {
 
     private final Map<String, List<String>> graph;
     private final String source;

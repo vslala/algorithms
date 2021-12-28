@@ -29,7 +29,8 @@ package com.bma.algorithms.graphs.directed_graphs;
  *
  ******************************************************************************/
 
-import com.bma.algorithms.graphs.Bag;
+import com.bma.algorithms.graphs.Digraph;
+import com.bma.algorithms.graphs.model.Bag;
 import com.bma.algorithms.stdlib.In;
 
 import java.util.NoSuchElementException;
@@ -66,7 +67,7 @@ import java.util.Stack;
  *  @author Kevin Wayne
  */
 
-public class DigraphImplRS implements Digraph {
+class DigraphImplRS implements Digraph {
     private static final String NEWLINE = System.getProperty("line.separator");
 
     private final int V;           // number of vertices in this digraph

@@ -1,7 +1,6 @@
 package com.bma.algorithms.graphs.directed_graphs;
 
-import com.bma.algorithms.graphs.undirected_graphs.AdjacencyListGraphImpl;
-import com.bma.algorithms.graphs.undirected_graphs.DepthFirstPaths;
+import com.bma.algorithms.graphs.Digraph;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -10,8 +9,8 @@ import java.util.stream.StreamSupport;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class DirectedDepthFirstPathsTest {
-    AdjacencyListGraphImpl graph = new AdjacencyListGraphImpl(10);
+class DirectedDepthFirstPathsTest {
+    Digraph graph = new AdjacencyListDigraphImpl(10);
 
     @BeforeEach
     public void setup() {
@@ -24,7 +23,7 @@ public class DirectedDepthFirstPathsTest {
 
 
     @Test
-    public void itShouldPerformADepthFirstSearchToFindThePathFromSourceVertexToDestination() {
+    void itShouldPerformADepthFirstSearchToFindThePathFromSourceVertexToDestination() {
         var dfs = new DirectedDepthFirstPaths(graph, 0);
         Iterable<Integer> path = dfs.pathTo(5);
         assertTrue(dfs.hasPathTo(5));

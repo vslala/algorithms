@@ -1,6 +1,7 @@
 package com.bma.algorithms.graphs.directed_graphs;
 
-import com.bma.algorithms.graphs.Bag;
+import com.bma.algorithms.graphs.Digraph;
+import com.bma.algorithms.graphs.model.Bag;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -10,7 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
 
-public class AdjacencyListDigraphImpl implements Digraph {
+class AdjacencyListDigraphImpl implements Digraph {
 
     private final int vertices;
     private final Bag<Integer>[] bags;

@@ -29,6 +29,12 @@ public interface Digraph {
     int edges();
 
     /**
+     * Reverse of this diagraph
+     * @return
+     */
+    Digraph reverse();
+
+    /**
      * string representation of the graph
      * @return
      */

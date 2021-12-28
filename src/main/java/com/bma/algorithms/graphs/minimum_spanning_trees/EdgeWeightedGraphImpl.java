@@ -1,17 +1,18 @@
-package com.bma.algorithms.minimum_spanning_trees;
+package com.bma.algorithms.graphs.minimum_spanning_trees;
 
-import com.bma.algorithms.graphs.Bag;
 import com.bma.algorithms.graphs.EdgeWeightedGraph;
+import com.bma.algorithms.graphs.model.Bag;
+import com.bma.algorithms.graphs.model.Edge;
 
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class EdgeWeightedGraphImpl implements EdgeWeightedGraph {
+class EdgeWeightedGraphImpl implements EdgeWeightedGraph {
 
-    private int vertices;
-    Bag<Edge>[] adj;
+    private final int vertices;
+    private final Bag<Edge>[] adj;
     private int edgeCount = 0;
 
     public EdgeWeightedGraphImpl(int vertices) {

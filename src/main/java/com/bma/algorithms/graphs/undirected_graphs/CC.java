@@ -1,11 +1,11 @@
 package com.bma.algorithms.graphs.undirected_graphs;
 
-import com.bma.algorithms.graphs.ConnectedComponents;
+import com.bma.algorithms.graphs.ConnectedComponent;
 import com.bma.algorithms.graphs.Digraph;
 
 import java.util.stream.IntStream;
 
-public class CC implements ConnectedComponents {
+class CC implements ConnectedComponent {
 
     private int count;
     private int[] id;

@@ -3,12 +3,12 @@ package com.bma.algorithms.graphs.undirected_graphs;
 import org.junit.jupiter.api.Test;
 
 import static com.bma.algorithms.graphs.undirected_graphs.GraphProcessor.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class AdjacencyListGraphImplTest {
+class AdjacencyListGraphImplTest {
 
     @Test
-    public void itShouldTestTheGraphApiImplementation() {
+    void itShouldTestTheGraphApiImplementation() {
         var graph = new AdjacencyListGraphImpl(10);
         graph.addEdge(0, 5);
         graph.addEdge(0, 2);

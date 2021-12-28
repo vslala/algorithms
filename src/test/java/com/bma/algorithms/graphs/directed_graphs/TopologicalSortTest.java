@@ -1,12 +1,10 @@
 package com.bma.algorithms.graphs.directed_graphs;
 
+import com.bma.algorithms.graphs.Digraph;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
-import java.util.Map;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class TopologicalSortTest {
 

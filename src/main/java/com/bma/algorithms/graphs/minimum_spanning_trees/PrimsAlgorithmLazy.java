@@ -1,9 +1,10 @@
-package com.bma.algorithms.minimum_spanning_trees;
+package com.bma.algorithms.graphs.minimum_spanning_trees;
 
 import com.bma.algorithms.graphs.EdgeWeightedGraph;
+import com.bma.algorithms.graphs.model.Edge;
 import com.bma.algorithms.priorityqueues.MinHeap;
 
-public class PrimsAlgorithmLazy {
+class PrimsAlgorithmLazy {
 
     private boolean[] marked;
     private MinHeap<Edge> pq = new MinHeap<>();

@@ -1,7 +1,10 @@
 package com.bma.algorithms.graphs.directed_graphs;
 
-import java.util.List;
-import java.util.Stack;
+import com.bma.algorithms.graphs.Digraph;
+import com.bma.algorithms.sort.elementary.Util;
+
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.StreamSupport;
@@ -23,15 +26,15 @@ import java.util.stream.StreamSupport;
  *
  *  Applications
  *  -------------
- *  - Ecological Food Web Graph (Vertex = Species; Edge = from producer to consumer)
+ *  - Ecological Food Web Graph (Vertex = Species; IEdge = from producer to consumer)
  *      Strong Component. Subset of species with common energy flow
- *  - Software Modules (Vertex = Software Module; Edge = from module to dependency)
+ *  - Software Modules (Vertex = Software Module; IEdge = from module to dependency)
  *      Strong Component. subset of mutually interacting modules
  *          Approach 1: Package Strong Components together
  *          Approach 2: Use to improve design!
  */
 
-public class StronglyConnectedComponents {
+class StronglyConnectedComponents {
     /**
      * Algorithm. Kosaraju-Sharir
      * Phase 1: Compute Reverse PostOrder in G-reverse
@@ -58,7 +61,7 @@ public class StronglyConnectedComponents {
 
     private Iterable<Integer> reversePostOrder(Digraph dag) {
         var reverseDag = dag.reverse();
-        Stack<Integer> reversePostOrder = new Stack<>();
+        Deque<Integer> reversePostOrder = new ArrayDeque<>();
         marked = new boolean[reverseDag.vertices()];
         IntStream.range(0, reverseDag.vertices())
                 .forEach(vertex ->  {
@@ -69,7 +72,7 @@ public class StronglyConnectedComponents {
         return reversePostOrder;
     }
 
-    private void dfsR(Digraph reverseDag, int vertex, Stack<Integer> reversePostOrder) {
+    private void dfsR(Digraph reverseDag, int vertex, Deque<Integer> reversePostOrder) {
         marked[vertex] = true;
         reverseDag.adj(vertex).forEach(w -> {
             if (!marked[w]) {
@@ -93,23 +96,19 @@ public class StronglyConnectedComponents {
      */
     public int count() {
         var depthFirstOrder = new DepthFirstOrder(this.dag.reverse());
-        System.out.println("PRE:\t" + StreamSupport.stream(depthFirstOrder.pre().spliterator(), false)
+        Util.println("PRE:\t" + StreamSupport.stream(depthFirstOrder.pre().spliterator(), false)
             .map(String::valueOf).collect(Collectors.joining(" ")));
 
-        System.out.println("POST:\t" + StreamSupport.stream(depthFirstOrder.post().spliterator(),  false)
+        Util.println("POST:\t" + StreamSupport.stream(depthFirstOrder.post().spliterator(),  false)
                 .map(String::valueOf)
                 .collect(Collectors.joining(" ")));
 
-        System.out.println("R-POST:\t" + StreamSupport.stream(reversePostOrder(dag).spliterator(),false)
+        Util.println("R-POST:\t" + StreamSupport.stream(reversePostOrder(dag).spliterator(),false)
                 .map(String::valueOf)
                 .collect(Collectors.joining(" ")));
-
-        var reversePostOrder = List.of(
-                1,0,2,4,5,3,11,9,12,10,6,7,8
-        );
 
         for (int v: depthFirstOrder.reversePost()) {
-            System.out.print(v + " ");
+            Util.print(v + " ");
             if (!marked[v]) {
                 dfs(dag, v);
                 count += 1;

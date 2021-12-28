@@ -1,4 +1,4 @@
-package com.bma.algorithms.graphs;
+package com.bma.algorithms.graphs.model;
 
 import java.util.ArrayList;
 import java.util.List;

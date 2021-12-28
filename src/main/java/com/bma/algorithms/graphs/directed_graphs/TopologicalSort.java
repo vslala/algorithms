@@ -1,5 +1,6 @@
 package com.bma.algorithms.graphs.directed_graphs;
 
+import com.bma.algorithms.graphs.Digraph;
 import lombok.RequiredArgsConstructor;
 
 import java.util.ArrayList;
@@ -8,7 +9,7 @@ import java.util.Stack;
 import java.util.stream.IntStream;
 
 @RequiredArgsConstructor
-public class TopologicalSort {
+class TopologicalSort {
     /**
      * Only works with DAG  (Directed Acyclic Graph)
      * Topological order will be in a way that all the nodes

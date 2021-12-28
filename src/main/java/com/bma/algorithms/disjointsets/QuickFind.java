@@ -8,7 +8,7 @@ package com.bma.algorithms.disjointsets;
  *
  * @author varun.shrivastava
  */
-public class QuickFind implements DisjointSet {
+class QuickFind implements DisjointSet {
 
     private final int totalVertices;
     private final int[] id;

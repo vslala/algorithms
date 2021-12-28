@@ -1,6 +1,6 @@
 package com.bma.problemsolving.adventofcode2020.java.day7;
 
-import com.bma.algorithms.graphs.Bag;
+import com.bma.algorithms.graphs.model.Bag;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -17,13 +17,13 @@ public class WeightedGraph {
         edges = new HashMap<>();
     }
 
-    public void addEdge(WeightedEdge edge) {
-        if (edges.containsKey(edge.getV1()))
-            edges.get(edge.getV1()).add(edge);
+    public void addEdge(WeightedEdge IEdge) {
+        if (edges.containsKey(IEdge.getV1()))
+            edges.get(IEdge.getV1()).add(IEdge);
         else {
             final Bag<WeightedEdge> bag = new Bag<>();
-            bag.add(edge);
-            edges.put(edge.getV1(), bag);
+            bag.add(IEdge);
+            edges.put(IEdge.getV1(), bag);
         }
         totalEdges += 1;
     }

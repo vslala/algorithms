@@ -1,4 +1,4 @@
-package com.bma.algorithms.minimum_spanning_trees;
+package com.bma.algorithms.graphs.model;
 
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
@@ -19,7 +19,6 @@ public class Edge implements Comparable<Edge> {
         return v;
     }
 
-    @Override
     public int compareTo(Edge that) {
         return Double.compare(this.weight, that.weight);
     }

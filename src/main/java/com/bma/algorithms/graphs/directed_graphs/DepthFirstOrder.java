@@ -17,7 +17,7 @@ import java.util.Stack;
  * - Postorder: Put the vertex on a queue after the recursive calls.
  * - Reverse postorder: Put the vertex on a stack after the recursive calls.
  */
-public class DepthFirstOrder {
+class DepthFirstOrder {
     private boolean[] marked;          // marked[v] = has v been marked in dfs?
     private int[] pre;                 // pre[v]    = preorder  number of v
     private int[] post;                // post[v]   = postorder number of v

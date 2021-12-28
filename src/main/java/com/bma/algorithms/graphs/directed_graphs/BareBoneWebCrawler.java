@@ -7,7 +7,7 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class BareBoneWebCrawler {
+class BareBoneWebCrawler {
 
     private final List<String> websitesToCrawl;
     Queue<String> queue = new LinkedList<>();

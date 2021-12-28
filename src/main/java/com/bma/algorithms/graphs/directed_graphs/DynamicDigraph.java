@@ -13,7 +13,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import static java.lang.Integer.parseInt;
 
-public class DynamicDigraph implements Digraph {
+class DynamicDigraph implements Digraph {
     private Map<Integer, Set<Integer>> vertices = new HashMap<>();
     private final Path graphPath;
 
@@ -66,5 +66,10 @@ public class DynamicDigraph implements Digraph {
         AtomicInteger edges = new AtomicInteger();
         vertices.forEach((v, adj) -> edges.addAndGet(adj.size()));
         return edges.get();
+    }
+
+    @Override
+    public Digraph reverse() {
+        throw new RuntimeException("This method is not implemented for Dynamic Digraph.");
     }
 }

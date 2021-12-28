@@ -1,5 +1,6 @@
 package com.bma.algorithms.graphs.directed_graphs;
 
+import com.bma.algorithms.graphs.Digraph;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -9,8 +10,8 @@ import java.util.stream.IntStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class StronglyConnectedComponentsTest {
-    private  Digraph digraph;
+class StronglyConnectedComponentTest {
+    private Digraph digraph;
 
     @BeforeEach
     void init() throws IOException {

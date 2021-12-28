@@ -31,8 +31,8 @@ public class WeightedGraphProcessor {
 
         if (vertex.isEmpty()) return;
 
-        graph.adj(vertex).forEach(edge -> {
-            dfs(edge.other(vertex), graph, bagColor);
+        graph.adj(vertex).forEach(IEdge -> {
+            dfs(IEdge.other(vertex), graph, bagColor);
             if (isBagFound.get())
                 part1.add(vertex);
         });
@@ -48,7 +48,7 @@ public class WeightedGraphProcessor {
         else
             return graph.adj(bagColor)
                     .stream()
-                    .mapToInt(edge -> (int) (edge.getW() * (1 + countTotalBags(edge.other(bagColor)))))
+                    .mapToInt(IEdge -> (int) (IEdge.getW() * (1 + countTotalBags(IEdge.other(bagColor)))))
                     .sum();
     }
 

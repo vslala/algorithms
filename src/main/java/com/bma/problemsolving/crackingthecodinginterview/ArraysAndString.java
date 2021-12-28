@@ -88,7 +88,7 @@ public class ArraysAndString {
             i++;
         }
 
-        // this is to avoid the edge case where first character repeats only one time
+        // this is to avoid the IEdge case where first character repeats only one time
         var values = mem.values().toArray(new Integer[0]);
         var commonCount = Math.max(values[0], values[1]);
 

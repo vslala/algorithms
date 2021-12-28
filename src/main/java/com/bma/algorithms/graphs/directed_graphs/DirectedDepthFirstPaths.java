@@ -19,12 +19,12 @@ class PathMeta {
     }
 }
 
-public class DirectedDepthFirstPaths implements Paths {
+class DirectedDepthFirstPaths implements Paths {
 
-    private PathMeta pathMeta;
+    private final PathMeta pathMeta;
 
     public DirectedDepthFirstPaths(Digraph graph, int sourceVertex) {
-        this.pathMeta = pathMeta = new PathMeta(sourceVertex, graph.vertices());
+        this.pathMeta = new PathMeta(sourceVertex, graph.vertices());
         dfs(graph, sourceVertex);
     }
 

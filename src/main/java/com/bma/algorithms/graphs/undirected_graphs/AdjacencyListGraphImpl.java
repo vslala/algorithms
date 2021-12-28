@@ -1,7 +1,8 @@
 package com.bma.algorithms.graphs.undirected_graphs;
 
-import com.bma.algorithms.graphs.Bag;
+import com.bma.BMARuntimeException;
 import com.bma.algorithms.graphs.Digraph;
+import com.bma.algorithms.graphs.model.Bag;
 
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.IntStream;
@@ -39,7 +40,7 @@ class GraphProcessor {
     }
 }
 
-public class AdjacencyListGraphImpl implements Digraph {
+class AdjacencyListGraphImpl implements Digraph {
 
     private Bag<Integer>[] adj;
 
@@ -74,6 +75,11 @@ public class AdjacencyListGraphImpl implements Digraph {
                 edges++;
 
         return edges / 2; // edges are calculated twice e.g. v-w & w-v
+    }
+
+    @Override
+    public Digraph reverse() {
+        throw new BMARuntimeException("No implementation provided for reverse() in AdjacencyListGraphImpl.");
     }
 
     public String toString() {

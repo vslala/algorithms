@@ -5,7 +5,7 @@ import com.bma.algorithms.sort.elementary.Util;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class BinarySearchTree<Key extends Comparable<Key>, Value> {
+class BinarySearchTree<Key extends Comparable<Key>, Value> {
 
     private class Node {
         Key key;

@@ -9,7 +9,7 @@ import java.util.Queue;
 import java.util.Stack;
 import java.util.stream.Collectors;
 
-public class BreadthFirstPaths implements Paths {
+class BreadthFirstPaths implements Paths {
 
     private final int sourceVertext;
     private final Digraph graph;

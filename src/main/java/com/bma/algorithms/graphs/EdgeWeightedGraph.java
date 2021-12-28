@@ -1,6 +1,6 @@
 package com.bma.algorithms.graphs;
 
-import com.bma.algorithms.minimum_spanning_trees.Edge;
+import com.bma.algorithms.graphs.model.Edge;
 
 public interface EdgeWeightedGraph {
     void addEdge(Edge edge);

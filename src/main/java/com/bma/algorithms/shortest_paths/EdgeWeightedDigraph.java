@@ -1,6 +1,6 @@
 package com.bma.algorithms.shortest_paths;
 
-import com.bma.algorithms.graphs.Bag;
+import com.bma.algorithms.graphs.model.Bag;
 import com.bma.algorithms.stdlib.In;
 import com.bma.algorithms.stdlib.StdRandom;
 

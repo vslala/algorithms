@@ -1,5 +1,6 @@
 package com.bma.algorithms.graphs.directed_graphs;
 
+import com.bma.algorithms.graphs.Digraph;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

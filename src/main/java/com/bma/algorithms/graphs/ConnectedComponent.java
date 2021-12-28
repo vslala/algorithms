@@ -1,6 +1,6 @@
 package com.bma.algorithms.graphs;
 
-public interface ConnectedComponents {
+public interface ConnectedComponent {
 
     /**
      * Check whether there is an edge between the two vertices

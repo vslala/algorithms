@@ -3,19 +3,18 @@ package com.bma.algorithms.graphs.undirected_graphs;
 import com.bma.algorithms.graphs.Digraph;
 import com.bma.algorithms.graphs.Paths;
 
+import java.util.ArrayDeque;
 import java.util.Collections;
-import java.util.Stack;
+import java.util.Deque;
 import java.util.stream.Collectors;
 
-public class DepthFirstPaths implements Paths {
-    private Digraph graph;
-    private int sourceVertex;
-    private boolean[] marked; // to check if the vertex has been visited before
-    private int[] edgeTo;
-    private StringBuilder lastSearch = new StringBuilder();
+class DepthFirstPaths implements Paths {
+    private final int sourceVertex;
+    private final boolean[] marked; // to check if the vertex has been visited before
+    private final int[] edgeTo;
+    private final StringBuilder lastSearch = new StringBuilder();
 
     public DepthFirstPaths(Digraph graph, int sourceVertex) {
-        this.graph = graph;
         this.sourceVertex = sourceVertex;
         marked = new boolean[graph.vertices()];
         edgeTo = new int[graph.vertices()];
@@ -47,10 +46,10 @@ public class DepthFirstPaths implements Paths {
     public Iterable<Integer> pathTo(int destination) {
         if (! hasPathTo(destination)) return Collections.emptyList();
 
-        Stack<Integer> path = new Stack<>();
-        for (int p = destination; p != sourceVertex; p = edgeTo[p]) {
+        Deque<Integer> path = new ArrayDeque<>();
+        for (int p = destination; p != sourceVertex; p = edgeTo[p])
             path.push(p);
-        }
+
         path.push(destination);
 
         // cache string representation of this search

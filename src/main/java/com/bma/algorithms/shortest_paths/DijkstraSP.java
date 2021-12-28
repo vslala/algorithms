@@ -8,8 +8,8 @@ import java.util.Stack;
 
 /**
  *  The {@code DijkstraSP} class represents a data type for solving the
- *  single-source shortest paths problem in edge-weighted digraphs
- *  where the edge weights are nonnegative.
+ *  single-source shortest paths problem in IEdge-weighted digraphs
+ *  where the IEdge weights are nonnegative.
  *  <p>
  *  This implementation uses <em>Dijkstra's algorithm</em> with a
  *  <em>binary heap</em>. The constructor takes
@@ -17,7 +17,7 @@ import java.util.Stack;
  *  where <em>V</em> is the number of vertices and <em>E</em> is
  *  the number of edges. Each instance method takes &Theta;(1) time.
  *  It uses &Theta;(<em>V</em>) extra space (not including the
- *  edge-weighted digraph).
+ *  IEdge-weighted digraph).
  *  <p>
  *  For additional documentation,
  *  see <a href="https://algs4.cs.princeton.edu/44sp">Section 4.4</a> of
@@ -28,12 +28,12 @@ import java.util.Stack;
  */
 public class DijkstraSP {
     private double[] distTo;          // distTo[v] = distance  of shortest s->v path
-    private DirectedEdge[] edgeTo;    // edgeTo[v] = last edge on shortest s->v path
+    private DirectedEdge[] edgeTo;    // edgeTo[v] = last IEdge on shortest s->v path
     private IndexMinPQ<Double> pq;    // priority queue of vertices
 
     /**
      * Computes a shortest-paths tree from the source vertex {@code s} to every other
-     * vertex in the edge-weighted digraph {@code G}.
+     * vertex in the IEdge-weighted digraph {@code G}.
      *
      * Steps to compute
      * ----------------
@@ -42,15 +42,15 @@ public class DijkstraSP {
      * 3. Set source vertex dist to 0
      * 4. Relax Vertices in order of distance from S
      *
-     * @param  G the edge-weighted digraph
+     * @param  G the IEdge-weighted digraph
      * @param  s the source vertex
-     * @throws IllegalArgumentException if an edge weight is negative
+     * @throws IllegalArgumentException if an IEdge weight is negative
      * @throws IllegalArgumentException unless {@code 0 <= s < V}
      */
     public DijkstraSP(EdgeWeightedDigraph G, int s) {
         for (DirectedEdge e : G.edges()) {
             if (e.weight() < 0)
-                throw new IllegalArgumentException("edge " + e + " has negative weight");
+                throw new IllegalArgumentException("IEdge " + e + " has negative weight");
         }
 
         distTo = new double[G.V()];
@@ -75,7 +75,7 @@ public class DijkstraSP {
         assert check(G, s);
     }
 
-    // relax edge e and update pq if changed
+    // relax IEdge e and update pq if changed
     private void relax(DirectedEdge e) {
         int v = e.from(), w = e.to();
         if (distTo[w] > distTo[v] + e.weight()) {
@@ -132,13 +132,13 @@ public class DijkstraSP {
 
     // check optimality conditions:
     // (i) for all edges e:            distTo[e.to()] <= distTo[e.from()] + e.weight()
-    // (ii) for all edge e on the SPT: distTo[e.to()] == distTo[e.from()] + e.weight()
+    // (ii) for all IEdge e on the SPT: distTo[e.to()] == distTo[e.from()] + e.weight()
     private boolean check(EdgeWeightedDigraph G, int s) {
 
-        // check that edge weights are nonnegative
+        // check that IEdge weights are nonnegative
         for (DirectedEdge e : G.edges()) {
             if (e.weight() < 0) {
-                System.err.println("negative edge weight detected");
+                System.err.println("negative IEdge weight detected");
                 return false;
             }
         }
@@ -161,7 +161,7 @@ public class DijkstraSP {
             for (DirectedEdge e : G.adj(v)) {
                 int w = e.to();
                 if (distTo[v] + e.weight() < distTo[w]) {
-                    System.err.println("edge " + e + " not relaxed");
+                    System.err.println("IEdge " + e + " not relaxed");
                     return false;
                 }
             }
@@ -174,7 +174,7 @@ public class DijkstraSP {
             int v = e.from();
             if (w != e.to()) return false;
             if (distTo[v] + e.weight() != distTo[w]) {
-                System.err.println("edge " + e + " on shortest path not tight");
+                System.err.println("IEdge " + e + " on shortest path not tight");
                 return false;
             }
         }
