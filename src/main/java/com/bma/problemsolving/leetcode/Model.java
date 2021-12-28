@@ -2,10 +2,11 @@ package com.bma.problemsolving.leetcode;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Value;
 
 public class Model {
 
-    @Data
+    @Value
     @AllArgsConstructor
     public static class Coordinate {
         int row;
