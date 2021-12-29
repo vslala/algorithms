@@ -1,6 +1,5 @@
 package com.bma.algorithms.graphs.minimum_spanning_trees;
 
-import com.bma.algorithms.graphs.EdgeWeightedGraph;
 import com.bma.algorithms.sort.elementary.Util;
 
 import java.util.Objects;

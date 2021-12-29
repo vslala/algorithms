@@ -1,6 +1,5 @@
 package com.bma.algorithms.graphs.minimum_spanning_trees;
 
-import com.bma.algorithms.graphs.EdgeWeightedGraph;
 import com.bma.algorithms.graphs.model.Edge;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
