@@ -14,4 +14,8 @@ public interface EdgeWeightedGraph {
     int totalVertices();
 
     boolean removeEdge(Edge edge);
+
+    static EdgeWeightedGraph createUnDirectedGraph(int totalVertices) {
+        return new EdgeWeightedGraphImpl(totalVertices);
+    }
 }
