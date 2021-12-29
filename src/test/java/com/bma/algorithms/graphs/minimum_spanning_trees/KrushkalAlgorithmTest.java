@@ -22,8 +22,9 @@ class KrushkalAlgorithmTest {
     @Test
     void itShouldCreateMinSpanningTree() {
         var kruskal = new KrushkalAlgorithm(graph);
+        assertEquals(1.81, kruskal.minWeightOfSpanningTree());
 
-        EdgeWeightedGraph graph = kruskal.spanningTree();
+        EdgeWeightedGraph graph = kruskal.minimumSpanningTree();
         graph.edges().forEach(edge -> Util.println(edge + ","));
         int v0 = 0;
         int v1 = 1;
@@ -65,7 +66,7 @@ class KrushkalAlgorithmTest {
     void itShouldIgnoreEdgeThatCreatesCycle() {
         graph.addEdge(new Edge(9, 0, 0.11));
         var kruskal = new KrushkalAlgorithm(graph);
-        EdgeWeightedGraph graph = kruskal.spanningTree();
+        EdgeWeightedGraph graph = kruskal.minimumSpanningTree();
 
         graph.edges().forEach(edge -> Util.print(edge + ","));
 

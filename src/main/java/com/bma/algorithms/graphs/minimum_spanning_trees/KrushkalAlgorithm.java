@@ -46,8 +46,16 @@ class KrushkalAlgorithm {
         }
     }
 
-    public EdgeWeightedGraph spanningTree() {
+    public EdgeWeightedGraph minimumSpanningTree() {
         return mst;
     }
 
+    public double minWeightOfSpanningTree() {
+        double minWeight = 0.0d;
+        for (Edge edge : mst.edges()) {
+            minWeight += edge.getWeight();
+        }
+
+        return minWeight;
+    }
 }
