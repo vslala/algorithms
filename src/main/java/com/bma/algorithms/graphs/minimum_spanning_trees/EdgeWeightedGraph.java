@@ -1,4 +1,4 @@
-package com.bma.algorithms.graphs;
+package com.bma.algorithms.graphs.minimum_spanning_trees;
 
 import com.bma.algorithms.graphs.model.Edge;
 
