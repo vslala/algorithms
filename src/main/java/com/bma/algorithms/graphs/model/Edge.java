@@ -9,16 +9,16 @@ import lombok.Value;
 @Value
 public class Edge implements Comparable<Edge> {
 
-    int v, w;
+    int u, v;
     double weight;
 
     public int either() {
-        return v;
+        return u;
     }
 
     public int other(int vertex) {
-        if (vertex == v) return w;
-        return v;
+        if (vertex == u) return v;
+        return u;
     }
 
     public int compareTo(Edge that) {
