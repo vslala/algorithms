@@ -2,13 +2,15 @@ package com.bma.algorithms.graphs.model;
 
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
+import lombok.Value;
 
 @ToString
 @RequiredArgsConstructor
+@Value
 public class Edge implements Comparable<Edge> {
 
-    private final int v, w;
-    private final double weight;
+    int v, w;
+    double weight;
 
     public int either() {
         return v;
