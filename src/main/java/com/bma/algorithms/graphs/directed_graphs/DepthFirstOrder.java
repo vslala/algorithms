@@ -1,8 +1,7 @@
 package com.bma.algorithms.graphs.directed_graphs;
 
 import com.bma.algorithms.graphs.Digraph;
-import com.bma.algorithms.shortest_paths.DirectedEdge;
-import com.bma.algorithms.shortest_paths.EdgeWeightedDigraph;
+import com.bma.algorithms.graphs.model.DirectedEdge;
 import com.bma.algorithms.stdlib.In;
 import com.bma.algorithms.stdlib.StdOut;
 
@@ -47,12 +46,12 @@ class DepthFirstOrder {
      * @param G the edge-weighted digraph
      */
     public DepthFirstOrder(EdgeWeightedDigraph G) {
-        pre    = new int[G.V()];
-        post   = new int[G.V()];
+        pre    = new int[G.totalVertices()];
+        post   = new int[G.totalVertices()];
         postorder = new LinkedList<>();
         preorder  = new LinkedList<>();
-        marked    = new boolean[G.V()];
-        for (int v = 0; v < G.V(); v++)
+        marked    = new boolean[G.totalVertices()];
+        for (int v = 0; v < G.totalVertices(); v++)
             if (!marked[v]) dfs(G, v);
     }
 
