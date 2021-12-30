@@ -12,7 +12,9 @@ class GraphProcessor {
 
     public static int degree(Digraph graph, int vertex) {
         AtomicInteger degree = new AtomicInteger(0);
-        graph.adj(vertex).forEach(adjVertex -> degree.getAndIncrement());
+        graph.adj(vertex)
+                .forEach(adjVertex -> degree.getAndIncrement());
+
         return degree.intValue();
     }
 

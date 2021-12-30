@@ -20,9 +20,9 @@ class AdjacencyListGraphImplTest {
         graph.addEdge(0, 0);
 
         assertEquals(10, graph.vertices());
-        assertEquals(1, numberOfSelfLoops(graph));
-        assertEquals(2, degree(graph, 4));
-        assertEquals(6, maxDegree(graph));
+        assertEquals(2, numberOfSelfLoops(graph));  // in an undirected graph every edge is counted twice
+        assertEquals(3, degree(graph, 4));  // in an undirected graph every edge is counted twice
+        assertEquals(8, maxDegree(graph)); // '0' has a self loop as well
 
         System.out.println(graph.toString());
     }
