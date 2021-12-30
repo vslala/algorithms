@@ -1,15 +1,14 @@
-package com.bma.algorithms.shortest_paths;
+package com.bma.algorithms.graphs.shortest_paths;
 
-import com.bma.algorithms.stdlib.StdOut;
+import com.bma.algorithms.graphs.directed_graphs.EdgeWeightedDigraph;
+import com.bma.algorithms.graphs.model.DirectedEdge;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-class DijkstraSPTest {
+class ReferenceDijkstraSPTest {
 
     @Test
     void itShouldFindTheShortestPathFromTheSourceToAllOtherVertices() {
-        EdgeWeightedDigraph digraph = new EdgeWeightedDigraph(8);
+        EdgeWeightedDigraph digraph = EdgeWeightedDigraph.createDigraph(8);
         digraph.addEdge(new DirectedEdge(0,1, 5));
         digraph.addEdge(new DirectedEdge(0,7, 8));
         digraph.addEdge(new DirectedEdge(0,4, 9));
@@ -26,8 +25,8 @@ class DijkstraSPTest {
         digraph.addEdge(new DirectedEdge(2,3, 3));
         digraph.addEdge(new DirectedEdge(2,6, 11));
 
-        DijkstraSP dijkstraSP = new DijkstraSP(digraph, 0);
-        dijkstraSP.shortestPath(digraph, 0, dijkstraSP);
+        ReferenceDijkstraSP referenceDijkstraSP = new ReferenceDijkstraSP(digraph, 0);
+        referenceDijkstraSP.shortestPath(digraph, 0, referenceDijkstraSP);
     }
 
 }

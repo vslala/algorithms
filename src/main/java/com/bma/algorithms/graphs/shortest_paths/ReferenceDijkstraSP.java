@@ -1,5 +1,7 @@
-package com.bma.algorithms.shortest_paths;
+package com.bma.algorithms.graphs.shortest_paths;
 
+import com.bma.algorithms.graphs.directed_graphs.EdgeWeightedDigraph;
+import com.bma.algorithms.graphs.model.DirectedEdge;
 import com.bma.algorithms.priorityqueues.IndexMinPQ;
 import com.bma.algorithms.stdlib.In;
 import com.bma.algorithms.stdlib.StdOut;
@@ -7,7 +9,7 @@ import com.bma.algorithms.stdlib.StdOut;
 import java.util.Stack;
 
 /**
- *  The {@code DijkstraSP} class represents a data type for solving the
+ *  The {@code ReferenceDijkstraSP} class represents a data type for solving the
  *  single-source shortest paths problem in IEdge-weighted digraphs
  *  where the IEdge weights are nonnegative.
  *  <p>
@@ -26,7 +28,7 @@ import java.util.Stack;
  *  @author Robert Sedgewick
  *  @author Kevin Wayne
  */
-public class DijkstraSP {
+public class ReferenceDijkstraSP implements SingleSourceShortestPath {
     private double[] distTo;          // distTo[v] = distance  of shortest s->v path
     private DirectedEdge[] edgeTo;    // edgeTo[v] = last IEdge on shortest s->v path
     private IndexMinPQ<Double> pq;    // priority queue of vertices
@@ -47,23 +49,23 @@ public class DijkstraSP {
      * @throws IllegalArgumentException if an IEdge weight is negative
      * @throws IllegalArgumentException unless {@code 0 <= s < V}
      */
-    public DijkstraSP(EdgeWeightedDigraph G, int s) {
+    public ReferenceDijkstraSP(EdgeWeightedDigraph G, int s) {
         for (DirectedEdge e : G.edges()) {
             if (e.weight() < 0)
                 throw new IllegalArgumentException("IEdge " + e + " has negative weight");
         }
 
-        distTo = new double[G.V()];
-        edgeTo = new DirectedEdge[G.V()];
+        distTo = new double[G.totalVertices()];
+        edgeTo = new DirectedEdge[G.totalVertices()];
 
         validateVertex(s);
 
-        for (int v = 0; v < G.V(); v++)
+        for (int v = 0; v < G.totalVertices(); v++)
             distTo[v] = Double.POSITIVE_INFINITY;
         distTo[s] = 0.0;
 
         // relax vertices in order of distance from s
-        pq = new IndexMinPQ<>(G.V());
+        pq = new IndexMinPQ<>(G.totalVertices());
         pq.insert(s, distTo[s]);
         while (!pq.isEmpty()) {
             int v = pq.delMin();
@@ -148,7 +150,7 @@ public class DijkstraSP {
             System.err.println("distTo[s] and edgeTo[s] inconsistent");
             return false;
         }
-        for (int v = 0; v < G.V(); v++) {
+        for (int v = 0; v < G.totalVertices(); v++) {
             if (v == s) continue;
             if (edgeTo[v] == null && distTo[v] != Double.POSITIVE_INFINITY) {
                 System.err.println("distTo[] and edgeTo[] inconsistent");
@@ -157,7 +159,7 @@ public class DijkstraSP {
         }
 
         // check that all edges e = v->w satisfy distTo[w] <= distTo[v] + e.weight()
-        for (int v = 0; v < G.V(); v++) {
+        for (int v = 0; v < G.totalVertices(); v++) {
             for (DirectedEdge e : G.adj(v)) {
                 int w = e.to();
                 if (distTo[v] + e.weight() < distTo[w]) {
@@ -168,7 +170,7 @@ public class DijkstraSP {
         }
 
         // check that all edges e = v->w on SPT satisfy distTo[w] == distTo[v] + e.weight()
-        for (int w = 0; w < G.V(); w++) {
+        for (int w = 0; w < G.totalVertices(); w++) {
             if (edgeTo[w] == null) continue;
             DirectedEdge e = edgeTo[w];
             int v = e.from();
@@ -189,25 +191,25 @@ public class DijkstraSP {
     }
 
     /**
-     * Unit tests the {@code DijkstraSP} data type.
+     * Unit tests the {@code ReferenceDijkstraSP} data type.
      *
      * @param args the command-line arguments
      */
     public static void main(String[] args) {
         In in = new In(args[0]);
-        EdgeWeightedDigraph G = new EdgeWeightedDigraph(in);
+        EdgeWeightedDigraph G = EdgeWeightedDigraph.createDigraph(in);
         int s = Integer.parseInt(args[1]);
 
         // compute shortest paths
-        DijkstraSP sp = new DijkstraSP(G, s);
+        ReferenceDijkstraSP sp = new ReferenceDijkstraSP(G, s);
 
 
         shortestPath(G, s, sp);
     }
 
-    public static void shortestPath(EdgeWeightedDigraph g, int s, DijkstraSP sp) {
+    public static void shortestPath(EdgeWeightedDigraph g, int s, ReferenceDijkstraSP sp) {
         // print shortest path
-        for (int t = 0; t < g.V(); t++) {
+        for (int t = 0; t < g.totalVertices(); t++) {
             if (sp.hasPathTo(t)) {
                 StdOut.printf("%d to %d (%.2f)  ", s, t, sp.distTo(t));
                 for (DirectedEdge e : sp.pathTo(t)) {
