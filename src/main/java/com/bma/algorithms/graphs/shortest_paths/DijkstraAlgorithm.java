@@ -3,9 +3,7 @@ package com.bma.algorithms.graphs.shortest_paths;
 import com.bma.algorithms.graphs.directed_graphs.EdgeWeightedDigraph;
 import com.bma.algorithms.graphs.model.DirectedEdge;
 
-import java.util.ArrayDeque;
-import java.util.Deque;
-import java.util.PriorityQueue;
+import java.util.*;
 
 /**
  * Dijkstra Algorithm
@@ -14,16 +12,16 @@ import java.util.PriorityQueue;
  * This algorithm is based on the correctness of edge relaxation. Relaxation is the heart of this algorithm.
  * The overall runtime of the algorithm is quite heavily dependent on the underlying MinHeap implementation.
  * The best results can be seen by Fibonnaci Heap.
- *
+ * <p>
  * Time Complexity
  * ---------------
  * Fibonacci Heap   | O(E + V logV)
  * Binary Heap      | O(V + E logV)
- *
+ * <p>
  * Space Complexity: O(V)
  * distTo   | V
  * edgeTo   | V
- *
+ * <p>
  * The idea is simple:
  * 1. Mark all the vertices as POSITIVE_INFINITY
  * 2. Mark the source edge distTo[source] = 0.0 (this is the starting point)
@@ -38,6 +36,7 @@ class DijkstraAlgorithm implements SingleSourceShortestPath {
     private final int source;
     private double[] distTo;
     private DirectedEdge[] edgeTo;
+    private Set<DirectedEdge> visited;
 
     public DijkstraAlgorithm(EdgeWeightedDigraph digraph, int source) {
         this.digraph = digraph;
@@ -45,6 +44,7 @@ class DijkstraAlgorithm implements SingleSourceShortestPath {
 
         this.distTo = new double[digraph.totalVertices()];
         this.edgeTo = new DirectedEdge[digraph.totalEdges()];
+        this.visited = new HashSet<>();
 
         // initialize all the vertices to infinity except the source vertex
         for (int v = 0; v < digraph.totalVertices(); v++) {
@@ -59,10 +59,14 @@ class DijkstraAlgorithm implements SingleSourceShortestPath {
         // iterate over the heap and relax each adjacent edge
         while (!minHeap.isEmpty()) {
             DirectedEdge edge = minHeap.remove();
-            Iterable<DirectedEdge> connectedEdges = digraph.adj(edge.to());
-            for (DirectedEdge nextEdge : connectedEdges) {
-                relax(nextEdge);
-                minHeap.add(nextEdge);
+            if (!visited.contains(edge)) {
+                Iterable<DirectedEdge> connectedEdges = digraph.adj(edge.to());
+                for (DirectedEdge nextEdge : connectedEdges) {
+                    relax(nextEdge);
+                    minHeap.add(nextEdge);
+                }
+
+                visited.add(edge);
             }
         }
     }
@@ -110,5 +114,16 @@ class DijkstraAlgorithm implements SingleSourceShortestPath {
     @Override
     public boolean hasPathTo(int v) {
         return distTo[v] < Double.POSITIVE_INFINITY;
+    }
+
+    @Override
+    public double farthestReachableDistance() {
+        double farthest = -1;
+        for (double to : distTo) {
+            if (to == Double.POSITIVE_INFINITY) continue;
+            farthest = Math.max(to, farthest);
+        }
+
+        return farthest;
     }
 }

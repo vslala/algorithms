@@ -113,6 +113,17 @@ public class ReferenceDijkstraSP implements SingleSourceShortestPath {
         return distTo[v] < Double.POSITIVE_INFINITY;
     }
 
+    @Override
+    public double farthestReachableDistance() {
+        double farthest = -1;
+        for (double to : distTo) {
+            if (to == Double.POSITIVE_INFINITY) continue;
+            farthest = Math.max(to, farthest);
+        }
+
+        return farthest;
+    }
+
     /**
      * Returns a shortest path from the source vertex {@code s} to vertex {@code v}.
      *

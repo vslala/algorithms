@@ -23,4 +23,10 @@ public interface SingleSourceShortestPath {
      * @return
      */
     boolean hasPathTo(int v);
+
+    /**
+     * return the total distance of the farthest node from the source
+     * @return
+     */
+    double farthestReachableDistance();
 }
