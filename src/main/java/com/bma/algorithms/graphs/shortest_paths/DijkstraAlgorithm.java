@@ -1,5 +1,6 @@
 package com.bma.algorithms.graphs.shortest_paths;
 
+import com.bma.BMARuntimeException;
 import com.bma.algorithms.graphs.directed_graphs.EdgeWeightedDigraph;
 import com.bma.algorithms.graphs.model.DirectedEdge;
 
@@ -34,9 +35,8 @@ class DijkstraAlgorithm implements SingleSourceShortestPath {
 
     private final EdgeWeightedDigraph digraph;
     private final int source;
-    private double[] distTo;
-    private DirectedEdge[] edgeTo;
-    private Set<DirectedEdge> visited;
+    private final double[] distTo;
+    private final DirectedEdge[] edgeTo;
 
     public DijkstraAlgorithm(EdgeWeightedDigraph digraph, int source) {
         this.digraph = digraph;
@@ -44,7 +44,7 @@ class DijkstraAlgorithm implements SingleSourceShortestPath {
 
         this.distTo = new double[digraph.totalVertices()];
         this.edgeTo = new DirectedEdge[digraph.totalEdges()];
-        this.visited = new HashSet<>();
+        Set<DirectedEdge> visited = new HashSet<>();
 
         // initialize all the vertices to infinity except the source vertex
         for (int v = 0; v < digraph.totalVertices(); v++) {
@@ -97,15 +97,12 @@ class DijkstraAlgorithm implements SingleSourceShortestPath {
 
     @Override
     public Iterable<DirectedEdge> pathTo(int v) {
-        DirectedEdge node = edgeTo[v];
         Deque<DirectedEdge> path = new ArrayDeque<>();
-        path.add(node);
-
-        DirectedEdge parent = node;
-        while (parent.from() != source) {
-            parent = edgeTo[node.from()];
-            path.add(parent);
-            node = parent;
+        int node = v;
+        while (node != source) {
+            DirectedEdge currEdge = edgeTo[node];
+            path.push(currEdge);
+            node = currEdge.from();
         }
 
         return path;
@@ -125,5 +122,15 @@ class DijkstraAlgorithm implements SingleSourceShortestPath {
         }
 
         return farthest;
+    }
+
+    @Override
+    public boolean hasNegativeCycle() {
+        throw new BMARuntimeException("Dijsktra Algorithm cannot detect negative weight cycles in a graph. Try Bellmand-Ford.");
+    }
+
+    @Override
+    public Iterable<DirectedEdge> negativeCycle() {
+        throw new BMARuntimeException("Dijsktra Algorithm cannot detect negative weight cycles in a graph. Try Bellmand-Ford.");
     }
 }

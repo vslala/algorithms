@@ -14,15 +14,14 @@ import java.util.Iterator;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class DijkstraAlgorithmTest {
+class BellmanFordAlgorithmTest {
 
     @Test
     void shouldReturnTheShortestPathFromSourceToDestination() {
         // Given
         EdgeWeightedDigraph edgeWeightedDigraph = EdgeWeightedDigraph.createDigraph(Path.of("src/test/resources/graphs/shortestpath/directed_graph.csv"));
 
-        // When
-        DijkstraAlgorithm sol = new DijkstraAlgorithm(edgeWeightedDigraph, 0);
+        BellmanFordAlgorithm sol = new BellmanFordAlgorithm(edgeWeightedDigraph, 0);
 
         // Then
         // distance to the given node should be the minimum
@@ -56,7 +55,7 @@ class DijkstraAlgorithmTest {
     void shouldReturnTheMaxDistanceOfTheNodeFurthestToTheSource(String data, int numberOfVertices, int source, int expected) {
         // Given: a graph with 16 vertices
         int[][] input = Fixtures.convertToPrimitiveArrMatrix(Fixtures.parseNestedArrExpression(data, Integer.class));
-        DijkstraAlgorithm shortestPath = new DijkstraAlgorithm(
+        BellmanFordAlgorithm shortestPath = new BellmanFordAlgorithm(
                 EdgeWeightedDigraph.createDigraph(input, numberOfVertices),
                 source
         );
@@ -65,5 +64,4 @@ class DijkstraAlgorithmTest {
 
         assertEquals(expected, farthest);
     }
-
 }

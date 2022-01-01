@@ -1,5 +1,6 @@
 package com.bma.algorithms.graphs.shortest_paths;
 
+import com.bma.BMARuntimeException;
 import com.bma.algorithms.graphs.directed_graphs.EdgeWeightedDigraph;
 import com.bma.algorithms.graphs.model.DirectedEdge;
 import com.bma.algorithms.priorityqueues.IndexMinPQ;
@@ -146,6 +147,7 @@ public class ReferenceDijkstraSP implements SingleSourceShortestPath {
     // check optimality conditions:
     // (i) for all edges e:            distTo[e.to()] <= distTo[e.from()] + e.weight()
     // (ii) for all IEdge e on the SPT: distTo[e.to()] == distTo[e.from()] + e.weight()
+
     private boolean check(EdgeWeightedDigraph G, int s) {
 
         // check that IEdge weights are nonnegative
@@ -193,14 +195,13 @@ public class ReferenceDijkstraSP implements SingleSourceShortestPath {
         }
         return true;
     }
-
     // throw an IllegalArgumentException unless {@code 0 <= v < V}
+
     private void validateVertex(int v) {
         int V = distTo.length;
         if (v < 0 || v >= V)
             throw new IllegalArgumentException("vertex " + v + " is not between 0 and " + (V-1));
     }
-
     /**
      * Unit tests the {@code ReferenceDijkstraSP} data type.
      *
@@ -234,4 +235,13 @@ public class ReferenceDijkstraSP implements SingleSourceShortestPath {
         }
     }
 
+    @Override
+    public boolean hasNegativeCycle() {
+        throw new BMARuntimeException("Dijsktra Algorithm cannot detect negative weight cycles in a graph. Try Bellmand-Ford.");
+    }
+
+    @Override
+    public Iterable<DirectedEdge> negativeCycle() {
+        throw new BMARuntimeException("Dijsktra Algorithm cannot detect negative weight cycles in a graph. Try Bellmand-Ford.");
+    }
 }
