@@ -1,5 +1,6 @@
 package com.bma.algorithms.graphs.shortest_paths;
 
+import com.bma.algorithms.graphs.EdgeWeightedCycleFinder;
 import com.bma.algorithms.graphs.directed_graphs.EdgeWeightedDigraph;
 import com.bma.algorithms.graphs.model.DirectedEdge;
 
@@ -34,6 +35,7 @@ class BellmanFordAlgorithm implements SingleSourceShortestPath {
     private final int source;
     private final double[] distTo;
     private final DirectedEdge[] edgeTo;
+    private Iterable<DirectedEdge> cycle;
 
     public BellmanFordAlgorithm(EdgeWeightedDigraph digraph, int source) {
         this.source = source;
@@ -45,12 +47,14 @@ class BellmanFordAlgorithm implements SingleSourceShortestPath {
 
         for (int i = 0; i < digraph.totalVertices(); i++) {
             for (DirectedEdge edge: digraph.adj(i)) {
+                if (hasNegativeCycle()) break;
                 relax(edge);
             }
         }
 
         for (int i = 0; i < digraph.totalVertices(); i++) {
             for (DirectedEdge edge: digraph.adj(i)) {
+                if (hasNegativeCycle()) break;
                 relax(edge);
             }
         }
@@ -103,11 +107,17 @@ class BellmanFordAlgorithm implements SingleSourceShortestPath {
 
     @Override
     public boolean hasNegativeCycle() {
-        return false;
+        EdgeWeightedDigraph subgraph = EdgeWeightedDigraph.createDigraph(edgeTo.length);
+        for (DirectedEdge directedEdge : edgeTo) if (directedEdge != null) subgraph.addEdge(directedEdge);
+
+        EdgeWeightedCycleFinder cycleFinder = new EdgeWeightedCycleFinder(subgraph);
+        if (cycleFinder.hasNegativeCycle()) cycle = cycleFinder.cycle();
+
+        return cycleFinder.hasNegativeCycle();
     }
 
     @Override
     public Iterable<DirectedEdge> negativeCycle() {
-        return null;
+        return cycle;
     }
 }
