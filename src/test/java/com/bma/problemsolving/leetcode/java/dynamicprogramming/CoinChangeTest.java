@@ -12,7 +12,8 @@ class CoinChangeTest {
     @CsvSource({
             "1_2_5, 11, 3",
             "1_2_5, 3, 2",
-            "2, 3, -1"
+            "2, 3, -1",
+            "1_2_5, 7, 2"
     })
     void shouldReturnTheMinCoinsRequiredToReachTheTarget(String coinsStr, int amount, int expected) {
         int[] coins = Fixtures.splitAndParseArr(coinsStr, "_");
