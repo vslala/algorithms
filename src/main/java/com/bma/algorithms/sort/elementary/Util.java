@@ -135,4 +135,13 @@ public class Util {
 
         return max;
     }
+
+    public static int min(int[] array, int startIndex, int endIndex) {
+        int min = Integer.MAX_VALUE;
+        for (int i = startIndex; i < endIndex; i++) {
+            min = Math.min(min, array[i]);
+        }
+
+        return min;
+    }
 }

@@ -12,6 +12,7 @@ class CoinCollectionTest {
     // Beautiful Sequence: HHHHHTTT (All Heads followed by all tails)
     @ParameterizedTest
     @CsvSource({
+            "HTHTTH, 2",
             "HHTHTT, 1",
             "THHHTH, 2",
             "HHHHHH, 0",
@@ -19,7 +20,13 @@ class CoinCollectionTest {
             "TTTTTH, 1"
     })
     void shouldReturnMinimumNumberOfCoinsToBeFlippedToObtainBeautifulSequence(String coinCollection, int expected) {
-        assertEquals(expected, sol.minCoinFlips(coinCollection));
+        int prefixSumUsingNSpace = sol.minCoinFlipsUsingPrefixSumStorage(coinCollection);
+        int solUsingTwoVariables = sol.minCoinFlipsUsingTwoVariables(coinCollection);
+        int solUsingThreeVariables = sol.minCoinFlipsUsingThreeVariables(coinCollection);
+
+        assertEquals(expected, prefixSumUsingNSpace);
+        assertEquals(expected, solUsingTwoVariables);
+        assertEquals(expected, solUsingThreeVariables);
     }
 
 }
