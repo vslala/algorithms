@@ -14,14 +14,17 @@ class LongestIncreasingSubsequenceTest {
     @CsvSource({
             "10_9_2_5_3_7_101_18, 4",
             "0_1_0_3_2_3, 4",
-            "7_7_7_7_7_7_7, 1"
+            "7_7_7_7_7_7_7, 1",
+            "6_2_5_1_7_4_8_3, 4"
     })
     void shouldReturnTheLengthOfLongestIncreasingSubsequence(String inputStr, int expected) {
         int[] nums = Fixtures.splitAndParseArr(inputStr, "_");
 
-        int result = new LongestIncreasingSubsequence(nums).longestLIS();
+        int result = LongestIncreasingSubsequence.get(LongestIncreasingSubsequence.Algorithm.DYNAMIC_PROGRAMMING).longestLIS(nums);
+        int result_ = LongestIncreasingSubsequence.get(LongestIncreasingSubsequence.Algorithm.DEPTH_FIRST_SEARCH).longestLIS(nums);
 
         assertEquals(expected, result);
+        assertEquals(result, result_);
     }
 
 }
