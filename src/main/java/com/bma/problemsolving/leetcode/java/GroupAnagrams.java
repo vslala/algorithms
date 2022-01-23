@@ -9,21 +9,9 @@ public class GroupAnagrams {
         for (String str : strs) {
             String sortedStr = sortStr(str.toCharArray());
             if (group.containsKey(sortedStr)) group.get(sortedStr).add(str);
-            else group.put(sortedStr, new LinkedList<>() {
-                {
-                    add(str);
-                }
-            });
+            else group.put(sortedStr, new LinkedList<>(List.of(str)));
         }
         return new ArrayList<>(group.values());
-    }
-
-    int sumChars(char[] strChars) {
-        int sum = 0;
-        for (int i = 0; i < strChars.length; i++) {
-            sum += strChars[i];
-        }
-        return sum;
     }
 
     String sortStr(char[] strChars) {
