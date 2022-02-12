@@ -23,6 +23,8 @@ dependencies {
 
     testCompileOnly 'org.projectlombok:lombok:1.18.12'
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.12'
+    testImplementation 'org.awaitility:awaitility:4.1.1'
+
 }
 
 test {
