@@ -60,6 +60,10 @@ public class Util {
         System.out.println();
     }
 
+    public static void println(String format, Object... params) {
+        System.out.println(String.format(format, params));
+    }
+
     public static <T> void println(Collection<T> collection) {
         collection.forEach(Util::print);
         Util.println();
