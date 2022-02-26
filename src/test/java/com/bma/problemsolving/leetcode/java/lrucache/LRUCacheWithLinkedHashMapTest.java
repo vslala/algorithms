@@ -1,5 +1,6 @@
-package com.bma.problemsolving.leetcode.java.lrucachewithlhm;
+package com.bma.problemsolving.leetcode.java.lrucache;
 
+import com.bma.problemsolving.leetcode.java.lrucache.LRUCacheWithLinkedHashMap;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

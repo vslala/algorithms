@@ -1,4 +1,4 @@
-package com.bma.problemsolving.leetcode.java.infixtopostfix;
+package com.bma.problemsolving.leetcode.java.basiccalculator.infixtopostfix;
 
 import java.util.ArrayList;
 import java.util.List;

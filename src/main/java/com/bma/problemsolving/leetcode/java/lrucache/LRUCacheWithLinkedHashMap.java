@@ -1,4 +1,4 @@
-package com.bma.problemsolving.leetcode.java.lrucachewithlhm;
+package com.bma.problemsolving.leetcode.java.lrucache;
 
 import java.util.LinkedHashMap;
 

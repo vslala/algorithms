@@ -1,4 +1,4 @@
-package com.bma.problemsolving.leetcode.java.infixtopostfix;
+package com.bma.problemsolving.leetcode.java.basiccalculator.infixtopostfix;
 
 public class CloseParenthesis implements GroupingOperator {
     @Override

@@ -1,7 +1,7 @@
 package com.bma.problemsolving.leetcode.java.basiccalculator;
 
-import com.bma.problemsolving.leetcode.java.infixtopostfix.InfixToPostfixConverter;
-import com.bma.problemsolving.leetcode.java.infixtopostfix.ReversePolishNotation;
+import com.bma.problemsolving.leetcode.java.basiccalculator.infixtopostfix.InfixToPostfixConverter;
+import com.bma.problemsolving.leetcode.java.basiccalculator.infixtopostfix.ReversePolishNotation;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor

@@ -1,6 +1,6 @@
-package com.bma.problemsolving.leetcode.java.infixtopostfix;
+package com.bma.problemsolving.leetcode.java.basiccalculator.infixtopostfix;
 
-class Division implements ArithmeticOperator {
+class Multiplication implements ArithmeticOperator {
 
     @Override
     public String association() {
@@ -14,11 +14,11 @@ class Division implements ArithmeticOperator {
 
     @Override
     public Integer eval(Operand<Integer> a, Operand<Integer> b) {
-        return a.get() / b.get();
+        return a.get() * b.get();
     }
 
     @Override
     public String toString() {
-        return "/";
+        return "*";
     }
 }

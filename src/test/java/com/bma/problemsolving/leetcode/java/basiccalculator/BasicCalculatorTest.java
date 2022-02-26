@@ -1,8 +1,8 @@
 package com.bma.problemsolving.leetcode.java.basiccalculator;
 
-import com.bma.problemsolving.leetcode.java.infixtopostfix.ExpressionParser;
-import com.bma.problemsolving.leetcode.java.infixtopostfix.InfixToPostfixConverter;
-import com.bma.problemsolving.leetcode.java.infixtopostfix.ReversePolishNotation;
+import com.bma.problemsolving.leetcode.java.basiccalculator.infixtopostfix.ExpressionParser;
+import com.bma.problemsolving.leetcode.java.basiccalculator.infixtopostfix.InfixToPostfixConverter;
+import com.bma.problemsolving.leetcode.java.basiccalculator.infixtopostfix.ReversePolishNotation;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

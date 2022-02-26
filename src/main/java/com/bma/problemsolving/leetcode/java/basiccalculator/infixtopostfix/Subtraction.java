@@ -1,6 +1,6 @@
-package com.bma.problemsolving.leetcode.java.infixtopostfix;
+package com.bma.problemsolving.leetcode.java.basiccalculator.infixtopostfix;
 
-class Multiplication implements ArithmeticOperator {
+class Subtraction implements ArithmeticOperator {
 
     @Override
     public String association() {
@@ -9,16 +9,16 @@ class Multiplication implements ArithmeticOperator {
 
     @Override
     public Integer precedence() {
-        return 2;
+        return 1;
     }
 
     @Override
     public Integer eval(Operand<Integer> a, Operand<Integer> b) {
-        return a.get() * b.get();
+        return a.get() - b.get();
     }
 
     @Override
     public String toString() {
-        return "*";
+        return "-";
     }
 }
