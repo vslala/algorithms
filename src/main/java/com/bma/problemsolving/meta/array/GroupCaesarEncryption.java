@@ -15,17 +15,14 @@ import java.util.Map;
  * @author varun.shrivastava
  */
 class GroupCaesarEncryption {
-    private static final String ALPAHABETS = "abcdefghijklmnopqrstuvwxyz";
-    private Map<List<Integer>, List<String>> map;
+    private Map<String, List<String>> map;
 
     /**
      * Time Complexity: O(n * k)
      *
      * Steps to group the caesar encryption:
-     * 1. Calculate index for each char of each word using ALPHABETS.indexOf(s.charAt(i));
-     * 2. Find minimum index in Step 1 (both 1 and 2 could be combined for optimization)
-     * 3. Calculate new indices by (positions[i] - minimumIndex)
-     * 4. Add it to the map
+     * 1. Calculate hash for each word using {@link #calculateHash(String, int)}
+     * 2. Add it to the map
      *
      * @param input
      * @return
@@ -33,39 +30,21 @@ class GroupCaesarEncryption {
     public List<List<String>> group(List<String> input) {
         map = new HashMap<>();
         for (String word: input) {// O(n)
-            List<Integer> positions = calcPositions(word); // O(k)
-            int min = findMin(positions); // O(k)
-            List<Integer> newPositions = calcNewPositions(positions, min); // O(k)
-            map.computeIfAbsent(newPositions, x -> new ArrayList<>()).add(word); // O(1)
+            int shift = word.charAt(0); // O(1)
+            String hash = calculateHash(word, shift); // O(k)
+            map.computeIfAbsent(hash, x -> new ArrayList<>()).add(word); // O(1)
         }
 
         return new ArrayList<>(map.values());
     }
 
-    private List<Integer> calcNewPositions(List<Integer> positions, int min) {
-        List<Integer> newPositions = new ArrayList<>();
-        for (Integer position : positions) {
-            newPositions.add(position - min);
-        }
-
-        return newPositions;
-    }
-
-    private int findMin(List<Integer> positions) {
-        int min = Integer.MAX_VALUE;
-        for (Integer position : positions) {
-            min = Math.min(position, min);
-        }
-
-        return min;
-    }
-
-    private List<Integer> calcPositions(String word) {
-        List<Integer> positions = new ArrayList<>();
+    private String calculateHash(String word, int shift) {
+        StringBuilder sb = new StringBuilder();
         for (char c: word.toCharArray()) {
-            positions.add(ALPAHABETS.indexOf(c));
+            int leftShift = c - shift + 26; // +26 is to prevent underflow, assume input as za so 'a' - 'z' would yield -26 so +26 is to make sure the value is always positive.
+            sb.append(leftShift % 26 + 'a');
         }
 
-        return positions;
+        return sb.toString();
     }
 }
