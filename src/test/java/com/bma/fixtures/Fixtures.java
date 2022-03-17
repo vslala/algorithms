@@ -7,6 +7,7 @@ import lombok.experimental.UtilityClass;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -174,5 +175,16 @@ public class Fixtures {
 
     public static List<List<Integer>> parseNestedArrExpression(String expression, Type type) {
         return LeetCodeInputExpressionParser.parseNestedArrExpression(expression, ',', type);
+    }
+
+    public static String[] convertListToStringArray(List<String> inputList) {
+        return inputList.toArray(new String[0]);
+    }
+
+    public static List<String> convertStringArrayToList(String[] arr) {
+        List<String> output = new ArrayList<>();
+        Collections.addAll(output, arr);
+
+        return output;
     }
 }

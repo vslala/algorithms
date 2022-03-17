@@ -80,11 +80,11 @@ public class Util {
     public static void measureRunTime(Runnable job) {
         long startMillis = System.currentTimeMillis();
         job.run();
-        log.info("Total Time Taken: " + (System.currentTimeMillis() - startMillis) + "ms");
+        System.out.println("Total Time Taken: " + (System.currentTimeMillis() - startMillis) + "ms");
     }
 
     public static <I extends Comparable<I>> void println(List<I> list, String delimiter) {
-        log.info(list.stream().map(String::valueOf).collect(Collectors.joining(delimiter)));
+        System.out.println(list.stream().map(String::valueOf).collect(Collectors.joining(delimiter)));
     }
 
     public static void printMatrix(char[][] matrix, String separator) {

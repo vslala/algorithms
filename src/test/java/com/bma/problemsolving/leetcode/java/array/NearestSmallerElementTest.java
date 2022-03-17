@@ -24,4 +24,18 @@ class NearestSmallerElementTest {
 
         Fixtures.assertArrayEquals(arr, expected, output);
     }
+
+    @ParameterizedTest
+    @CsvSource(value = {
+            "[[1,3,4,2,5,3,4,2]] [[0,2,4,5,4,6,6,7]]",
+            "[[0,20,5,100,200,300,2,1]] [[0,3,3,4,5,5,6,7]]",
+    }, delimiter = ' ')
+    void shouldFindTheNearestLargerElementForEveryElementInTheArray(String inputExpr, String expectedExpr) {
+        int[] arr = convertToPrimitiveArrMatrix(parseNestedArrExpression(inputExpr, Integer.class))[0];
+        int[] expected = convertToPrimitiveArrMatrix(parseNestedArrExpression(expectedExpr, Integer.class))[0];
+
+        int[] output = sol.nearestLargest(arr);
+
+        Fixtures.assertArrayEquals(arr, expected, output);
+    }
 }

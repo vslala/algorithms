@@ -38,4 +38,30 @@ class NearestSmallerElement {
 
         return result;
     }
+
+    public int[] nearestLargest(int[] arr) {
+        int len = arr.length;
+        int[] result = new int[len];
+        Deque<Integer> stack = new ArrayDeque<>();
+
+        for (int i = 0; i < len; i++) {
+            int num = arr[i];
+            if (stack.isEmpty()) {
+                result[i] = i;
+                stack.push(num);
+            } else if (stack.peek() > num) {
+                result[i] = stack.peek();
+                stack.push(num);
+            } else {
+                while (!stack.isEmpty() && stack.peek() <= num) {
+                    stack.pop();
+                }
+
+                result[i] = stack.isEmpty() ? i : stack.peek();
+                stack.push(num);
+            }
+        }
+
+        return result;
+    }
 }
