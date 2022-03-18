@@ -1,6 +1,6 @@
 package com.bma.problemsolving.leetcode.java.dfsbfs;
 
-import com.bma.problemsolving.leetcode.Model;
+import com.bma.problemsolving.Model;
 
 import java.util.LinkedList;
 

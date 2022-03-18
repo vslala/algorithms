@@ -1,7 +1,7 @@
 package com.bma.problemsolving.interviewbit.java;
 
 import com.bma.algorithms.sort.elementary.Util;
-import com.bma.problemsolving.leetcode.Model.Coordinate;
+import com.bma.problemsolving.Model.Coordinate;
 
 import java.util.ArrayList;
 import java.util.Comparator;

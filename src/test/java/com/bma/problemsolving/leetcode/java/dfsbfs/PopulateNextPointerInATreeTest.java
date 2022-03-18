@@ -1,6 +1,6 @@
 package com.bma.problemsolving.leetcode.java.dfsbfs;
 
-import com.bma.problemsolving.leetcode.Model.Node;
+import com.bma.problemsolving.Model.Node;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

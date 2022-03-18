@@ -1,6 +1,6 @@
 package com.bma.problemsolving.leetcode.java.dfsbfs;
 
-import com.bma.problemsolving.leetcode.Model.Coordinate;
+import com.bma.problemsolving.Model.Coordinate;
 
 import java.util.LinkedList;
 import java.util.List;

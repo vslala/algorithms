@@ -3,7 +3,7 @@ package com.bma.problemsolving.leetcode.java.dfsbfs;
 import java.util.Deque;
 import java.util.LinkedList;
 
-import static com.bma.problemsolving.leetcode.Model.Coordinate;
+import static com.bma.problemsolving.Model.Coordinate;
 
 /**
  * 1091. Shortest Path in Binary Matrix

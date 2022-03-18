@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.PriorityQueue;
 import java.util.stream.Collectors;
 
+import static com.bma.problemsolving.Model.Interval;
+
 /**
  * 56. Merge Intervals
  * Given an array of intervals where intervals[i] = [starti, endi],
@@ -49,28 +51,5 @@ class MergeIntervals {
 
     private boolean isOverlapping(Interval interval1, Interval interval2) {
         return interval1.end >= interval2.start;
-    }
-
-    private class Interval {
-        private int start;
-        private int end;
-
-        public Interval(int[] interval) {
-            this.start = interval[0];
-            this.end = interval[1];
-        }
-
-        public Interval(int start, int end) {
-            this.start = start;
-            this.end = end;
-        }
-
-        public Interval merge(Interval interval) {
-            return new Interval(start, Math.max(end, interval.end));
-        }
-
-        public int[] toArray() {
-            return new int[]{start, end};
-        }
     }
 }

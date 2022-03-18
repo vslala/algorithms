@@ -1,8 +1,9 @@
-package com.bma.problemsolving.leetcode;
+package com.bma.problemsolving;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Value;
+import lombok.With;
 
 public class Model {
 
@@ -35,6 +36,35 @@ public class Model {
 
         public Coordinate plus(Coordinate coordinate) {
             return new Coordinate(row + coordinate.getRow(), col + coordinate.getCol());
+        }
+    }
+
+    @With
+    @Value
+    public static class Interval {
+        public int start;
+        public int end;
+
+        public Interval(int[] interval) {
+            this.start = interval[0];
+            this.end = interval[1];
+        }
+
+        public Interval(int start, int end) {
+            this.start = start;
+            this.end = end;
+        }
+
+        public Interval merge(Interval interval) {
+            return this.withStart(start).withEnd(Math.max(end, interval.end));
+        }
+
+        public int[] toArray() {
+            return new int[]{start, end};
+        }
+
+        public boolean isOverlapping(Interval interval) {
+            return this.end > interval.start;
         }
     }
 
