@@ -154,4 +154,10 @@ public class Util {
         for (int num: arr) sum += num;
         return sum;
     }
+
+    public static void hr(int count) {
+        if (count == 0) count = 20;
+        for (int i = 0; i < count; i++) Util.print("-");
+        Util.println();
+    }
 }
