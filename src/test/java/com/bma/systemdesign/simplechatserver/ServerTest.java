@@ -38,6 +38,7 @@ class ServerTest {
         assertEquals(0, client.getPort());      // this is when the client is not connected to server
         client.connect(new InetSocketAddress(server.port()));  // connect to the server
         TimeUnit.MILLISECONDS.sleep(200);       // wait while the connection is established
+
         assertTrue(client.isConnected());               // connection has been established
         assertEquals(server.port(), client.getPort());  // now this value should show the port connected to
 

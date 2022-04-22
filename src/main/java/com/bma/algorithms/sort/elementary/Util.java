@@ -160,4 +160,12 @@ public class Util {
         for (int i = 0; i < count; i++) Util.print("-");
         Util.println();
     }
+
+    public static void reverse(int[] nums, int i, int j) {
+        while (i < j) {
+            swap(nums, i, j);
+            i++;
+            j--;
+        }
+    }
 }

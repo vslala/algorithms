@@ -83,7 +83,8 @@ public class Fixtures {
     }
 
     public static <T> void assertBothListsContainsSameItems(List<List<T>> expected, List<List<T>> result) {
-        expected.forEach(ls -> ls.forEach(num -> assertTrue(result.stream().anyMatch(ls2 -> ls2.stream().anyMatch(num2 -> num2.equals(num))))));
+        expected.forEach(ls -> ls.forEach(num ->
+                assertTrue(result.stream().anyMatch(ls2 -> ls2.stream().anyMatch(num2 -> num2.equals(num))))));
     }
 
     public static int[][] convertToPrimitiveArrMatrix(List<List<Integer>> ls) {
