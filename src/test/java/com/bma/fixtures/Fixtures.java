@@ -3,6 +3,7 @@ package com.bma.fixtures;
 import com.bma.algorithms.sort.elementary.Util;
 import com.bma.problemsolving.leetcode.java.LeetCodeInputExpressionParser;
 import lombok.experimental.UtilityClass;
+import org.opentest4j.AssertionFailedError;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -83,8 +84,14 @@ public class Fixtures {
     }
 
     public static <T> void assertBothListsContainsSameItems(List<List<T>> expected, List<List<T>> result) {
-        expected.forEach(ls -> ls.forEach(num ->
-                assertTrue(result.stream().anyMatch(ls2 -> ls2.stream().anyMatch(num2 -> num2.equals(num))))));
+        try {
+            expected.forEach(ls -> ls.forEach(num ->
+                    assertTrue(result.stream().anyMatch(ls2 -> ls2.stream().anyMatch(num2 -> num2.equals(num))))));
+        } catch (AssertionFailedError e) {
+            Util.println("Expected :" + expected);
+            Util.println("Actual\t :" + result);
+            throw new AssertionFailedError(e.getMessage());
+        }
     }
 
     public static int[][] convertToPrimitiveArrMatrix(List<List<Integer>> ls) {
