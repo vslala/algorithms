@@ -1,5 +1,7 @@
 package com.bma.problemsolving.leetcode.java.array;
 
+import java.util.Arrays;
+
 /**
  * 53. Maximum Subarray
  * Given an integer array nums, find the contiguous subarray (containing at least one number) which has the largest sum and return its sum.
@@ -32,8 +34,7 @@ class MaximumSubArray {
         int bestSum = nums[0];
 
         int currentStart = 0;
-        int currentEnd = 0;
-        while (currentEnd < nums.length) {
+        for (int currentEnd = 0; currentEnd < nums.length; currentEnd++) {
             int x = nums[currentEnd];
 
             if (currentSum <= 0) {
@@ -50,8 +51,6 @@ class MaximumSubArray {
                 bestStart = currentStart;
                 bestEnd = currentEnd + 1; // +1 to make 'bestEnd' exclusive
             }
-
-            currentEnd++;
         }
 
         System.out.println("Best Start = " + bestStart + ", Best End: " + bestEnd);
@@ -60,9 +59,7 @@ class MaximumSubArray {
             return new int[]{nums[0]};
         }
 
-        int[] result = new int[bestEnd - bestStart];
-        System.arraycopy(nums, bestStart, result, 0, bestEnd - bestStart);
-
-        return result;
+        int lengthOfMaxSubArray = bestEnd - bestStart;
+        return Arrays.copyOfRange(nums, bestStart, bestStart + lengthOfMaxSubArray);
     }
 }
