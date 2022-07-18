@@ -1,4 +1,4 @@
-package com.bma.systemdesign.leaderelection;
+package com.bma.systemdesign.zookeeper.leaderelection;
 
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;

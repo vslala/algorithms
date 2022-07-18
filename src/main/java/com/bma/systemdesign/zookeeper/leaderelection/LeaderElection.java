@@ -1,12 +1,13 @@
-package com.bma.systemdesign.leaderelection;
+package com.bma.systemdesign.zookeeper.leaderelection;
 
+import com.bma.systemdesign.zookeeper.BmaZookeeper;
 import lombok.SneakyThrows;
 import org.apache.zookeeper.*;
 
 import java.util.Collections;
 import java.util.List;
 
-class LeaderElection implements Watcher {
+class LeaderElection implements Watcher, BmaZookeeper {
     private static final String ZOOKEEPER_ADDRESS = "localhost:2181";
     private static final int SESSION_TIMEOUT = 3000;
     private static final String ELECTION_NAMESPACE = "/election";
@@ -14,8 +15,9 @@ class LeaderElection implements Watcher {
     private ZooKeeper zooKeeper;
     private String currentZnodeName;
 
+    @Override
     @SneakyThrows
-    void connectToZookeeper() {
+    public void connectToZookeeper() {
         this.zooKeeper = new ZooKeeper(ZOOKEEPER_ADDRESS, SESSION_TIMEOUT, this);
         this.volunteerForElection();
         this.electLeader();
