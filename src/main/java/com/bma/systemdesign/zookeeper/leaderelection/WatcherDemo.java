@@ -10,6 +10,7 @@ import org.apache.zookeeper.ZooKeeper;
 import org.apache.zookeeper.data.Stat;
 
 import java.util.List;
+import java.util.concurrent.CountDownLatch;
 
 import static java.util.Objects.isNull;
 
@@ -18,6 +19,11 @@ import static java.util.Objects.isNull;
 class WatcherDemo implements Watcher, BmaZookeeper {
 
     private ZooKeeper zooKeeper;
+    private CountDownLatch countDownLatch;
+
+    public WatcherDemo(CountDownLatch countDownLatch) {
+        this.countDownLatch = countDownLatch;
+    }
 
     @Override
     @SneakyThrows
@@ -77,6 +83,7 @@ class WatcherDemo implements Watcher, BmaZookeeper {
         }
 
         watchTargetZnode("/target_znode");
+        if (countDownLatch != null) countDownLatch.countDown();
     }
 
     public static void main(String[] args) {
