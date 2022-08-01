@@ -3,9 +3,12 @@ package com.bma.systemdesign.zookeeper.leaderelection;
 import com.bma.systemdesign.zookeeper.BmaZookeeper;
 import lombok.SneakyThrows;
 import org.apache.zookeeper.*;
+import org.apache.zookeeper.data.Stat;
 
 import java.util.Collections;
 import java.util.List;
+
+import static java.util.Objects.isNull;
 
 class LeaderElection implements Watcher, BmaZookeeper {
     private static final String ZOOKEEPER_ADDRESS = "localhost:2181";
@@ -41,6 +44,10 @@ class LeaderElection implements Watcher, BmaZookeeper {
                         zooKeeper.notifyAll();
                     }
                 }
+                break;
+            case NodeDeleted:
+                electLeader(); // whenever a node goes down, do a re-election
+                break;
         }
     }
 
@@ -73,14 +80,24 @@ class LeaderElection implements Watcher, BmaZookeeper {
 
     @SneakyThrows
     public void electLeader() {
-        List<String> children = zooKeeper.getChildren(ELECTION_NAMESPACE, false);
-        Collections.sort(children);
-        String smallestChild = children.get(0);
+        Stat predecessorStat = null;
+        String predecessorZnodeName = "";
+        while (isNull(predecessorStat)) {
+            List<String> children = zooKeeper.getChildren(ELECTION_NAMESPACE, false);
+            Collections.sort(children);
+            String smallestChild = children.get(0);
 
-        if (smallestChild.equalsIgnoreCase(currentZnodeName)) {
-            System.out.println(currentZnodeName + ": I'm the leader.");
-        } else {
-            System.out.println(currentZnodeName + ": I'm not the leader.");
+            if (smallestChild.equalsIgnoreCase(currentZnodeName)) {
+                System.out.println(currentZnodeName + ": I'm the leader.");
+            } else {
+                System.out.println(currentZnodeName + ": I'm not the leader.");
+                int predecessorIndex = Collections.binarySearch(children, currentZnodeName) - 1;
+                predecessorZnodeName = children.get(predecessorIndex);
+                predecessorStat = zooKeeper.exists(ELECTION_NAMESPACE + "/" + predecessorZnodeName, this);
+            }
         }
+
+        System.out.println("Watching Znode: " + predecessorZnodeName);
+        System.out.println();
     }
 }
