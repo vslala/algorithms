@@ -89,4 +89,26 @@ public class DailyChallenge {
             return true;
         }
     }
+
+    static class DetermineStringHalvesAreAlike {
+        private static final Set<Character> vowels = Set.of('a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U');
+        public boolean halvesAreAlike(String s) {
+            int len = s.length();
+            int l2 = len / 2;
+
+            int leftCount = 0;
+            int rightCount = 0;
+            for (int i = 0, j = l2; i < l2; i++, j++) {
+                if (vowels.contains(s.charAt(i))) {
+                    leftCount++;
+                }
+
+                if (vowels.contains(s.charAt(j))) {
+                    rightCount++;
+                }
+            }
+
+            return leftCount == rightCount;
+        }
+    }
 }

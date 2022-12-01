@@ -77,4 +77,17 @@ class DailyChallengeTest {
 
         assertEquals(expectedOutput, output);
     }
+
+    @ParameterizedTest
+    @CsvSource(value = {
+            "book true",
+            "textbook false"
+    }, delimiter = ' ')
+    void itShouldCheckIfHalvesOfTheStringHaveSameNumberOfVowels(String input, boolean expected) {
+        DailyChallenge.DetermineStringHalvesAreAlike areAlike = new DailyChallenge.DetermineStringHalvesAreAlike();
+
+        var output = areAlike.halvesAreAlike(input);
+
+        assertEquals(expected, output);
+    }
 }
