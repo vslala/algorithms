@@ -1,6 +1,5 @@
 package com.bma.algorithms.tries.r_way;
 
-import com.bma.algorithms.tries.r_way.TrieST;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;

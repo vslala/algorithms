@@ -1,15 +1,13 @@
 package com.bma.algorithms.graphs.directed_graphs;
 
-import com.bma.algorithms.graphs.Digraph;
 import com.bma.algorithms.stdlib.In;
 import org.junit.jupiter.api.Test;
 
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.nio.file.Path;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class KosarajuSharirSCCTest {
 

@@ -2,7 +2,7 @@ package com.bma.problemsolving.codewars;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class SimpleEncryptionTest {
     @Test

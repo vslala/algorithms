@@ -3,7 +3,7 @@ package com.bma.problemsolving.codewars;
 import com.bma.problemsolving.codewars.qualified.GreenCode;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class GreenCodeTest {
     @Test

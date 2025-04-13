@@ -4,8 +4,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.LinkedHashMap;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 class DoublyLinkedListTest {
 
     @Test

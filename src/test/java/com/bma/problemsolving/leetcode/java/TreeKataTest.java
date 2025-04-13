@@ -1,6 +1,5 @@
 package com.bma.problemsolving.leetcode.java;
 
-import com.bma.problemsolving.leetcode.java.TreeKata;
 import org.junit.jupiter.api.Test;
 
 class TreeKataTest {

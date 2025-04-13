@@ -1,10 +1,9 @@
 package com.bma.problemsolving.leetcode.java;
 
-import com.bma.problemsolving.leetcode.java.RomanToInteger;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class RomanToIntegerTest {
 

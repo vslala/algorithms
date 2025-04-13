@@ -1,6 +1,5 @@
 package com.bma.problemsolving.leetcode.java;
 
-import com.bma.problemsolving.leetcode.java.BackspaceStringCompare;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

@@ -1,6 +1,5 @@
 package com.bma.algorithms.tries;
 
-import com.bma.algorithms.tries.Trie;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
