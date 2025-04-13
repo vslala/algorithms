@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.Random;
 
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class BottomUpMergeSortTest {
@@ -18,15 +19,15 @@ public class BottomUpMergeSortTest {
         sort.sort();
 
         Util.println(arr);
-        assertTrue(Arrays.equals(arr, arrCopy));
+        assertArrayEquals(arr, arrCopy);
     }
 
     @Test
     public void longTestForSortingArray() {
         Random random = new Random();
         int numOfTestCases = random.nextInt(1000);
-        int arr1[];
-        int arr2[];
+        int[] arr1;
+        int[] arr2;
         BottomUpMergeSort mergeSort;
 
         for (int testCase = 0; testCase < numOfTestCases; testCase++) {
@@ -36,7 +37,7 @@ public class BottomUpMergeSortTest {
             BottomUpMergeSort.getInstance().with(arr1).sort();
             Arrays.sort(arr2);
 
-            assertTrue(Arrays.equals(arr1, arr2));
+            assertArrayEquals(arr1, arr2);
         }
 
     }

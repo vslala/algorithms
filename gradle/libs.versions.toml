@@ -1,0 +1,18 @@
+[versions]
+junit = "5.8.2"
+logback = "1.4.0"
+zookeeper = "3.7.0"
+commonsIo = "2.11.0"  # safer version vs 2.19.0
+javaTuples = "1.2"
+
+[libraries]
+junit-jupiter-api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "junit" }
+junit-jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junit" }
+junit-jupiter-params = { module = "org.junit.jupiter:junit-jupiter-params", version.ref = "junit" }
+logback-classic = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
+zookeeper = { module = "org.apache.zookeeper:zookeeper", version.ref = "zookeeper" }
+commons-io = { module = "commons-io:commons-io", version.ref = "commonsIo" }
+java-tuples = { module = "org.javatuples:javatuples", version.ref = "javaTuples" }
+
+[plugins]
+java = { id = "java" }

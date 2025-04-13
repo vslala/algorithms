@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ArraysAndStringTest {
 
-    private ArraysAndString test = new ArraysAndString();
+    private final ArraysAndString test = new ArraysAndString();
 
     @ParameterizedTest
     @CsvSource({
