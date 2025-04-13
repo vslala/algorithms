@@ -1,8 +1,10 @@
 package com.bma.problemsolving.crackingthecodinginterview;
 
+import com.bma.fixtures.Fixtures;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -102,6 +104,6 @@ class ArraysAndStringTest {
         output[2] = new int[]{12, 6, 8, 9};
         output[3] = new int[]{16, 7, 10, 11};
 
-        assertEquals(output, test.rotateMatrix90DegreeRight(matrix));
+        Fixtures.assertBothMatrixContainsSameItems(matrix, output, test.rotateMatrix90DegreeRight(matrix));
     }
 }

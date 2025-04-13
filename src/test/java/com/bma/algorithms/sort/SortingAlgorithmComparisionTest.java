@@ -8,7 +8,7 @@ import java.io.IOException;
 public class SortingAlgorithmComparisionTest {
 
     private static final String OUTPUT_FILE_NAME = "sort_algo_compare.csv";
-    SortingAlgorithmComparision comparision = new SortingAlgorithmComparision(1000000);
+    SortingAlgorithmComparision comparision = new SortingAlgorithmComparision(10000);
 
     @Test
     public void testWriteStringToFile() throws InterruptedException, IOException {

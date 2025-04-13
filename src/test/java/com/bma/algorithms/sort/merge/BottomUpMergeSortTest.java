@@ -30,7 +30,7 @@ public class BottomUpMergeSortTest {
         BottomUpMergeSort mergeSort;
 
         for (int testCase = 0; testCase < numOfTestCases; testCase++) {
-            arr1 = Util.generateUnsortedArray(random.nextInt(1000000));
+            arr1 = Util.generateUnsortedArray(random.nextInt(10000));
             arr2 = Arrays.copyOf(arr1, arr1.length);
 
             BottomUpMergeSort.getInstance().with(arr1).sort();

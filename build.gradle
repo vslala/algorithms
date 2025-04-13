@@ -2,30 +2,50 @@ plugins {
     id 'java'
 }
 
-group 'org.example'
+group 'org.bma.algorithms'
 version '1.0-SNAPSHOT'
 
-sourceCompatibility = 11
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)  // Specify Java 21
+    }
+}
+
+sourceCompatibility = '21'
+targetCompatibility = '21'
 
 repositories {
     mavenCentral()
 }
 
+ext {
+    libs = [
+            junitJupiterApi   : 'org.junit.jupiter:junit-jupiter-api:5.8.2',
+            junitJupiterEngine: 'org.junit.jupiter:junit-jupiter-engine:5.8.2',
+            junitJupiterParams: 'org.junit.jupiter:junit-jupiter-params:5.8.2',
+            logbackClassic    : 'ch.qos.logback:logback-classic:1.4.0',
+            zookeeper         : 'org.apache.zookeeper:zookeeper:3.7.0',
+            commonsIo         : 'commons-io:commons-io:2.19.0',
+            javaTuples        : 'org.javatuples:javatuples:1.2'
+    ]
+}
+
 dependencies {
-    implementation 'org.javatuples:javatuples:1.2'
-    implementation 'ch.qos.logback:logback-classic:1.2.3'
-    implementation 'org.junit.jupiter:junit-jupiter:5.4.2'
-    implementation 'org.junit.jupiter:junit-jupiter:5.4.2'
-    implementation 'org.apache.zookeeper:zookeeper:3.5.10'
-    compileOnly 'org.projectlombok:lombok:1.18.12'
-    compile group: 'commons-io', name: 'commons-io', version: '2.6'
+    implementation libs.logbackClassic
+    implementation libs.zookeeper
+    implementation libs.commonsIo
+    implementation libs.javaTuples
 
-    annotationProcessor 'org.projectlombok:lombok:1.18.12'
+    compileOnly("org.projectlombok:lombok:1.18.38")
+    annotationProcessor("org.projectlombok:lombok:1.18.38")
+    testCompileOnly("org.projectlombok:lombok:1.18.38")
+    testAnnotationProcessor("org.projectlombok:lombok:1.18.38")
 
-    testCompileOnly 'org.projectlombok:lombok:1.18.12'
-    testAnnotationProcessor 'org.projectlombok:lombok:1.18.12'
     testImplementation 'org.awaitility:awaitility:4.1.1'
 
+    testImplementation libs.junitJupiterApi
+    testRuntimeOnly libs.junitJupiterEngine
+    testImplementation libs.junitJupiterParams
 }
 
 test {
