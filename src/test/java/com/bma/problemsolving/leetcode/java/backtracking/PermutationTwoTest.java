@@ -24,7 +24,7 @@ class PermutationTwoTest {
         var result = sol.permuteUnique(input);
 
         assertEquals(expected.size(), result.size());
-        Fixtures.assertBothListsContainsSameItems(expected, result);
+        Fixtures.assertBothNestedListsContainsSameItems(expected, result);
     }
 
 }

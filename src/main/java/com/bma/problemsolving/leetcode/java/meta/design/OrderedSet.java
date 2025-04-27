@@ -1,4 +1,4 @@
-package com.bma.problemsolving.meta.design;
+package com.bma.problemsolving.leetcode.java.meta.design;
 
 import lombok.Getter;
 import lombok.experimental.Accessors;

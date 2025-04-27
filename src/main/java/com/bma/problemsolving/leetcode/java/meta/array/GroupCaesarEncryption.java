@@ -1,4 +1,4 @@
-package com.bma.problemsolving.meta.array;
+package com.bma.problemsolving.leetcode.java.meta.array;
 
 import java.util.ArrayList;
 import java.util.HashMap;

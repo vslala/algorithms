@@ -25,6 +25,6 @@ class BinaryTreeVerticalOrderTraversalTest {
         btree.print();
         List<List<Integer>> output = sol.verticalOrder(btree.get());
 
-        Fixtures.assertBothListsContainsSameItems(expected, output);
+        Fixtures.assertBothNestedListsContainsSameItems(expected, output);
     }
 }

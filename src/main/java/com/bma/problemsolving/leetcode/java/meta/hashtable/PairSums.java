@@ -1,4 +1,4 @@
-package com.bma.problemsolving.meta.hashtable;
+package com.bma.problemsolving.leetcode.java.meta.hashtable;
 
 import java.util.HashMap;
 import java.util.Map;

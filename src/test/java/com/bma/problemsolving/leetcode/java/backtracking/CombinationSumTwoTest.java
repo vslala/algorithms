@@ -20,6 +20,6 @@ class CombinationSumTwoTest {
 
         Util.println(result);
 
-        Fixtures.assertBothListsContainsSameItems(Fixtures.parseExpression(expected), result);
+        Fixtures.assertBothNestedListsContainsSameItems(Fixtures.parseExpression(expected), result);
     }
 }

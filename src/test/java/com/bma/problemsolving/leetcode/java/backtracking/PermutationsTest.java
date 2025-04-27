@@ -28,7 +28,7 @@ class PermutationsTest {
         Util.println(result);
 
         assertEquals(expected.size(), result.size());
-        Fixtures.assertBothListsContainsSameItems(expected, result);
+        Fixtures.assertBothNestedListsContainsSameItems(expected, result);
     }
 
 }

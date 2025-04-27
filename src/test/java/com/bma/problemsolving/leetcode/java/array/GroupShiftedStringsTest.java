@@ -23,6 +23,6 @@ class GroupShiftedStringsTest {
 
         List<List<String>> output = sol.groupStrings(input.get(0).toArray(new String[0]));
 
-        Fixtures.assertBothListsContainsSameItems(expected, output);
+        Fixtures.assertBothNestedListsContainsSameItems(expected, output);
     }
 }

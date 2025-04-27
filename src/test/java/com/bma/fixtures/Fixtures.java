@@ -83,10 +83,20 @@ public class Fixtures {
         }
     }
 
-    public static <T> void assertBothListsContainsSameItems(List<List<T>> expected, List<List<T>> result) {
+    public static <T> void assertBothNestedListsContainsSameItems(List<List<T>> expected, List<List<T>> result) {
         try {
             expected.forEach(ls -> ls.forEach(num ->
                     assertTrue(result.stream().anyMatch(ls2 -> ls2.stream().anyMatch(num2 -> num2.equals(num))))));
+        } catch (AssertionFailedError e) {
+            Util.println("Expected :" + expected);
+            Util.println("Actual\t :" + result);
+            throw new AssertionFailedError(e.getMessage());
+        }
+    }
+
+    public static <T> void assertBothListsContainsSameItems(List<T> expected, List<T> result) {
+        try {
+            expected.forEach(item -> assertTrue(result.contains(item)));
         } catch (AssertionFailedError e) {
             Util.println("Expected :" + expected);
             Util.println("Actual\t :" + result);

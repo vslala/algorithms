@@ -1,4 +1,4 @@
-package com.bma.problemsolving.meta.design;
+package com.bma.problemsolving.leetcode.java.meta.design;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

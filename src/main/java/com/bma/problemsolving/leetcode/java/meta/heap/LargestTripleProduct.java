@@ -1,4 +1,4 @@
-package com.bma.problemsolving.meta.heap;
+package com.bma.problemsolving.leetcode.java.meta.heap;
 
 import java.util.PriorityQueue;
 

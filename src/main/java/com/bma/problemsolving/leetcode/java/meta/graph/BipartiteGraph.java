@@ -1,4 +1,4 @@
-package com.bma.problemsolving.meta.graph;
+package com.bma.problemsolving.leetcode.java.meta.graph;
 
 import java.util.ArrayDeque;
 import java.util.Deque;

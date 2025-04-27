@@ -4,6 +4,8 @@ import com.bma.fixtures.Fixtures;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 class MiddleOfLinkedListTest {
 
     private MiddleOfLinkedList sol = new MiddleOfLinkedList();

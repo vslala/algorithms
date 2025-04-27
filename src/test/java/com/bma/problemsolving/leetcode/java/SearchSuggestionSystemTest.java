@@ -32,7 +32,7 @@ class SearchSuggestionSystemTest {
 
         var result = sol.suggestedProducts(input, searchWord);
 
-        Fixtures.assertBothListsContainsSameItems(expectedOutput, result);
+        Fixtures.assertBothNestedListsContainsSameItems(expectedOutput, result);
         
     }
 }

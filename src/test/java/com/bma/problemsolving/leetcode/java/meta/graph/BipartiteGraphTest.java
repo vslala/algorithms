@@ -1,4 +1,4 @@
-package com.bma.problemsolving.meta.graph;
+package com.bma.problemsolving.leetcode.java.meta.graph;
 
 import com.bma.fixtures.Fixtures;
 import org.junit.jupiter.params.ParameterizedTest;

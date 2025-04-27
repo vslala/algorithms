@@ -25,7 +25,7 @@ class CombinationSumTest {
 
         List<List<Integer>> result = combinationSum.combinationSum(candidates, target);
         Util.println(result);
-        Fixtures.assertBothListsContainsSameItems(expected, result);
+        Fixtures.assertBothNestedListsContainsSameItems(expected, result);
     }
 
 }

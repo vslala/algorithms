@@ -1,4 +1,4 @@
-package com.bma.problemsolving.meta.array;
+package com.bma.problemsolving.leetcode.java.meta.array;
 
 import com.bma.algorithms.sort.elementary.Util;
 import com.bma.fixtures.Fixtures;
