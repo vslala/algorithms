@@ -1,4 +1,4 @@
-package com.bma.problemsolving.leetcode.java.citadel;
+package com.bma.problemsolving.leetcode.java.blind75;
 
 import java.util.HashMap;
 

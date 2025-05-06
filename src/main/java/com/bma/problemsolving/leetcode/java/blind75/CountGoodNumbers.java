@@ -1,4 +1,4 @@
-package com.bma.problemsolving.leetcode.java.citadel;
+package com.bma.problemsolving.leetcode.java.blind75;
 
 public class CountGoodNumbers {
     private static final int MOD = 1_000_000_007;
