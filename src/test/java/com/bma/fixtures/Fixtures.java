@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -204,5 +206,17 @@ public class Fixtures {
         Collections.addAll(output, arr);
 
         return output;
+    }
+
+    public static List<String> parseStringArrExpression(String expr) {
+        Pattern pattern = Pattern.compile("[^\\[\\],]+");
+        Matcher matcher = pattern.matcher(expr);
+
+        List<String> result = new ArrayList<>();
+        while (matcher.find()) {
+            result.add(matcher.group().trim());
+        }
+
+        return result;
     }
 }
