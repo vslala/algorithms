@@ -41,9 +41,32 @@ public class ClosestBinarySearchTreeValueTwo {
         this.target = target;
         this.k = k;
 
-        return solveUsingGrowingWindow(root, target);
+        Deque<Integer> deque = new LinkedList<>();
+        inOrder(root, deque);
+        return new ArrayList<>(deque);
+
+//        return solveUsingGrowingWindow(root, target);
 
 //        return findKClosestValuesUsingHeap(root);
+    }
+
+    private void inOrder(TreeNode node, Deque<Integer> window) {
+        if (node == null) {
+            return;
+        }
+
+        inOrder(node.left, window);
+        window.add(node.val);
+        if (window.size() > this.k) {
+            if (Math.abs(window.peekFirst() - this.target) <= Math.abs(window.peekLast() - target)) {
+                window.removeLast();
+                return;
+            } else {
+                window.removeFirst();
+            }
+        }
+        inOrder(node.right, window);
+
     }
 
     private List<Integer> solveUsingGrowingWindow(TreeNode root, double target) {
