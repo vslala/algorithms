@@ -219,4 +219,16 @@ public class Fixtures {
 
         return result;
     }
+
+    public static int[] parse1DArray(String expr) {
+        Pattern pattern = Pattern.compile("[^\\[\\],]+");
+        Matcher matcher = pattern.matcher(expr);
+
+        List<Integer> result = new ArrayList<>();
+        while (matcher.find()) {
+            result.add(Integer.parseInt(matcher.group().trim()));
+        }
+
+        return convertListToArray(result);
+    }
 }
