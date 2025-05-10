@@ -3,6 +3,8 @@ package com.bma.algorithms.sort.elementary;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 @SuppressWarnings({
@@ -43,6 +45,29 @@ public class Util {
 
     public static void println(Object format) {
         System.out.println(format);
+    }
+
+    public static void format(String template, Map<String, Object> values) {
+        // Regex to capture {key} or {key:width}, e.g., {low:10}
+        Pattern pattern = Pattern.compile("\\{(\\w+)(?::(-?\\d+))?\\}");
+        Matcher matcher = pattern.matcher(template);
+        StringBuilder result = new StringBuilder();
+
+        while (matcher.find()) {
+            String key = matcher.group(1);
+            String widthStr = matcher.group(2);
+            Object value = values.getOrDefault(key, "");
+
+            String formatted = String.valueOf(value);
+            if (widthStr != null) {
+                int width = Integer.parseInt(widthStr);
+                formatted = String.format("%" + width + "s", formatted);
+            }
+
+            matcher.appendReplacement(result, Matcher.quoteReplacement(formatted));
+        }
+        matcher.appendTail(result);
+        println(result.toString());
     }
 
     public static void print(Object obj) {
