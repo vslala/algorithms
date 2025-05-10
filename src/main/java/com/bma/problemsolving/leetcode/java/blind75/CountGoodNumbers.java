@@ -1,6 +1,6 @@
 package com.bma.problemsolving.leetcode.java.blind75;
 
-public class CountGoodNumbers {
+class CountGoodNumbers {
     private static final int MOD = 1_000_000_007;
 
     public int countGoodNumbers(long n) {

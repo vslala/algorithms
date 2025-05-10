@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class GraphValidTree {
+class GraphValidTree {
 
     private static class Graph {
         private int totalVertices;

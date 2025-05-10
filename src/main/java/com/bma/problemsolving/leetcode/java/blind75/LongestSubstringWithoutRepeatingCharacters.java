@@ -2,7 +2,7 @@ package com.bma.problemsolving.leetcode.java.blind75;
 
 import java.util.HashSet;
 
-public class LongestSubstringWithoutRepeatingCharacters {
+class LongestSubstringWithoutRepeatingCharacters {
 
     public int lengthOfLongestSubstring(String s) {
         if (s.length() == 1) return 1;

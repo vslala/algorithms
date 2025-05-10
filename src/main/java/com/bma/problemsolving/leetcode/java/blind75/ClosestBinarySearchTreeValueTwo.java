@@ -2,7 +2,7 @@ package com.bma.problemsolving.leetcode.java.blind75;
 
 import java.util.*;
 
-public class ClosestBinarySearchTreeValueTwo {
+class ClosestBinarySearchTreeValueTwo {
 
     private double target;
     private int k;

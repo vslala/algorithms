@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class ThreeSum {
+class ThreeSum {
     public List<List<Integer>> threeSum(int[] nums) {
         if (nums.length < 3) return List.of();
 

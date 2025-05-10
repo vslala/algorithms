@@ -1,6 +1,6 @@
 package com.bma.problemsolving.leetcode.java.blind75;
 
-public class PalindromicSubstrings {
+class PalindromicSubstrings {
 
     public int countSubstrings(String s) {
         int ans = 0;

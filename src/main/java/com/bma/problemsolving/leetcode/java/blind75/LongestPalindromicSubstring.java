@@ -1,6 +1,6 @@
 package com.bma.problemsolving.leetcode.java.blind75;
 
-public class LongestPalindromicSubstring {
+class LongestPalindromicSubstring {
     public String longestPalindrome(String s) {
         int start = 0;
         int end = 0;

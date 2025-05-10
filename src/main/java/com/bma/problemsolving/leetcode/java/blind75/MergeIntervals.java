@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 
-public class MergeIntervals {
+class MergeIntervals {
     public int[][] merge(int[][] intervals) {
         Arrays.sort(intervals, Comparator.comparingInt(o -> o[0]));
         var output = new ArrayList<int[]>();

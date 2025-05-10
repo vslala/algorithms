@@ -2,7 +2,7 @@ package com.bma.problemsolving.leetcode.java.blind75;
 
 import java.util.HashSet;
 
-public class LongestConsecutiveSequence {
+class LongestConsecutiveSequence {
 
     public int longestConsecutive(int[] nums) {
         int longestSequence = 0;

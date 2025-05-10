@@ -1,6 +1,6 @@
 package com.bma.problemsolving.leetcode.java.blind75;
 
-public class ReorderList {
+class ReorderList {
 
     public static class ListNode {
         int val;

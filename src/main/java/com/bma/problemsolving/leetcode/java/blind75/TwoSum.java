@@ -2,7 +2,7 @@ package com.bma.problemsolving.leetcode.java.blind75;
 
 import java.util.HashMap;
 
-public class TwoSum {
+class TwoSum {
 
     public int[] twoSum(int[] nums, int target) {
         var dict = new HashMap<Integer, Integer>();

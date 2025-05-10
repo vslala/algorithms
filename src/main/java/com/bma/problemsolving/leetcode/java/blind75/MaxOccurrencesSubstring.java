@@ -3,7 +3,7 @@ package com.bma.problemsolving.leetcode.java.blind75;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MaxOccurrencesSubstring {
+class MaxOccurrencesSubstring {
 
     private static class Window {
         private final Map<String, Integer> freqCounter;

@@ -2,7 +2,7 @@ package com.bma.problemsolving.leetcode.java.blind75;
 
 import static java.lang.Math.*;
 
-public class MaximumProductSubArray {
+class MaximumProductSubArray {
 
     /**
      * Solution is O(n) with Dynamic Programming.

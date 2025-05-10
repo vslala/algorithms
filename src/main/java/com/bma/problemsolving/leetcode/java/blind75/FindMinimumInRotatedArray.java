@@ -4,7 +4,7 @@ import com.bma.algorithms.sort.elementary.Util;
 
 import java.util.Map;
 
-public class FindMinimumInRotatedArray {
+class FindMinimumInRotatedArray {
 
     public int findMin(int[] nums) {
         int mid;

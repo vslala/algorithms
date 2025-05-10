@@ -2,7 +2,7 @@ package com.bma.problemsolving.leetcode.java.blind75;
 
 import java.util.*;
 
-public class AlienDictionary {
+class AlienDictionary {
 
     private static class Graph {
         private final Map<Character, Set<Character>> adjList = new HashMap<>();

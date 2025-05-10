@@ -1,6 +1,6 @@
 package com.bma.problemsolving.leetcode.java.blind75;
 
-public class ContainerWithMostWater {
+class ContainerWithMostWater {
     public int maxArea(int[] height) {
         int left = 0;
         int right = height.length - 1;

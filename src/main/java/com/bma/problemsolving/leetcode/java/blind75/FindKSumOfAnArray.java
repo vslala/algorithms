@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-public class FindKSumOfAnArray {
+class FindKSumOfAnArray {
 
     private final Random rand = new Random();
 

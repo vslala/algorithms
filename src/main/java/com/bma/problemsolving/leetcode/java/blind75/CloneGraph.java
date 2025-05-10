@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
-public class CloneGraph {
+class CloneGraph {
     public Node cloneGraph(Node node) {
         if (node == null) return node;
         var visited = new HashMap<Node, Node>();
