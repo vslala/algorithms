@@ -7,12 +7,7 @@ import lombok.With;
 
 public class Model {
 
-    @Value
-    @AllArgsConstructor
-    public static class Coordinate {
-        int row;
-        int col;
-
+    public record Coordinate(int row, int col) {
         public Coordinate minusRow(int number) {
             return new Coordinate(row - number, col);
         }
@@ -29,13 +24,33 @@ public class Model {
             return new Coordinate(row, col + number);
         }
 
+        public Coordinate top() {
+            return this.minusRow(1);
+        }
+
+        public Coordinate bottom() {
+            return this.plusRow(1);
+        }
+
+        public Coordinate left() {
+            return this.minusCol(1);
+        }
+
+        public Coordinate right() {
+            return this.plusCol(1);
+        }
+
         public boolean isInBounds(int[][] grid) {
             return row >= 0 && row < grid.length &&
                     col >= 0 && col < grid[row].length;
         }
 
         public Coordinate plus(Coordinate coordinate) {
-            return new Coordinate(row + coordinate.getRow(), col + coordinate.getCol());
+            return new Coordinate(row + coordinate.row(), col + coordinate.col());
+        }
+
+        public int value(int[][] heights) {
+            return heights[this.row][this.col];
         }
     }
 

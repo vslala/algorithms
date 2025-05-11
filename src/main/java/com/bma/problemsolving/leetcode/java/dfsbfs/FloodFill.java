@@ -58,12 +58,12 @@ public class FloodFill {
 
         while (!q.isEmpty()) {
             var curr = q.pollFirst();
-            image[curr.getRow()][curr.getCol()] = newColor;
+            image[curr.row()][curr.col()] = newColor;
 
-            var top = new Model.Coordinate(curr.getRow() - 1, curr.getCol());
-            var bottom = new Model.Coordinate(curr.getRow() + 1, curr.getCol());
-            var right = new Model.Coordinate(curr.getRow(), curr.getCol() + 1);
-            var left = new Model.Coordinate(curr.getRow(), curr.getCol() - 1);
+            var top = new Model.Coordinate(curr.row() - 1, curr.col());
+            var bottom = new Model.Coordinate(curr.row() + 1, curr.col());
+            var right = new Model.Coordinate(curr.row(), curr.col() + 1);
+            var left = new Model.Coordinate(curr.row(), curr.col() - 1);
 
             if (isInBounds(image, top) && matchingColor(image, top, color)) {
                 q.add(top);
@@ -86,12 +86,12 @@ public class FloodFill {
     }
 
     private boolean matchingColor(int[][] image, Model.Coordinate coord, int color) {
-        return image[coord.getRow()][coord.getCol()] == color;
+        return image[coord.row()][coord.col()] == color;
     }
 
     private boolean isInBounds(int[][] image, Model.Coordinate coord) {
-        int r = coord.getRow();
-        int c = coord.getCol();
+        int r = coord.row();
+        int c = coord.col();
         return r >= 0 && r < image.length && c >= 0 && c < image[r].length;
     }
 

@@ -32,7 +32,7 @@ class ShortestPathInBinaryMatrix {
     public int shortestPathBinaryMatrix(int[][] grid) {
         final Coordinate startCoordinate = new Coordinate(0, 0);
         final Coordinate endCoordinate = new Coordinate(grid.length - 1, grid.length - 1);
-        if (grid[startCoordinate.getRow()][startCoordinate.getCol()] == 1 || grid[endCoordinate.getRow()][endCoordinate.getCol()] == 1) return -1;
+        if (grid[startCoordinate.row()][startCoordinate.col()] == 1 || grid[endCoordinate.row()][endCoordinate.col()] == 1) return -1;
         if (startCoordinate.equals(endCoordinate)) {
             return 1;
         }
@@ -43,17 +43,17 @@ class ShortestPathInBinaryMatrix {
 
         while (!q.isEmpty()) {
             Coordinate coord = q.poll();
-            int distanceSoFar = grid[coord.getRow()][coord.getCol()];
+            int distanceSoFar = grid[coord.row()][coord.col()];
 
             for (Coordinate direction: allDirections) {
                 Coordinate newCoord = coord.plus(direction);
-                if (newCoord.isInBounds(grid) && grid[newCoord.getRow()][newCoord.getCol()] == 0) {
-                    grid[newCoord.getRow()][newCoord.getCol()] = distanceSoFar + 1;
+                if (newCoord.isInBounds(grid) && grid[newCoord.row()][newCoord.col()] == 0) {
+                    grid[newCoord.row()][newCoord.col()] = distanceSoFar + 1;
                     q.offer(newCoord);
                 }
 
                 if (newCoord.equals(endCoordinate)) {
-                    return grid[newCoord.getRow()][newCoord.getCol()];
+                    return grid[newCoord.row()][newCoord.col()];
                 }
             }
         }

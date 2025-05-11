@@ -48,7 +48,7 @@ class MakingALargeIsland {
                             .stream()
                             .map(dir -> dir.plus(coordinate)) // up, down, right, left
                             .filter(coord -> coord.isInBounds(grid))
-                            .map(coord -> grid[coord.getRow()][coord.getCol()])
+                            .map(coord -> grid[coord.row()][coord.col()])
                             .filter(value -> value != 0)    // value shouldn't be zero
                             .collect(Collectors.toSet());   // using a distinctSurroundingIslandIds to avoid duplicate island ids
 
@@ -83,8 +83,8 @@ class MakingALargeIsland {
 
     private int islandSize(int[][] grid, Coordinate coord, int islandId) {
         // if the cell contains 0 or any other island id other than 1 then return 0
-        int row = coord.getRow();
-        int col = coord.getCol();
+        int row = coord.row();
+        int col = coord.col();
         if (!coord.isInBounds(grid) || grid[row][col] != 1) return 0;
         grid[row][col] = islandId;
 

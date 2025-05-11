@@ -12,7 +12,7 @@ import java.util.stream.IntStream;
 import static java.lang.Math.pow;
 
 class Grid {
-    private List<Coordinate> coordinates = new ArrayList<>();
+    private final List<Coordinate> coordinates = new ArrayList<>();
 
     public Grid() {
         coordinates.add(new Coordinate(0,0));
@@ -31,7 +31,7 @@ class Grid {
     }
 
     private double a2b2(Coordinate a) {
-        return pow(a.getRow(), 2) + pow(a.getCol(), 2);
+        return pow(a.row(), 2) + pow(a.col(), 2);
     }
 
     /**
@@ -41,9 +41,9 @@ class Grid {
     public int visitAllCoordInMinSteps() {
         int steps = 0;
         for (int i=0; i < coordinates.size() - 1; i++) {
-            steps += Math.sqrt(
-                    pow(coordinates.get(i + 1).getRow() - coordinates.get(i).getRow(), 2) +
-                            pow(coordinates.get(i + 1).getCol() - coordinates.get(i).getCol(), 2)
+            steps += (int) Math.sqrt(
+                    pow(coordinates.get(i + 1).row() - coordinates.get(i).row(), 2) +
+                            pow(coordinates.get(i + 1).col() - coordinates.get(i).col(), 2)
             );
         }
         return steps;

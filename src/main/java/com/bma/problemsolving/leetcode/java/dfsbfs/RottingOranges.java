@@ -43,8 +43,8 @@ public class RottingOranges {
 
                 for (Coordinate adjCell : ADJ) {
                     var newCoordinate = currCoordinate.plus(adjCell);
-                    if (newCoordinate.isInBounds(grid) && grid[newCoordinate.getRow()][newCoordinate.getCol()] == 1) {
-                        grid[newCoordinate.getRow()][newCoordinate.getCol()] = 2;
+                    if (newCoordinate.isInBounds(grid) && grid[newCoordinate.row()][newCoordinate.col()] == 1) {
+                        grid[newCoordinate.row()][newCoordinate.col()] = 2;
                         freshApples--;
                         q.add(newCoordinate);
                     }

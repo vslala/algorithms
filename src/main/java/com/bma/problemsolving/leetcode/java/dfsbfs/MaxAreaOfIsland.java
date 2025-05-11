@@ -69,9 +69,9 @@ public class MaxAreaOfIsland {
         while (!q.isEmpty()) {
             var curr = q.pollFirst();
             if (curr.isInBounds(grid)
-                    && grid[curr.getRow()][curr.getCol()] == 1) {
+                    && grid[curr.row()][curr.col()] == 1) {
                 count++;
-                grid[curr.getRow()][curr.getCol()] = 0;
+                grid[curr.row()][curr.col()] = 0;
                 q.add(curr.minusRow(1));
                 q.add(curr.plusRow(1));
                 q.add(curr.minusCol(1));

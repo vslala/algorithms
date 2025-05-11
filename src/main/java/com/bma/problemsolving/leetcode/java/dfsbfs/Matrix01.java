@@ -45,9 +45,9 @@ public class Matrix01 {
                 ADJ.stream()
                         .map(currCoordinate::plus)
                         .filter(coordinate -> coordinate.isInBounds(mat))
-                        .filter(coordinate -> mat[coordinate.getRow()][coordinate.getCol()] == -1)
+                        .filter(coordinate -> mat[coordinate.row()][coordinate.col()] == -1)
                         .forEach(coordinate -> {
-                            mat[coordinate.getRow()][coordinate.getCol()] = level.intValue();
+                            mat[coordinate.row()][coordinate.col()] = level.intValue();
                             q.add(coordinate);
                         });
             }
