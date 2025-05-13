@@ -3,6 +3,7 @@ package com.bma.fixtures;
 import com.bma.algorithms.sort.elementary.Util;
 import com.bma.problemsolving.leetcode.java.LeetCodeInputExpressionParser;
 import lombok.experimental.UtilityClass;
+import org.junit.jupiter.api.Assertions;
 import org.opentest4j.AssertionFailedError;
 
 import java.lang.reflect.Type;
@@ -230,5 +231,15 @@ public class Fixtures {
         }
 
         return convertListToArray(result);
+    }
+
+    public static void assertArrayContainsSameItems(int[] expected, int[] output) {
+        Arrays.sort(expected);
+        Arrays.sort(output);
+
+        assertEquals(expected.length, output.length, "Arrays length are not equal. Expected: %d, Actual: %d".formatted(expected.length, output.length));
+        for (int i = 0; i < expected.length; i++) {
+            assertEquals(expected[i], output[i]);
+        }
     }
 }
