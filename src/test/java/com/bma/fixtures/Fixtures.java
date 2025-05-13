@@ -7,10 +7,7 @@ import org.junit.jupiter.api.Assertions;
 import org.opentest4j.AssertionFailedError;
 
 import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -50,7 +47,7 @@ public class Fixtures {
      * Parses a nested list expression like [[2_2_2_2]:[2_3_3]:[3_5]]
      *
      * @param expression format [[2_2_2_2]:[2_3_3]:[3_5]]
-     * @param <T> returns depends on the caller List<List<T>>
+     * @param <T>        returns depends on the caller List<List<T>>
      * @return defaults List<List<Object>>
      */
     @SuppressWarnings("unchecked")
@@ -86,16 +83,49 @@ public class Fixtures {
         }
     }
 
-    public static <T> void assertBothNestedListsContainsSameItems(List<List<T>> expected, List<List<T>> result) {
+    public static List<List<String>> sortNestedList(List<List<String>> nestedList) {
+        for (List<String> innerList : nestedList) {
+            Collections.sort(innerList);
+        }
+
+        nestedList.sort(Comparator.comparing(List::getFirst));
+        return nestedList;
+    }
+
+    public static <T extends Comparable<T>> void assertBothNestedListsContainsSameItems(List<List<T>> expected, List<List<T>> result) {
         try {
-            expected.forEach(ls -> ls.forEach(num ->
-                    assertTrue(result.stream().anyMatch(ls2 -> ls2.stream().anyMatch(num2 -> num2.equals(num))))));
-        } catch (AssertionFailedError e) {
+            List<List<T>> sortedExpected = normalizeNestedList(expected);
+            List<List<T>> sortedResult = normalizeNestedList(result);
+
+            assertEquals(sortedExpected, sortedResult);
+        } catch (AssertionError e) {
             Util.println("Expected :" + expected);
-            Util.println("Actual\t :" + result);
-            throw new AssertionFailedError(e.getMessage());
+            Util.println("Actual   :" + result);
+            throw new AssertionError(e.getMessage());
         }
     }
+
+    private static <T extends Comparable<T>> List<List<T>> normalizeNestedList(List<List<T>> list) {
+        List<List<T>> normalized = new ArrayList<>();
+
+        for (List<T> inner : list) {
+            List<T> sortedInner = new ArrayList<>(inner);
+            Collections.sort(sortedInner);
+            normalized.add(sortedInner);
+        }
+
+        // sort outer list by the first element of each inner list:
+        normalized.sort((l1, l2) -> {
+            if (l1.isEmpty() && l2.isEmpty()) return 0;
+            if (l1.isEmpty())              return -1;
+            if (l2.isEmpty())              return +1;
+            return l1.getFirst().compareTo(l2.getFirst());
+        });
+
+        return normalized;
+    }
+
+
 
     public static <T> void assertBothListsContainsSameItems(List<T> expected, List<T> result) {
         try {
@@ -242,4 +272,56 @@ public class Fixtures {
             assertEquals(expected[i], output[i]);
         }
     }
+
+    public static List<List<String>> parse2DString(String stringMatrixExpression) {
+        if (stringMatrixExpression == null) {
+            throw new IllegalArgumentException("Input cannot be null");
+        }
+        String expr = stringMatrixExpression.trim();
+        if (!expr.startsWith("[") || !expr.endsWith("]")) {
+            throw new IllegalArgumentException(
+                    "Invalid 2D-list expression: " + stringMatrixExpression);
+        }
+
+        // strip the outermost [ ]
+        String inner = expr.substring(1, expr.length() - 1).trim();
+        List<List<String>> result = new ArrayList<>();
+
+        // if there's nothing inside the outer [ ], we're done
+        if (inner.isEmpty()) {
+            return result;
+        }
+
+        // walk the string, pulling out every top-level “[ ... ]” segment
+        int depth = 0, start = -1;
+        for (int i = 0; i < inner.length(); i++) {
+            char c = inner.charAt(i);
+            if (c == '[') {
+                if (depth == 0) {
+                    start = i;
+                }
+                depth++;
+            } else if (c == ']') {
+                depth--;
+                if (depth == 0 && start >= 0) {
+                    // we've found one complete “[ ... ]” from start..i
+                    String segment = inner.substring(start + 1, i).trim();
+                    List<String> row = new ArrayList<>();
+                    if (!segment.isEmpty()) {
+                        // split on comma, trim each piece, skip any empty tokens
+                        for (String tok : segment.split(",")) {
+                            String w = tok.trim();
+                            if (!w.isEmpty()) {
+                                row.add(w);
+                            }
+                        }
+                    }
+                    result.add(row);
+                }
+            }
+        }
+
+        return result;
+    }
+
 }
