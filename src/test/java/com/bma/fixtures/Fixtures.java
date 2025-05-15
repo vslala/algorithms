@@ -324,4 +324,8 @@ public class Fixtures {
         return result;
     }
 
+    public static String[] parse1DString(String expr) {
+        var ls = Fixtures.parseStringArrExpression(expr);
+        return ls.toArray(new String[0]);
+    }
 }
