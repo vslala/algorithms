@@ -27,3 +27,8 @@ build
 *.vscode
 *a.out
 /venv/
+
+# misc
+chatbot.db
+git_show_head.dat
+git_diff.dat
