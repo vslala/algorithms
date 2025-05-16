@@ -1,9 +1,9 @@
 package com.bma.problemsolving.leetcode.java.blind75;
 
-import com.bma.algorithms.sort.elementary.Util;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 class ReorderListTest {
 

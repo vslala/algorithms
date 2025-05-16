@@ -3,7 +3,6 @@ package com.bma.fixtures;
 import com.bma.algorithms.sort.elementary.Util;
 import com.bma.problemsolving.leetcode.java.LeetCodeInputExpressionParser;
 import lombok.experimental.UtilityClass;
-import org.junit.jupiter.api.Assertions;
 import org.opentest4j.AssertionFailedError;
 
 import java.lang.reflect.Type;

@@ -1,6 +1,7 @@
 package com.bma.problemsolving.leetcode.java.blind75;
 
-import static java.lang.Math.*;
+import static java.lang.Math.max;
+import static java.lang.Math.min;
 
 class MaximumProductSubArray {
 

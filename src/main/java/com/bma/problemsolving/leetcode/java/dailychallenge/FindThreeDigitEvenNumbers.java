@@ -1,6 +1,8 @@
 package com.bma.problemsolving.leetcode.java.dailychallenge;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 
 class FindThreeDigitEvenNumbers {
     public int[] findEvenNumbers(int[] digits) {
