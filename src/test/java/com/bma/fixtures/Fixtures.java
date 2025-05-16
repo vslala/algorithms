@@ -328,4 +328,8 @@ public class Fixtures {
         var ls = Fixtures.parseStringArrExpression(expr);
         return ls.toArray(new String[0]);
     }
+
+    public static int[][] parse2DArray(String expr) {
+        return convertToPrimitiveArrMatrix(parseNestedArrExpression(expr, Integer.class));
+    }
 }
