@@ -8,7 +8,7 @@ package com.bma.problemsolving.leetcode.java.dynamicprogramming;
  *
  * @author varun.shrivastava
  */
-public class UniquePaths {
+class UniquePaths {
 
     public int uniquePaths(int m, int n) {
         var dp = new int[m][n];

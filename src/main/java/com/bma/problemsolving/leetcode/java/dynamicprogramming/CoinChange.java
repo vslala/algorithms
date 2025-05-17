@@ -32,7 +32,7 @@ import java.util.Arrays;
  */
 class CoinChange {
 
-    public static ICoinChange getAlgorithm(String algorithm) {
+    static ICoinChange getAlgorithm(String algorithm) {
         ICoinChange memoization = new MemoizationSolution();
         ICoinChange dp = new DPSolution();
 
