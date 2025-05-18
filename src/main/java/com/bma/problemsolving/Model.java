@@ -45,12 +45,21 @@ public class Model {
                     col >= 0 && col < grid[row].length;
         }
 
+        public boolean isInBounds(char[][] grid) {
+            return row >= 0 && row < grid.length &&
+                    col >= 0 && col < grid[row].length;
+        }
+
         public Coordinate plus(Coordinate coordinate) {
             return new Coordinate(row + coordinate.row(), col + coordinate.col());
         }
 
-        public int value(int[][] heights) {
-            return heights[this.row][this.col];
+        public int value(int[][] grid) {
+            return grid[this.row][this.col];
+        }
+
+        public char value(char[][] grid) {
+            return grid[this.row][this.col];
         }
     }
 

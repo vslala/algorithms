@@ -4,6 +4,9 @@ logback = "1.4.0"
 zookeeper = "3.7.0"
 commonsIo = "2.11.0"  # safer version vs 2.19.0
 javaTuples = "1.2"
+jacksonJr = "2.19.0"
+junit-pioneer = "2.3.0"
+jackson = "2.19.0"
 
 [libraries]
 junit-jupiter-api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "junit" }
@@ -13,6 +16,11 @@ logback-classic = { module = "ch.qos.logback:logback-classic", version.ref = "lo
 zookeeper = { module = "org.apache.zookeeper:zookeeper", version.ref = "zookeeper" }
 commons-io = { module = "commons-io:commons-io", version.ref = "commonsIo" }
 java-tuples = { module = "org.javatuples:javatuples", version.ref = "javaTuples" }
+jackson-jr = { module = "com.fasterxml.jackson.jr:jackson-jr-all", version.ref= "jacksonJr" }
+jackson-core = { module = "com.fasterxml.jackson.core:jackson-core", version.ref = "jackson" }
+jackson-annotations = { module = "com.fasterxml.jackson.core:jackson-annotations", version.ref = "jackson"}
+jackson-databind = { module = "com.fasterxml.jackson.core:jackson-databind", version.ref = "jackson"}
+junit-pioneer = { module = "org.junit-pioneer:junit-pioneer", version.ref = "junit-pioneer" }
 
 [plugins]
 java = { id = "java" }
