@@ -33,6 +33,12 @@ class MeetingRoomPart2Test {
                         "intervals": [[7,10],[2,4]],
                         "expected": 1
                     }
+                    """,
+            """
+                    {
+                        "intervals": [[13,15],[1,13]],
+                        "expected": 1
+                    }
                     """
     })
     void given_a_list_of_meetings_find_out_minimum_number_of_conference_rooms_required(MeetingRoomInput input) {

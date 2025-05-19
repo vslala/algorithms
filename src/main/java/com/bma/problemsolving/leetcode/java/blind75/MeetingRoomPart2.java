@@ -48,7 +48,7 @@ class MeetingRoomPart2 {
 
         for (int i = 1; i < intervals.length; i++) {
             assert !minHeap.isEmpty();
-            if (intervals[i][0] > minHeap.peek()) {
+            if (intervals[i][0] >= minHeap.peek()) {
                 minHeap.poll();
             }
 
