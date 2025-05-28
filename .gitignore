@@ -27,6 +27,7 @@ build
 *.vscode
 *a.out
 /venv/
+.venv
 
 # misc
 chatbot.db
