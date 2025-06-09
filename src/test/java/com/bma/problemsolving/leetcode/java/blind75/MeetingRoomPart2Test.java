@@ -2,10 +2,9 @@ package com.bma.problemsolving.leetcode.java.blind75;
 
 import lombok.Data;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 import org.junitpioneer.jupiter.json.JsonSource;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * @author Varun Shrivastava

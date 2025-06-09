@@ -3,12 +3,9 @@ package com.bma.problemsolving.leetcode.java.backtracking;
 import com.bma.fixtures.Fixtures;
 import lombok.Data;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 import org.junitpioneer.jupiter.json.JsonSource;
 
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author Varun Shrivastava

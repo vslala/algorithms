@@ -7,8 +7,6 @@ import org.junitpioneer.jupiter.json.JsonSource;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 /**
  * @author Varun Shrivastava
  * @github www.github.com/vslala
