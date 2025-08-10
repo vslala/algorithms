@@ -68,10 +68,10 @@ class LexicographicalNumbers {
     }
 
     /**
-     * Recursive DFS approach to build the list uptil limit
-     * @param curr
-     * @param limit
-     * @param result
+     * Recursive DFS approach to build the list up until the limit
+     * @param curr curr prefix
+     * @param limit limit till the sequence needs to be generated
+     * @param result data structure to hold the sequence
      */
     private void dfs(int curr, int limit, List<Integer> result) {
         if (curr > limit) return;

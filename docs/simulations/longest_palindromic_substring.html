@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Longest Palindromic Substring — DP Visualizer (Compat)</title>
+<!-- Inline, no CSS variables, no external fonts. Works from file:// in most browsers. -->
+<style>
+  html, body { height: 100%; }
+  body { margin: 0; background: #0b1020; color: #e6ebf2; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+  .wrap { max-width: 1100px; margin: 20px auto; padding: 12px; }
+  .card { background: #161a2b; border: 1px solid #2a2f45; border-radius: 12px; padding: 12px; }
+  h1 { font-size: 18px; margin: 0 0 8px; }
+  .row { display: grid; grid-template-columns: 1.2fr .8fr; gap: 12px; }
+  .row-narrow { display: grid; grid-template-columns: 1fr auto auto auto; gap: 8px; align-items: center; }
+  .muted { color: #9aa3b2; font-size: 12px; }
+  input[type=text] { background: #0f1630; color: #e6ebf2; border: 1px solid #2c335c; border-radius: 8px; padding: 8px 10px; font-size: 14px; width: 100%; }
+  button { background: #25315f; color: #e6ebf2; border: 1px solid #2e3d74; padding: 8px 10px; border-radius: 8px; cursor: pointer; font-size: 14px; }
+  button:disabled { opacity: .5; cursor: not-allowed; }
+  .btn-danger { background: #7a2a2a; border-color: #7a2a2a; }
+  .pill { border: 1px solid #2e3457; border-radius: 999px; padding: 4px 8px; font-size: 12px; }
+
+  /* Tape */
+  .tape { position: relative; display: inline-flex; gap: 6px; padding: 10px; background: #141832; border: 1px solid #242b53; border-radius: 10px; }
+  .tcell { width: 32px; height: 32px; line-height: 32px; text-align: center; border-radius: 6px; background: #0f1430; border: 1px solid #253067; color: #e6ebf2; font-weight: 600; position: relative; }
+  .tidx { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); font-size: 10px; color: #9aa3b2; }
+  #win { position: absolute; height: 4px; background: #3b82f6; bottom: -6px; border-radius: 999px; }
+
+  /* DP grid as table for maximum compatibility */
+  table { border-collapse: collapse; }
+  th, td { width: 30px; height: 30px; text-align: center; border: 1px solid #232a4a; font-size: 12px; }
+  th { color: #9aa3b2; background: transparent; border: none; }
+
+  .kv { display: grid; grid-template-columns: 150px 1fr; gap: 6px; font-size: 13px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+  .note { background: #101531; border: 1px dashed #2a3c7a; border-radius: 8px; padding: 8px; font-size: 12px; color: #9aa3b2; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card" style="margin-bottom:10px;">
+      <h1>Longest Palindromic Substring — DP condition demo (Compat)</h1>
+      <div class="row-narrow" style="margin-top:6px;">
+        <label class="muted">String</label>
+        <input id="strInput" type="text" value="babad" />
+        <button id="rebuild">Rebuild</button>
+        <div class="pill" id="bestBadge">best: —</div>
+      </div>
+      <div class="tape" id="tape" style="margin-top:8px;"></div>
+      <div id="win"></div>
+    </div>
+
+    <div class="row">
+      <div class="card">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+          <div class="muted">Grid: rows = l, cols = r. Only l ≤ r are valid.</div>
+        </div>
+        <div id="gridWrap" style="overflow:auto; border:1px solid #242b53; border-radius:10px; background:#141832; padding:8px;">
+          <table id="grid"></table>
+        </div>
+      </div>
+
+      <div class="card">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+          <div class="pill">Step <span id="stepIdx">0</span>/<span id="stepTotal">0</span></div>
+          <div class="pill">L=<span id="Lval">1</span>, l=<span id="lval">0</span>, r=<span id="rval">0</span></div>
+        </div>
+        <div class="kv">
+          <div>s[l]</div><div id="charL">-</div>
+          <div>s[r]</div><div id="charR">-</div>
+          <div>Check 1</div><div id="check1">s[l] == s[r] → ?</div>
+          <div>Check 2</div><div id="check2">(L == 2 or dp[l+1][r-1]) → ?</div>
+          <div>Decision</div><div id="decision">dp[l][r] = ?</div>
+        </div>
+        <div class="note" style="margin-top:8px;">
+          Recurrence (closed indices): dp[l][r] = (s[l] == s[r]) and (L == 2 or dp[l+1][r-1]). L=1 base: dp[i][i]=True.
+        </div>
+        <div style="display:flex; gap:8px; margin-top:10px;">
+          <button id="prev">◀ Prev</button>
+          <button id="next">Next ▶</button>
+          <button id="play">Auto</button>
+          <button id="reset" class="btn-danger">Reset</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+(function(){
+  // Colors and sizes kept in JS and applied inline to resist overrides
+  const COLORS = {
+    trueCell: '#1b6a49',
+    falseCell: '#242a45',
+    offCell: 'transparent',
+    currentBorder: '#ff7f50',
+    innerOutline: '#b084f5',
+    winBar: '#3b82f6'
+  };
+  const CELL_W = 30; // px, visual only
+
+  const MAX_N = 20;
+  let s = 'babad';
+  let n = s.length;
+  let dp = [];
+  let steps = [];
+  let stepIdx = 0;
+  let playing = false;
+  let timer = null;
+
+  const el = id => document.getElementById(id);
+  const grid = el('grid');
+  const tape = el('tape');
+  const win = el('win');
+
+  function clamp(v, lo, hi){ return Math.max(lo, Math.min(hi, v)); }
+
+  function esc(str){ return String(str).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;'}[m])); }
+
+  function buildTape(){
+    tape.innerHTML = '';
+    for(let i=0;i<n;i++){
+      const d = document.createElement('div');
+      d.className = 'tcell';
+      d.innerHTML = '<div class="tidx">'+i+'</div>'+esc(s[i]);
+      tape.appendChild(d);
+    }
+  }
+
+  function updateWindow(l, r){
+    if(!tape.children.length){ win.style.width = '0px'; return; }
+    const left = tape.children[l].offsetLeft - tape.children[0].offsetLeft;
+    const right = tape.children[r].offsetLeft - tape.children[0].offsetLeft + tape.children[r].offsetWidth;
+    win.style.left = left + 'px';
+    win.style.width = Math.max(0, right - left) + 'px';
+    win.style.background = COLORS.winBar;
+  }
+
+  function buildGrid(){
+    // headers row 0..n
+    let thead = '<tr><th></th>';
+    for(let r=0;r<n;r++){ thead += '<th>'+r+'</th>'; }
+    thead += '</tr>';
+
+    let rows = '';
+    for(let l=0;l<n;l++){
+      rows += '<tr><th>'+l+'</th>';
+      for(let r=0;r<n;r++){
+        // placeholder td with data attrs
+        rows += '<td data-l="'+l+'" data-r="'+r+'"></td>';
+      }
+      rows += '</tr>';
+    }
+    grid.innerHTML = thead + rows;
+  }
+
+  function deepCopy2D(a){ return a.map(row => row.slice()); }
+
+  function computeSteps(){
+    steps = [];
+    dp = Array.from({length:n},()=>Array(n).fill(false));
+    let best = {l:0, len:1};
+
+    for(let i=0;i<n;i++){
+      dp[i][i] = true;
+      steps.push({L:1, l:i, r:i, sL:s[i], sR:s[i], eq:true, inner:null, innerVal:null, decision:true, dp:deepCopy2D(dp), best:{...best}});
+    }
+
+    for(let L=2; L<=n; L++){
+      for(let l=0; l<=n-L; l++){
+        const r = l + L - 1;
+        const eq = s[l] === s[r];
+        let innerVal = null; let inner = null; let decision = false;
+        if(L === 2){
+          decision = eq;
+        } else {
+          inner = {l: l+1, r: r-1};
+          innerVal = dp[l+1][r-1];
+          decision = eq && innerVal;
+        }
+        dp[l][r] = decision;
+        if(decision && L > best.len){ best = {l, len:L}; }
+        steps.push({ L, l, r, sL:s[l], sR:s[r], eq, inner, innerVal, decision, dp: deepCopy2D(dp), best: {...best} });
+      }
+    }
+  }
+
+  function paintGrid(st){
+    const tds = grid.querySelectorAll('td');
+    tds.forEach(td => {
+      const l = parseInt(td.getAttribute('data-l'),10);
+      const r = parseInt(td.getAttribute('data-r'),10);
+      td.style.boxShadow = '';
+      td.style.outline = '';
+      if(r < l){ td.style.background = 'transparent'; td.textContent = ''; td.style.border = 'none'; return; }
+      td.style.border = '1px solid #232a4a';
+      const val = st.dp[l][r];
+      td.style.background = val ? COLORS.trueCell : COLORS.falseCell;
+      td.textContent = val ? 'T' : '';
+      if(l===st.l && r===st.r){ td.style.boxShadow = 'inset 0 0 0 2px '+COLORS.currentBorder; }
+      if(st.inner && l===st.inner.l && r===st.inner.r){ td.style.outline = '2px solid '+COLORS.innerOutline; }
+    });
+  }
+
+  function renderStep(k){
+    k = Math.max(0, Math.min(k, steps.length-1));
+    stepIdx = k;
+    const st = steps[k];
+    el('stepIdx').textContent = k+1;
+    el('stepTotal').textContent = steps.length;
+    el('Lval').textContent = st.L;
+    el('lval').textContent = st.l;
+    el('rval').textContent = st.r;
+    el('charL').textContent = st.sL ?? '-';
+    el('charR').textContent = st.sR ?? '-';
+
+    const c1 = st.eq ? 'True' : 'False';
+    let c2;
+    if(st.L === 1){ c2 = 'base: dp[i][i]=True'; }
+    else if(st.L === 2){ c2 = '(L == 2) → True'; }
+    else { c2 = 'dp[l+1][r-1] → ' + (st.innerVal ? 'True' : 'False'); }
+    el('check1').textContent = 's[l] == s[r] → ' + c1;
+    el('check2').textContent = c2;
+    el('decision').textContent = 'dp[l][r] = ' + (st.decision ? 'True' : 'False');
+
+    const bestStr = s.slice(st.best.l, st.best.l + st.best.len);
+    el('bestBadge').textContent = 'best: "' + bestStr + '" @ [' + st.best.l + ', ' + (st.best.l+st.best.len-1) + '] len=' + st.best.len;
+
+    updateWindow(st.l, st.r);
+    paintGrid(st);
+    updateButtons();
+  }
+
+  function rebuild(){
+    s = el('strInput').value || 'a';
+    if(s.length > MAX_N){ alert('Limit to '+MAX_N+' characters.'); s = s.slice(0, MAX_N); el('strInput').value = s; }
+    n = s.length;
+    buildTape();
+    buildGrid();
+    computeSteps();
+    renderStep(0);
+  }
+
+  function updateButtons(){
+    el('prev').disabled = stepIdx<=0;
+    el('next').disabled = stepIdx>=steps.length-1;
+    el('reset').disabled = stepIdx===0;
+  }
+
+  // Controls
+  el('prev').onclick = ()=>{ pause(); renderStep(stepIdx-1); };
+  el('next').onclick = ()=>{ pause(); renderStep(stepIdx+1); };
+  el('reset').onclick = ()=>{ pause(); renderStep(0); };
+  el('play').onclick = ()=>{
+    if(playing){ pause(); return; }
+    playing = true; el('play').textContent = 'Pause';
+    timer = setInterval(()=>{
+      if(stepIdx >= steps.length-1){ pause(); return; }
+      renderStep(stepIdx+1);
+    }, 550);
+  };
+  function pause(){ playing = false; el('play').textContent = 'Auto'; if(timer){ clearInterval(timer); timer = null; } }
+
+  el('rebuild').onclick = ()=>{ pause(); rebuild(); };
+
+  // init
+  rebuild();
+})();
+</script>
+</body>
+</html>
