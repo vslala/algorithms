@@ -9,6 +9,7 @@ import java.lang.reflect.Field;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -57,7 +58,7 @@ class HairColorValidator implements Validator{
 
         String hex = credential.substring(1);
         for (int i=0; i  < hex.length(); i++) {
-            if (!Character.isDigit(hex.charAt(i)) || !((int)hex.charAt(i) >= 97 && hex.charAt(i) <= 102))
+            if (!Character.isDigit(hex.charAt(i)) && !((int)hex.charAt(i) >= 97 && hex.charAt(i) <= 102))
                 return false;
         }
 
@@ -106,19 +107,17 @@ class PassportDetails {
 
     public boolean isValid() {
 
-        var validators = Map.of(
-                byr, new RangeAndLengthValidator(1920, 2002, 4),
-                iyr, new RangeAndLengthValidator(2010, 2020, 4),
-                eyr, new RangeAndLengthValidator(2020, 2030, 4),
-                hgt, new HeightValidator(),
-                hcl, new HairColorValidator(),
-                ecl, new WhiteListValidator(new String[]{"amb", "blu", "brn", "gry", "grn", "hzl", "oth"}),
-                pid, new NumberValidator(),
-                cid, new AlwaysTrue()
-        );
+        var validators = new HashMap<String, Validator>();
+        if (byr != null) validators.put(byr, new RangeAndLengthValidator(1920, 2002, 4));
+        if (iyr != null) validators.put(iyr, new RangeAndLengthValidator(2010, 2020, 4));
+        if (eyr != null) validators.put(eyr, new RangeAndLengthValidator(2020, 2030, 4));
+        if (hgt != null) validators.put(hgt, new HeightValidator());
+        if (hcl != null) validators.put(hcl, new HairColorValidator());
+        if (ecl != null) validators.put(ecl, new WhiteListValidator(new String[]{"amb", "blu", "brn", "gry", "grn", "hzl", "oth"}));
+        if (pid != null) validators.put(pid, new NumberValidator());
+        if (cid != null) validators.put(cid, new AlwaysTrue());
 
-        AtomicBoolean isValid = new AtomicBoolean();
-        return validators.entrySet()
+        return validators.size() >= 7 && validators.entrySet()
                 .stream()
                 .allMatch(stringValidatorEntry -> stringValidatorEntry.getValue().validate(stringValidatorEntry.getKey()));
     }

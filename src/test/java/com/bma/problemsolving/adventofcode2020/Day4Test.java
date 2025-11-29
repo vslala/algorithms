@@ -21,10 +21,13 @@ class Day4Test {
         var testClass = new Day4();
 
         testData.forEach((passportDetails, val) -> {
+            boolean result = testClass.isValid(passportDetails);
+            System.out.println("Input: " + passportDetails);
+            System.out.println("Expected: " + val + ", Got: " + result);
             if (val)
-                assertTrue(testClass.isValid(passportDetails));
+                assertTrue(result, "Expected true for: " + passportDetails);
             else
-                assertFalse(testClass.isValid(passportDetails));
+                assertFalse(result, "Expected false for: " + passportDetails);
         });
 
     }
