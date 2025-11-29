@@ -71,16 +71,8 @@ flowchart TD
 
     subgraph Job Process Workflow
         url_frontier -->|Deque Job Url|url_job_processor["URL Job Processor"]
-        url_job_processor -->html_download["Download HTML"]
-        html_download --> dedup_content{Is Duplicate?}
-        dedup_content -->|Yes|update_job_status["Update Job Status"]
-        update_job_status --> url_jobs_db[(URL Jobs DB)]
-        dedup_content -->|No|parse_url["Parse URLs"]
-        parse_url --> has_seen{"Has Seen?"}
-        has_seen -->|Yes| reject_url["Reject URL"]
-        has_seen -->|No| url_frontier
-        reject_url --> stop((stop))
-        update_job_status -->|Update status|cache
+        url_job_processor -->|"Process each URL Job"| url_job_processor
+        url_job_processor -->|"Publish next level urls"| url_frontier
     end
     
     subgraph Job Status Workflow
@@ -89,7 +81,33 @@ flowchart TD
 
 ```
 
-Let's expand on the database structure 
+Let's expand on the URL Job Processor workflow from the above. When you discuss this with the interviewer, the entire story becomes clear.
+
+```mermaid
+---
+title: Job Processor Workflow
+---
+flowchart TD
+    job_worker["Job Worker"] -->|"publish job url"| url_frontier["URL Frontier"]
+    url_frontier -->|"poll job url"| job_processor["Job URL Worker"]
+    job_processor -->|"check url"| check_duplicate_url{"has seen?"}
+    subgraph "Internal Workflow"
+    direction LR
+        check_duplicate_url -->|"No"| download_html[["Download HTML"]]
+        check_duplicate_url -->|"Yes"| mark_job_complete
+        download_html -->|"check content"| is_content_duplicate{"has seen?"}
+        is_content_duplicate --> |"No"| enqueue_url[["Enqueue URL"]]
+        is_content_duplicate --> |"Yes"| mark_job_complete[["Mark Job Complete"]]
+    end
+
+    enqueue_url -->|publish url| url_frontier
+    mark_job_complete --> |"update job status"| job_url_db[("Job URL DB")]
+```
+
+At this point the entire design starts to make sense slightly. The only bits that remains are the database design and the internals
+on how will you perform duplication check etc... Next we should expand on the database design.
+
+**Let's expand on the database structure** 
 
 ```mermaid
 erDiagram 
@@ -186,13 +204,15 @@ fix the database state. I will think about a solution later on this for now let'
 ## Provide JOB Status to user query
 
 When user queries for the job status, we can now fetch the counts from the cache instead of going against our sql db
-and look for the count of the jobs in pending and in_progress state. 
+and look for the count of the jobs in `pending` and `in_progress`.
+The key-val structure for a cache will be like:
 
+```json
+{
+    "job001::IN_PROGRESS": 0,
+    "job001::COMPLETED": 10
+}
 ```
-if pending > 0 OR in_progress > 0;
-then 
-    return "IN_PROGRESS"
-else if pending == 0 and in_progress == 0 and completed > 0:
-then
-    return "COMPLETED" 
-```
+# Conclusion
+
+Run the app and see it in action :D
