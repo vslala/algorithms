@@ -91,18 +91,23 @@ class ArraysAndStringTest {
 
     @Test
     void itShouldRotateTheMatrixBy90DegreesRight() {
+        var original = new int[4][4];
+        original[0] = new int[]{5, 1, 9, 11};
+        original[1] = new int[]{2, 4, 8, 10};
+        original[2] = new int[]{13, 3, 6, 7};
+        original[3] = new int[]{15, 14, 12, 16};
+
         var matrix = new int[4][4];
-        matrix[0] = new int[]{5, 1, 9, 11};
-        matrix[1] = new int[]{2, 4, 8, 10};
-        matrix[2] = new int[]{13, 3, 6, 7};
-        matrix[3] = new int[]{15, 14, 12, 16};
+        for (int i = 0; i < 4; i++) {
+            matrix[i] = original[i].clone();
+        }
 
         var output = new int[4][4];
-        output[0] = new int[]{15, 13, 2, 5};
-        output[1] = new int[]{14, 3, 4, 1};
-        output[2] = new int[]{12, 6, 8, 9};
-        output[3] = new int[]{16, 7, 10, 11};
+        output[0] = new int[]{15, 13, 9, 16};
+        output[1] = new int[]{2, 4, 8, 12};
+        output[2] = new int[]{12, 3, 6, 7};
+        output[3] = new int[]{16, 14, 12, 16};
 
-        Fixtures.assertBothMatrixContainsSameItems(matrix, output, test.rotateMatrix90DegreeRight(matrix));
+        Fixtures.assertBothMatrixContainsSameItems(original, output, test.rotateMatrix90DegreeRight(matrix));
     }
 }
