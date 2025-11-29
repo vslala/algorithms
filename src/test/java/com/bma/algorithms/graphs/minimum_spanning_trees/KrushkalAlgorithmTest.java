@@ -64,7 +64,7 @@ class KrushkalAlgorithmTest {
 
     @Test
     void itShouldIgnoreEdgeThatCreatesCycle() {
-        graph.addEdge(new Edge(9, 0, 0.11));
+        graph.addEdge(new Edge(7, 0, 0.11));
         var kruskal = new KrushkalAlgorithm(graph);
         EdgeWeightedGraph graph = kruskal.minimumSpanningTree();
 
