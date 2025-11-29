@@ -13,7 +13,18 @@ public class RegularPatternMatchingTest {
     @CsvSource({
             "ss, s, false",
             "ss, .s, true",
-            "ss, s., true"
+            "ss, s., true",
+            "aa, a, false",
+            "aa, a*, true",
+            "ab, .*, true",
+            "aab, c*a*b, true",
+            "mississippi, mis*is*p*., false",
+            "a, ab*, true",
+            "'', a*, true",
+            "abc, abc, true",
+            "abc, .*, true",
+            "aaa, a*a, true",
+            "aaa, ab*a*c*a, true"
     })
     void itShouldMatchAnySingleCharacter(String input, String pattern, boolean expected) {
         var patternMatcher = new RegularPatternMatching();
