@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import webcrawler.models.JobStatus;
 
 import java.time.LocalDateTime;
 
@@ -45,7 +46,7 @@ public class JobUrl {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false, length = 20)
-    private Status status;
+    private JobStatus status;
 
     @Column(name = "depth")
     private Integer depth;
@@ -61,10 +62,6 @@ public class JobUrl {
 
     public enum UrlType {
         URL, IMAGE
-    }
-
-    public enum Status {
-        PENDING, IN_PROGRESS, COMPLETED, FAILED
     }
 
     @PrePersist

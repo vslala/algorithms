@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
+import webcrawler.models.JobStatus;
 import webcrawler.models.JobUrlMessage;
 import webcrawler.repositories.JobUrlRepository;
 import webcrawler.repositories.entities.JobUrl;
@@ -60,7 +61,7 @@ public class EnqueueUrlTask implements Task{
             newJobUrl.setUrl(url);
             newJobUrl.setUrlType(JobUrl.UrlType.URL);
             newJobUrl.setJob(jobUrl.getJob());
-            newJobUrl.setStatus(JobUrl.Status.PENDING);
+            newJobUrl.setStatus(JobStatus.PENDING);
             newJobUrl.setDepth(nextDepth);
             newJobUrl.setParentUrlId(parentUrlId);
             newJobUrl.setCreatedAt(LocalDateTime.now());
@@ -73,7 +74,7 @@ public class EnqueueUrlTask implements Task{
             newJobUrl.setUrl(imageUrl);
             newJobUrl.setUrlType(JobUrl.UrlType.IMAGE);
             newJobUrl.setJob(jobUrl.getJob());
-            newJobUrl.setStatus(JobUrl.Status.COMPLETED);
+            newJobUrl.setStatus(JobStatus.COMPLETED);
             newJobUrl.setDepth(nextDepth);
             newJobUrl.setParentUrlId(parentUrlId);
             newJobUrl.setCreatedAt(LocalDateTime.now());
@@ -101,7 +102,7 @@ public class EnqueueUrlTask implements Task{
         log.info("Pushed {} URLs to url_frontier topic (excluded {} images)",
                 pushedCount, extractedImages.size());
 
-        taskContext.setFinalStatus(JobUrl.Status.COMPLETED);
+        taskContext.setFinalStatus(JobStatus.COMPLETED);
         taskContext.setTerminate(true);
         return taskContext;
     }

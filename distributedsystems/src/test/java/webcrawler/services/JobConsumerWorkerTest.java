@@ -44,14 +44,13 @@ class JobConsumerWorkerTest {
 
     private ObjectMapper objectMapper;
     private JobConsumerWorker jobConsumerWorker;
-    private Cache<String, Integer> jobStatusCache;
 
     @BeforeEach
     void setUp() {
         objectMapper = new ObjectMapper();
         objectMapper.registerModule(new JavaTimeModule());
         objectMapper.disable(com.fasterxml.jackson.databind.SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
-        jobStatusCache = Caffeine.newBuilder().build();
+        Cache<String, Integer> jobStatusCache = Caffeine.newBuilder().build();
         jobConsumerWorker = new JobConsumerWorker(jobRepository, jobUrlRepository, objectMapper, kafkaTemplate, workerTasks, jobStatusCache);
     }
 
@@ -76,7 +75,7 @@ class JobConsumerWorkerTest {
         jobUrl1.setId(1L);
         jobUrl1.setUrl("https://example.com");
         jobUrl1.setUrlType(JobUrl.UrlType.URL);
-        jobUrl1.setStatus(JobUrl.Status.PENDING);
+        jobUrl1.setStatus(JobStatus.PENDING);
         jobUrl1.setDepth(0);
         jobUrl1.setParentUrlId(null);
         jobUrl1.setJob(savedEntity);
@@ -85,7 +84,7 @@ class JobConsumerWorkerTest {
         jobUrl2.setId(2L);
         jobUrl2.setUrl("https://test.com");
         jobUrl2.setUrlType(JobUrl.UrlType.URL);
-        jobUrl2.setStatus(JobUrl.Status.PENDING);
+        jobUrl2.setStatus(JobStatus.PENDING);
         jobUrl2.setDepth(0);
         jobUrl2.setParentUrlId(null);
         jobUrl2.setJob(savedEntity);
@@ -143,11 +142,11 @@ class JobConsumerWorkerTest {
         jobUrl.setId(1L);
         jobUrl.setUrl("https://example.com");
         jobUrl.setUrlType(JobUrl.UrlType.URL);
-        jobUrl.setStatus(JobUrl.Status.PENDING);
+        jobUrl.setStatus(JobStatus.PENDING);
         jobUrl.setDepth(0);
         jobUrl.setParentUrlId(null);
         jobUrl.setJob(savedEntity);
-        savedEntity.setJobUrls(Arrays.asList(jobUrl));
+        savedEntity.setJobUrls(List.of(jobUrl));
 
         when(jobRepository.save(any(JobEntity.class))).thenReturn(savedEntity);
 

@@ -23,7 +23,7 @@ public class ModelMapper {
     public static JobEntity toEntity(WebCrawlerJob job) {
         JobEntity entity = new JobEntity();
         entity.setJobId(job.getJobId());
-        entity.setStatus(JobEntity.JobStatus.valueOf(job.getJobStatus().toString()));
+        entity.setStatus(JobStatus.valueOf(job.getJobStatus().toString()));
         entity.setMaxDepth(job.getMaxDepth());
         entity.setCreatedAt(job.getCreatedAt());
         entity.setUpdatedAt(job.getUpdatedAt());
@@ -34,7 +34,7 @@ public class ModelMapper {
                 jobUrl.setUrl(url);
                 jobUrl.setUrlType(JobUrl.UrlType.URL);
                 jobUrl.setJob(entity);
-                jobUrl.setStatus(JobUrl.Status.PENDING);
+                jobUrl.setStatus(JobStatus.PENDING);
                 jobUrl.setDepth(0);
                 return jobUrl;
             })

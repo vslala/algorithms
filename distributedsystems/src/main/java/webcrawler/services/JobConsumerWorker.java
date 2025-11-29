@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import webcrawler.components.Task;
 import webcrawler.components.TaskContext;
+import webcrawler.models.JobStatus;
 import webcrawler.models.JobUrlMessage;
 import webcrawler.models.WebCrawlerJob;
 import webcrawler.repositories.JobRepository;
@@ -117,14 +118,14 @@ public class JobConsumerWorker {
         final String inProgressKey = jobUrl.getJob().getJobId() + "::IN_PROGRESS";
 
         // Always increment IN_PROGRESS first, since URL is being processed
-        jobUrl.setStatus(JobUrl.Status.IN_PROGRESS);
+        jobUrl.setStatus(JobStatus.IN_PROGRESS);
         jobUrlRepository.save(jobUrl);
         this.jobStatusCache.put(inProgressKey, Objects.requireNonNull(this.jobStatusCache.get(inProgressKey, k -> 0)) + 1);
 
         if (message.getDepth() >= this.maxDepth.getOrDefault(message.getJobId(), 0)) {
             log.info("Skipping URL due to max depth limit: {} (depth: {}, max: {})",
                 jobUrl.getUrl(), message.getDepth(), this.maxDepth.get(message.getJobId()));
-            jobUrl.setStatus(JobUrl.Status.COMPLETED);
+            jobUrl.setStatus(JobStatus.COMPLETED);
             jobUrlRepository.save(jobUrl);
 
             // Update cache: decrement IN_PROGRESS, increment COMPLETED
@@ -150,16 +151,18 @@ public class JobConsumerWorker {
                 jobUrl.setStatus(taskContext.getFinalStatus());
                 jobUrlRepository.save(jobUrl);
                 log.info("URL processing completed with status {}: {}", taskContext.getFinalStatus(), jobUrl.getUrl());
-
                 // Update cache: decrement IN_PROGRESS, increment COMPLETED
                 this.jobStatusCache.put(inProgressKey, Objects.requireNonNull(this.jobStatusCache.get(inProgressKey, k -> 0)) - 1);
                 this.jobStatusCache.put(completedKey, Objects.requireNonNull(this.jobStatusCache.get(completedKey, k -> 0)) + 1);
+                JobEntity job = jobRepository.findByJobId(message.getJobId()).orElseThrow();
+                job.setStatus(taskContext.getFinalStatus());
+                jobRepository.save(job);
             } else {
                 log.info("Successfully processed URL: {}", jobUrl.getUrl());
             }
         } catch (Exception e) {
             log.error("Failed to process URL with exception: {} - {}", jobUrl.getUrl(), e.getMessage());
-            jobUrl.setStatus(JobUrl.Status.FAILED);
+            jobUrl.setStatus(JobStatus.FAILED);
             jobUrlRepository.save(jobUrl);
 
             // Update cache: decrement IN_PROGRESS, increment COMPLETED

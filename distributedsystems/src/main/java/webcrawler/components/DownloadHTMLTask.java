@@ -5,6 +5,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
+import webcrawler.models.JobStatus;
 import webcrawler.repositories.entities.JobUrl;
 
 /**
@@ -33,7 +34,7 @@ public class DownloadHTMLTask implements Task {
             taskContext.setDocument(document);
         } catch (Exception e) {
             log.warn("Failed to download URL, marking as FAILED: {} - {}", jobUrl.getUrl(), e.getMessage());
-            taskContext.setFinalStatus(JobUrl.Status.FAILED);
+            taskContext.setFinalStatus(JobStatus.FAILED);
             taskContext.setTerminate(true);
         }
 

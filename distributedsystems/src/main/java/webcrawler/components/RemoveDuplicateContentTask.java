@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
+import webcrawler.models.JobStatus;
 import webcrawler.repositories.entities.JobUrl;
 
 import java.nio.charset.StandardCharsets;
@@ -41,7 +42,7 @@ public class RemoveDuplicateContentTask implements Task {
         assert uniquePageContent != null;
         if (uniquePageContent.contains(pageContentHash)) {
             log.info("Duplicate content found, marking for completion: {}", jobUrl.getUrl());
-            taskContext.setFinalStatus(JobUrl.Status.COMPLETED);
+            taskContext.setFinalStatus(JobStatus.COMPLETED);
             taskContext.setTerminate(true);
         } else {
             uniquePageContent.add(pageContentHash);

@@ -3,6 +3,7 @@ package webcrawler.repositories;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+import webcrawler.models.JobStatus;
 import webcrawler.repositories.entities.JobEntity;
 
 import java.util.Optional;
@@ -31,6 +32,6 @@ public interface JobRepository extends JpaRepository<JobEntity, String> {
      * Count jobs by status
      */
     @Query("SELECT COUNT(j) FROM JobEntity j WHERE j.status = :status")
-    long countByStatus(JobEntity.JobStatus status);
+    long countByStatus(JobStatus status);
 
 }

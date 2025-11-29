@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import webcrawler.models.JobStatus;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -43,10 +44,6 @@ public class JobEntity {
 
     @OneToMany(mappedBy = "job", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<JobUrl> jobUrls = new ArrayList<>();
-
-    public enum JobStatus {
-        PENDING, IN_PROGRESS, COMPLETED, FAILED
-    }
 
     @PrePersist
     protected void onCreate() {

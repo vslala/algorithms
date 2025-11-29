@@ -5,6 +5,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+import webcrawler.models.JobStatus;
 import webcrawler.repositories.entities.JobUrl;
 
 import java.util.List;
@@ -29,13 +30,13 @@ public interface JobUrlRepository extends JpaRepository<JobUrl, Long> {
      * Find URLs by job ID and status
      */
     @Query("SELECT ju FROM JobUrl ju WHERE ju.job.jobId = :jobId AND ju.status = :status")
-    List<JobUrl> findByJobIdAndStatus(String jobId, JobUrl.Status status);
+    List<JobUrl> findByJobIdAndStatus(String jobId, JobStatus status);
 
     /**
      * Count URLs by job ID and status
      */
     @Query("SELECT COUNT(ju) FROM JobUrl ju WHERE ju.job.jobId = :jobId AND ju.status = :status")
-    long countByJobIdAndStatus(String jobId, JobUrl.Status status);
+    long countByJobIdAndStatus(String jobId, JobStatus status);
 
     /**
      * Find all image URLs for a given job ID

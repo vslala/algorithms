@@ -3,6 +3,7 @@ package webcrawler.components;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.jsoup.nodes.Document;
+import webcrawler.models.JobStatus;
 import webcrawler.repositories.entities.JobEntity;
 import webcrawler.repositories.entities.JobUrl;
 
@@ -19,7 +20,7 @@ public class TaskContext {
     private Document document;
     private String pageContent;
     private boolean terminate;
-    private JobUrl.Status finalStatus;
+    private JobStatus finalStatus;
 
     public TaskContext(JobUrl jobUrl) {
         this.jobUrl = jobUrl;
