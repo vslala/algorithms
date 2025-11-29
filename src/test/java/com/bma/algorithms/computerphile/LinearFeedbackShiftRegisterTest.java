@@ -19,7 +19,7 @@ class LinearFeedbackShiftRegisterTest {
             sb.append(number).append(",");
         }
         Util.println(sb);
-        assertEquals("8287889910101515010305015", sb.toString());
+        assertEquals("10,15,1,3,5,14,2,6,11,12,4,13,7,8,9,10,15,1,3,5,14,2,6,11,12,4,13,7,8,9,10,15,1,3,5,14,2,6,11,12,4,13,7,8,9,10,15,1,3,5,", sb.toString());
     }
 
     @Test

@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class DynamicDigraphTest {
 
-    private static final Path graphPath = Path.of("src/test/resources/depth_first_order.txt");
+    private static final Path graphPath = Path.of("src/test/resources/depth_first_order_dynamic.txt");
     DynamicDigraph digraph = new DynamicDigraph(graphPath);
 
     DynamicDigraphTest() throws IOException {

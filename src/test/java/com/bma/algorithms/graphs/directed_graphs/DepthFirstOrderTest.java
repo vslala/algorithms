@@ -8,7 +8,7 @@ import java.nio.file.Path;
 
 class DepthFirstOrderTest {
 
-    private final Path graphFile = Path.of("src/test/resources/depth_first_order.txt");
+    private final Path graphFile = Path.of("src/test/resources/depth_first_order_dynamic.txt");
     private DynamicDigraph graph;
     private DepthFirstOrder depthFirstOrder;
 
