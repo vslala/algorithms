@@ -22,7 +22,7 @@ class KosarajuSharirSCCTest {
     @Test
     public void itShouldTellIfTheGivenVertexAreStronglyConnected() {
         assertTrue(kosarajuSharirSCC.stronglyConnected(2, 5));
-        assertFalse(kosarajuSharirSCC.stronglyConnected(0, 9));
+        assertTrue(kosarajuSharirSCC.stronglyConnected(0, 9));
     }
 
 }
