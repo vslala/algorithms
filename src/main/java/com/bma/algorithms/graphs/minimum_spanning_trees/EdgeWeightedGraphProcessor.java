@@ -12,13 +12,17 @@ class EdgeWeightedGraphProcessor<T extends EdgeWeightedGraph> {
 
     public boolean detectCycle(EdgeWeightedGraph graph, int vertex, int totalVertices) {
         if (Objects.isNull(marked)) marked = new boolean[totalVertices];
+        return detectCycle(graph, vertex, vertex, totalVertices);
+    }
+
+    private boolean detectCycle(EdgeWeightedGraph graph, int vertex, int parent, int totalVertices) {
         marked[vertex] = true;
         graph.adj(vertex).forEach(IEdge -> {
             int w = IEdge.other(vertex);
             Util.println(":  " + w);
             if (!marked[w])
-                detectCycle(graph, w, totalVertices);
-            else
+                detectCycle(graph, w, vertex, totalVertices);
+            else if (w != parent)
                 cycleExists.set(true); // cycle exists
         });
 
