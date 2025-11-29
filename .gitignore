@@ -30,6 +30,8 @@ build
 .venv
 
 # misc
-chatbot.db
 git_show_head.dat
 git_diff.dat
+*.db
+*.db-wal
+*.db-shm

@@ -1,5 +1,7 @@
 plugins {
     id 'java'
+    id 'org.springframework.boot' version '3.2.0'
+    id 'io.spring.dependency-management' version '1.1.4'
 }
 
 group 'org.bma.distributedalgorithms'
@@ -27,6 +29,24 @@ dependencies {
     implementation libs.zookeeper
     implementation libs.commons.io
 
+    // Spring Boot dependencies
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.kafka:spring-kafka'
+
+    // Swagger/OpenAPI dependencies
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.3.0'
+
+    // Spring Data JPA and SQLite dependencies
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.xerial:sqlite-jdbc:3.45.0.0'
+    implementation 'org.hibernate.orm:hibernate-community-dialects:6.3.1.Final'
+
+    // JSoup for HTML parsing
+    implementation 'org.jsoup:jsoup:1.17.2'
+
+    // Cache library
+    implementation("com.github.ben-manes.caffeine:caffeine:3.2.3")
+
     compileOnly("org.projectlombok:lombok:1.18.38")
     annotationProcessor("org.projectlombok:lombok:1.18.38")
 
@@ -34,6 +54,10 @@ dependencies {
     testAnnotationProcessor("org.projectlombok:lombok:1.18.38")
 
     testImplementation 'org.awaitility:awaitility:4.1.1'
+
+    // Spring Boot test dependencies
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.kafka:spring-kafka-test'
 
     testImplementation libs.junit.jupiter.api
     testRuntimeOnly libs.junit.jupiter.engine
