@@ -15,8 +15,8 @@ class FindMostCompetitiveSubsequence {
     public int[] mostCompetitive(int[] nums, int k) {
         var mem = new ArrayList<Integer>();
         boolean[] visited = new boolean[nums.length];
-        var ans = new ArrayList<Integer>(Integer.MAX_VALUE);
-        var minSequence = new AtomicInteger();
+        var ans = new ArrayList<Integer>();
+        var minSequence = new AtomicInteger(Integer.MAX_VALUE);
         subsequence(mem, k, nums, 0, ans, minSequence);
         return toArray(ans);
     }

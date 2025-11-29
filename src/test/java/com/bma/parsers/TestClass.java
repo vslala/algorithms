@@ -5,6 +5,7 @@ import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Objects;
 
 public class TestClass {
 
@@ -54,15 +55,15 @@ public class TestClass {
             public void run() {
                 for (int i=0; i<10; i++) {
                     System.out.println("Thread is running...");
-                    Thread.sleep(1000);
+                    Thread.sleep(50);
                     System.out.println(this.getState());
                 }
             }
         };
-        t1.setName("MyThread-" + t1.getId());
+        t1.setName("MyThread-" + t1.threadId());
         t1.start();
 
-        Thread.sleep(10000);
+        Thread.sleep(100);
         System.out.println("Thread2 is sleeping...");
         System.out.println("EXecution is finished!");
     }
@@ -70,7 +71,7 @@ public class TestClass {
     @Test
     public void getThread() {
         Thread.getAllStackTraces().keySet().forEach(thread -> {
-            if (thread.getName() == "MyThread-16") {
+            if (Objects.equals(thread.getName(), "MyThread-16")) {
                 System.out.println("Thread found!");
             }
         });

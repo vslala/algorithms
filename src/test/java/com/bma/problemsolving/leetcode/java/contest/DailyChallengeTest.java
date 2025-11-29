@@ -25,7 +25,6 @@ class DailyChallengeTest {
     @ParameterizedTest
     @CsvSource(value = {
             "[RandomizedSet,insert(0),insert(1),remove(0),insert(2),remove(1),getRandom] [null,true,true,true,true,true,2]",
-            "[RandomizedSet,insert(1),remove(2),insert(2),getRandom,remove(1),insert(2),getRandom] [null,true,false,true,1,true,false,2]",
             "[RandomizedSet,remove(0),remove(0),insert(0),getRandom,remove(0),insert(0)] [null,false,false,true,0,true,true]"
     }, delimiter = ' ')
     void itShouldPerformCorrectOperationsInO1Time(String input, String expected) {

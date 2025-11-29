@@ -12,7 +12,7 @@ class GraphValidTreeTest {
     @ParameterizedTest
     @CsvSource({
             "5, [[0_1]:[0_2]:[0_3]:[1_4]], true",
-            "5, [[0_1]:[1_2]:[2_3]:[1_3],[1_4]], false",
+            "5, [[0_1]:[1_2]:[2_3]:[1_3]:[1_4]], false",
             "5, [[0_1]:[0_4]:[1_4]:[2_3]], false"
     })
     void shouldReturnTrueIfTheGivenGraphIsAValidTree(int vertices, String expression, boolean expected) {

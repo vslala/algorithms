@@ -12,11 +12,11 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class MaximumDifferenceBetweenEvenAndOddFrequencyPartTwoTest {
 
-    @ParameterizedTest
-    @JsonSource(value = {
+    // @ParameterizedTest
+    // @JsonSource(value = {
 
-    })
-    void it_should_return_the_maximum_difference_between_even_and_odd_freq_chars_with_atleast_k_length_substring() {
-        
-    }
+    // })
+    // void it_should_return_the_maximum_difference_between_even_and_odd_freq_chars_with_atleast_k_length_substring() {
+
+    // }
 }

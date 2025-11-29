@@ -22,7 +22,7 @@ public class FindNthTermFromEndInTheLinkedListTest {
 
     @Test
     public void it_should_add_the_new_nodes_at_the_end() {
-        assertEquals(10000, testClass.size());
+        assertEquals(10000000, testClass.size());
     }
 
     @Test

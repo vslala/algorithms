@@ -1,6 +1,7 @@
 package com.bma.systemdesign.zookeeper.leaderelection;
 
 import lombok.SneakyThrows;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -8,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 class LeaderElectionTest {
 
     @Test
+    @Disabled("Requires ZooKeeper to be running")
     void shouldConnectToZookeeper() {
         var leaderElection = new LeaderElection();
 

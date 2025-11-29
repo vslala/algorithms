@@ -11,7 +11,7 @@ class BinaryTreeRightSideViewTest {
 
     @ParameterizedTest
     @CsvSource({
-            "1_2_3_-1_5_-1_4, 1_3_5_4"
+            "1_2_3_-1_5_-1_4, 1_3_4"
     })
     void shouldReturnTheValuesOfTheTreeInOrderFromTheRightView(String inputStr, String expectedStr) {
         int[] original = Fixtures.splitAndParseArr(inputStr, "_");
