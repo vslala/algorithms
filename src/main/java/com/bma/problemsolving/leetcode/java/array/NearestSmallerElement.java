@@ -48,17 +48,17 @@ class NearestSmallerElement {
             int num = arr[i];
             if (stack.isEmpty()) {
                 result[i] = i;
-                stack.push(num);
-            } else if (stack.peek() > num) {
+                stack.push(i);
+            } else if (arr[stack.peek()] > num) {
                 result[i] = stack.peek();
-                stack.push(num);
+                stack.push(i);
             } else {
-                while (!stack.isEmpty() && stack.peek() <= num) {
+                while (!stack.isEmpty() && arr[stack.peek()] <= num) {
                     stack.pop();
                 }
 
                 result[i] = stack.isEmpty() ? i : stack.peek();
-                stack.push(num);
+                stack.push(i);
             }
         }
 
