@@ -96,19 +96,9 @@ class StronglyConnectedComponents {
      */
     public int count() {
         var depthFirstOrder = new DepthFirstOrder(this.dag.reverse());
-        Util.println("PRE:\t" + StreamSupport.stream(depthFirstOrder.pre().spliterator(), false)
-            .map(String::valueOf).collect(Collectors.joining(" ")));
 
-        Util.println("POST:\t" + StreamSupport.stream(depthFirstOrder.post().spliterator(),  false)
-                .map(String::valueOf)
-                .collect(Collectors.joining(" ")));
-
-        Util.println("R-POST:\t" + StreamSupport.stream(reversePostOrder(dag).spliterator(),false)
-                .map(String::valueOf)
-                .collect(Collectors.joining(" ")));
-
+        marked = new boolean[dag.vertices()];
         for (int v: depthFirstOrder.reversePost()) {
-            Util.print(v + " ");
             if (!marked[v]) {
                 dfs(dag, v);
                 count += 1;

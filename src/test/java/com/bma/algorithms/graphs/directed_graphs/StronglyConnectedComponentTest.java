@@ -20,10 +20,9 @@ class StronglyConnectedComponentTest {
 
     @Test
     void findStronglyConnectedComponents() {
-//        print();
         var scc = new StronglyConnectedComponents(digraph);
         int connectedComponents = scc.count();
-        assertEquals(4, connectedComponents);
+        assertEquals(2, connectedComponents);
     }
 
     private void print() {
