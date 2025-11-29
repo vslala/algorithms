@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class Day2Test {
 
-    private static final String inputFile = "/Users/in-varun.shrivastava/Code/src/github.com/java/Algorithms/src/main/java/com/bma/algorithms/adventofcode2020/inputs/day2.txt";
+    private static final String inputFile = "src/test/resources/adventofcode2020/inputs/day2.txt";
 
     @Test
     void itShouldTellIfTheGivenPasswordSatisfiesThePolicy() {
