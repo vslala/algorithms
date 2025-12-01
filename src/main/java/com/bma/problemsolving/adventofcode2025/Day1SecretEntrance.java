@@ -9,7 +9,7 @@ import java.util.List;
  */
 class Day1SecretEntrance {
 
-    public int findPassword(List<String> input) {
+    public int part1(List<String> input) {
         int count = 0;
         int pointer = 50;
         for (String instruction : input) {
@@ -26,6 +26,43 @@ class Day1SecretEntrance {
 
             if (pointer == 0) {
                 count += 1;
+            }
+
+        }
+
+        return count;
+    }
+
+    public int part2(List<String> input) {
+        int count = 0;
+        int pointer = 50;
+        for (String instruction : input) {
+            char direction = instruction.charAt(0);
+            int distance = Integer.parseInt(instruction.substring(1));
+
+            switch (direction) {
+                case 'L' -> {
+                    for (int i = 0; i < distance; i++) {
+                        pointer--;
+                        if (pointer == 0) {
+                            count += 1;
+                        }
+
+                        if (pointer == -1) {
+                            pointer = 99;
+                        }
+                    }
+                }
+                case 'R' -> {
+                    for (int i = 0; i < distance; i++) {
+                        pointer++;
+                        if (pointer == 100) {
+                            count += 1;
+                            pointer = 0;
+                        }
+                    }
+                }
+                default -> throw new RuntimeException("Invalid direction");
             }
 
         }
