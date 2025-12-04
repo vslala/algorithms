@@ -42,25 +42,14 @@ class Day1SecretEntrance {
 
             switch (direction) {
                 case 'L' -> {
-                    for (int i = 0; i < distance; i++) {
-                        pointer--;
-                        if (pointer == 0) {
-                            count += 1;
-                        }
-
-                        if (pointer == -1) {
-                            pointer = 99;
-                        }
-                    }
+                    // Count multiples of 100 in range [pointer-distance, pointer-1]
+                    count += Math.floorDiv(pointer - 1, 100) - Math.floorDiv(pointer - distance - 1, 100);
+                    pointer = ((pointer - distance) % 100 + 100) % 100;
                 }
                 case 'R' -> {
-                    for (int i = 0; i < distance; i++) {
-                        pointer++;
-                        if (pointer == 100) {
-                            count += 1;
-                            pointer = 0;
-                        }
-                    }
+                    // Count multiples of 100 in range [pointer+1, pointer+distance]
+                    count += Math.floorDiv(pointer + distance, 100) - Math.floorDiv(pointer, 100);
+                    pointer = (pointer + distance) % 100;
                 }
                 default -> throw new RuntimeException("Invalid direction");
             }
