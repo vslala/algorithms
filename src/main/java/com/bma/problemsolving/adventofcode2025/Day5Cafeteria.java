@@ -1,5 +1,8 @@
 package com.bma.problemsolving.adventofcode2025;
 
+import com.bma.algorithms.sort.elementary.Util;
+
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -60,11 +63,37 @@ class Day5Cafeteria {
         return false;
     }
 
-    public int part2(List<Range> ranges, List<Long> ids) {
-        return 0;
+    public long part2(List<Range> ranges, List<Long> ids) {
+        ranges.sort(Comparator.comparingLong(Range::start));
+        var mergedRanges = new ArrayList<Range>();
+
+        mergedRanges.add(ranges.getFirst());
+
+        for (int i = 1; i < ranges.size(); i++) {
+            var prev = mergedRanges.getLast();
+            var curr = ranges.get(i);
+            if (prev.end() >= curr.start()) {
+                var newRange = new Range(prev.start(), Math.max(prev.end(), curr.end()));
+                mergedRanges.removeLast();
+                mergedRanges.add(newRange);
+            } else {
+                mergedRanges.add(curr);
+            }
+        }
+
+        long totalIds = 0;
+        for (Range mergedRange : mergedRanges) {
+            totalIds += mergedRange.total();
+        }
+
+        return totalIds;
     }
 
-    public record Range(long start, long end) {}
+    public record Range(long start, long end) {
+        public long total() {
+            return end - start + 1;
+        }
+    }
 
 
 }
