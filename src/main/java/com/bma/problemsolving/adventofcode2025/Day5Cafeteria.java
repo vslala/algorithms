@@ -1,5 +1,6 @@
 package com.bma.problemsolving.adventofcode2025;
 
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -17,15 +18,46 @@ class Day5Cafeteria {
 
         int validIds = 0;
         for (Long id : ids) {
-            for (Range range : ranges) {
-                if (id >= range.start() && id <= range.end()) {
-                    validIds += 1;
-                    break;
-                }
+            if (isValidId(ranges, id)) {
+                validIds += 1;
             }
         }
 
         return validIds;
+    }
+
+    private boolean isValidId(List<Range> ranges, Long id) {
+        Range searchKey = new Range(id, id);
+
+        // Binary search returns:
+        // - index if exact match found (range.start == id)
+        // - (-(insertion point) - 1) if not found
+        int index = Collections.binarySearch(ranges, searchKey, Comparator.comparingLong(Range::start));
+
+        if (index >= 0) {
+            return id <= ranges.get(index).end();
+        }
+
+        int insertionPoint = -(index + 1);
+
+        // Check all ranges that could contain this id
+        // Scan backwards from insertion point - 1 until we find a valid range
+        // or reach a range that definitely can't contain the id
+        for (int i = insertionPoint - 1; i >= 0; i--) {
+            Range range = ranges.get(i);
+
+            // If id is within this range, it's valid
+            if (id >= range.start() && id <= range.end()) {
+                return true;
+            }
+
+            // Optimization: if the range ends before our id starts,
+            // and ranges are sorted by start, we won't find it in earlier ranges
+            // ONLY if ranges don't overlap past this point
+            // But with overlaps, we can't make this assumption safely, so check all
+        }
+
+        return false;
     }
 
     public int part2(List<Range> ranges, List<Long> ids) {
